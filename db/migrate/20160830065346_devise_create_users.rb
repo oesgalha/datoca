@@ -33,6 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ## Data
 
       t.string :name
+      t.string :handle
       t.text :bio
       t.string :location
       t.string :company

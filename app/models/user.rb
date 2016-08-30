@@ -14,6 +14,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  name                   :string
+#  handle                 :string
 #  bio                    :text
 #  location               :string
 #  company                :string

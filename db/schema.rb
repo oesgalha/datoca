@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160830065346) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "name"
+    t.string   "handle"
     t.text     "bio"
     t.string   "location"
     t.string   "company"
