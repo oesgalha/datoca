@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <% @competitions.each do |competition| %>
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img src="http://placehold.it/128x128" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p>
+              <h2><%= competition.name %></h2>
+              <br>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+            </p>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>

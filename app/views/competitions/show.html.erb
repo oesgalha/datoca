@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @competition.name %>
+</p>
+
+<p>
+  <strong>Max team size:</strong>
+  <%= @competition.max_team_size %>
+</p>
+
+<p>
+  <strong>Evaluation type:</strong>
+  <%= @competition.evaluation_type %>
+</p>
+
+<%= link_to 'Edit', edit_competition_path(@competition) %> |
+<%= link_to 'Back', competitions_path %>
