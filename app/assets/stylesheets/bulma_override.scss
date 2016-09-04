@@ -13,3 +13,16 @@ $danger: #ff1654;
 
 $fa-font-path: "/assets/fontawesome/fonts";
 @import 'fontawesome.scss';
+
+@each $name, $pair in $colors {
+  $color: nth($pair, 1);
+  .has-text-#{$name} {
+    color: $color;
+  }
+  a.has-text-#{$name} {
+    &:hover,
+    &:focus {
+      color: darken($color, 10%);
+    }
+  }
+}
