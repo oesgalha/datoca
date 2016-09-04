@@ -1,0 +1,15 @@
+
+$family-serif: 'Cabin', sans-serif;
+
+$primary: #645e9d;
+$info: #4faec1;
+$success: #6ddb90;
+$warning: #ecff9b;
+$danger: #ff1654;
+
+@import "bulma";
+
+@import 'https://fonts.googleapis.com/css?family=Cabin';
+
+$fa-font-path: "/assets/fontawesome/fonts";
+@import 'fontawesome.scss';

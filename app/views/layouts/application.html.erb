@@ -3,38 +3,58 @@
   <head>
     <title>Copas</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-static-top">
+    <section class="hero is-primary is-medium">
+      <div class="hero-head">
+        <header class="nav">
+          <div class="container">
+            <div class="nav-left">
+              <%= link_to 'COPAS', root_path, class: 'nav-item' %>
+            </div>
+            <span class="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <div class="nav-center nav-menu">
+              <a class="nav-item">
+                <i class="fa fa-trophy"></i>
+                &nbsp;
+                Competições
+              </a>
+              <a class="nav-item">
+                <i class="fa fa-list-alt"></i>
+                &nbsp;
+                Placar
+              </a>
+            </div>
+            <div class="nav-right nav-menu">
+              <div class="nav-item">
+                <%= link_to 'Cadastrar',  new_user_registration_path, class: 'button is-success is-outlined' %>
+              </div>
+              <div class="nav-item">
+                <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <%= yield %>
+
+    <footer class="footer">
       <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Copas</a>
+        <div class="content has-text-centered">
+          <p>
+            Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Leite de capivaris, leite de mula manquis. Manduma pindureta quium dia nois paga. undefined
+          </p>
+        </div>
       </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#">Competitions</a></li>
-          <li><a href="#">Leaderboard</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <button type="button" class="btn btn-primary navbar-btn">Sign Up</button>
-          <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-        </ul>
-      </div>
-    </div>
-    </nav>
-    <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
-    </div>
-    <nav class="navbar navbar-default navbar-static-bottom">
-      <div class="container">
-        <p class="text-muted">Vários textos de footer</p>
-      </div>
-    </nav>
+    </footer>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>

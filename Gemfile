@@ -27,10 +27,10 @@ gem 'puma', '~> 3.6'
 # =================================
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.3'          # support for Bootstrap
 gem 'sass-rails', '~> 5.0'
 source 'https://rails-assets.org' do
-  gem 'rails-assets-fontawesome', '~> 4.4'
+  gem 'rails-assets-bulma', '~> 0.1'
+  gem 'rails-assets-fontawesome', '~> 4.6'
 end
 
 # =================================
