@@ -23,3 +23,6 @@ config/database.yml
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore attachments
+public/system

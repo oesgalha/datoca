@@ -6,6 +6,7 @@ gem 'rails', '~> 5.0'
 # Database and ActiveRecord plugins
 # =================================
 gem 'pg', '~> 0.18'
+gem 'paperclip', '~> 5.0'
 
 # =================================
 # Authentication and Authorization

@@ -3,7 +3,7 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions
   def index
-    @competitions = Competition.all
+    @competitions = Competition.includes(:description)
   end
 
   # GET /competitions/1

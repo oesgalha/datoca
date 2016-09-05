@@ -21,7 +21,9 @@ def competiton_params
   {
     name: competition_name,
     total_prize: 2000 + rand(48_000),
-    deadline: Time.now.midnight + (5 + rand(40)).days,
+    deadline: Time.now.midnight + (5 + rand(20)).days,
+    ilustration: open("http://lorempixel.com/128/128/"),
+    created_at: Time.now - (5 + rand(20)).days,
     description_attributes: {
       name: 'Descrição',
       markdown: lorem

@@ -20,6 +20,10 @@
 #  company                :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 # Indexes
 #
@@ -28,10 +32,17 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
-  
+  # =================================
+  # Plugins
+  # =================================
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  has_attached_file :avatar, styles: { medium: "256x256>", thumb: "96x96" }
+
+  # =================================
+  # Validations
+  # =================================
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
 end

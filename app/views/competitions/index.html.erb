@@ -5,15 +5,16 @@
         <div class="columns">
           <div class="column is-2">
             <div class="image is-128x128 is-pulled-right">
-              <img src="http://lorempixel.com/128/128/">
+              <%= image_tag competition.ilustration.url(:regular) %>
             </div>
           </div>
-          <div class="column is-4">
+          <div class="column is-8">
             <p class="title is-bold"><%= competition.name %></p>
             <p class="subtitle is-5"><%= truncate(competition.description.markdown, length: 150) %></p>
           </div>
-          <div class="column">
-            <%= distance_of_time_in_words_to_now(competition.created_at) %>
+          <div class="column has-text-right">
+            <p><%= distance_of_time_in_words_to_now(competition.created_at) %></p>
+            <p><%= number_to_currency(competition.total_prize, unit: 'R$', separator: ',', delimiter: '.') %></p>
           </div>
         </div>
       </div>

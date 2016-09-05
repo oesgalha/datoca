@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904084611) do
+ActiveRecord::Schema.define(version: 20160905233700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,14 @@ ActiveRecord::Schema.define(version: 20160904084611) do
     t.string   "name"
     t.integer  "max_team_size"
     t.integer  "evaluation_type"
-    t.decimal  "total_prize",     precision: 9, scale: 2
+    t.decimal  "total_prize",              precision: 9, scale: 2
     t.datetime "deadline"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "ilustration_file_name"
+    t.string   "ilustration_content_type"
+    t.integer  "ilustration_file_size"
+    t.datetime "ilustration_updated_at"
   end
 
   create_table "instructions", force: :cascade do |t|
@@ -53,6 +57,10 @@ ActiveRecord::Schema.define(version: 20160904084611) do
     t.string   "company"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
