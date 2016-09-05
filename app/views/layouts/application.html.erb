@@ -20,11 +20,11 @@
               <span></span>
             </span>
             <div class="nav-center nav-menu">
-              <a class="nav-item">
+              <%= link_to competitions_path, class: 'nav-item' do %>
                 <i class="fa fa-trophy"></i>
                 &nbsp;
                 Competições
-              </a>
+              <% end %>
               <a class="nav-item">
                 <i class="fa fa-list-alt"></i>
                 &nbsp;
@@ -32,12 +32,18 @@
               </a>
             </div>
             <div class="nav-right nav-menu">
-              <div class="nav-item">
-                <%= link_to 'Cadastrar',  new_user_registration_path, class: 'button is-success is-outlined' %>
-              </div>
-              <div class="nav-item">
-                <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
-              </div>
+              <% if current_user %>
+                <div class="nav-item">
+                  <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined' %>
+                </div>
+              <% else %>
+                <div class="nav-item">
+                  <%= link_to 'Cadastrar',  new_user_registration_path, class: 'button is-success is-outlined' %>
+                </div>
+                <div class="nav-item">
+                  <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
+                </div>
+              <% end %>
             </div>
           </div>
         </header>

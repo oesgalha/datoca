@@ -42,3 +42,10 @@ group :development do
   gem 'spring', '~> 1.7'
   gem 'annotate', '~> 2.7'
 end
+
+# =================================
+# Testing libs
+# =================================
+group :test do
+  gem 'laranja', '~> 2.0'
+end
