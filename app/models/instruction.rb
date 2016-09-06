@@ -34,4 +34,9 @@ class Instruction < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :competition_id }
   validates :markdown, presence: true
 
+
+
+  def text
+    html || markdown
+  end
 end

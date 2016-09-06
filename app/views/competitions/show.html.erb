@@ -1,19 +1,55 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @competition.name %>
-</p>
-
-<p>
-  <strong>Max team size:</strong>
-  <%= @competition.max_team_size %>
-</p>
-
-<p>
-  <strong>Evaluation type:</strong>
-  <%= @competition.evaluation_type %>
-</p>
-
-<%= link_to 'Edit', edit_competition_path(@competition) %> |
-<%= link_to 'Back', competitions_path %>
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <nav class="level">
+        <div class="level-item has-text-left">
+          <span class="title is-3"><%= @competition.name %></span>
+        </div>
+        <div class="level-item"></div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Prêmio</p>
+          <p class="title"><%= number_to_currency(@competition.total_prize) %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Participantes</p>
+          <p class="title">0</p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Prazo</p>
+          <p class="title"><%= distance_of_time_in_words_to_now(@competition.deadline) %></p>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        <aside class="menu">
+          <p class="menu-label">
+            Informações
+          </p>
+          <ul class="menu-list">
+            <% @competition.instructions.each_with_index do |instruction, i| %>
+              <li><%= link_to instruction.name, instruction, remote: true, id: "instruction-#{instruction.id}", class: ( i.zero? ? 'is-active' : '' ) %></li>
+            <% end %>
+          </ul>
+          <p class="menu-label">
+            Competir
+          </p>
+          <ul class="menu-list">
+            <li><a href="#">Baixar os dados</a></li>
+            <li><a href="#">Submeter resultado</a></li>
+            <li><a href="#">Placar</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column">
+        <div id="instruction-text" class="content">
+          <h1><%= @competition.description.name %></h1><%= @competition.description.text %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

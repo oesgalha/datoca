@@ -29,7 +29,7 @@ def competiton_params
       markdown: lorem
     },
     evaluation_text_attributes: {
-      name: 'Regras',
+      name: 'Avaliação',
       markdown: lorem
     },
     rules_attributes: {
