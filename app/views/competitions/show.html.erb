@@ -47,7 +47,7 @@
       </div>
       <div class="column">
         <div id="instruction-text" class="content">
-          <h1><%= @competition.description.name %></h1><%= @competition.description.text %>
+          <h1><%= @competition.description.name %></h1><%= raw(@competition.description.text) %>
         </div>
       </div>
     </div>

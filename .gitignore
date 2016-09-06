@@ -6,8 +6,10 @@
 
 # Ignore bundler config.
 /.bundle
+
 # Ignore vagrant files
 .vagrant/
+ubuntu-xenial-16.04-cloudimg-console.log
 
 config/database.yml
 

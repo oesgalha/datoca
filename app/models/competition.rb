@@ -32,6 +32,7 @@ class Competition < ApplicationRecord
   has_one :evaluation_text, -> { where name: 'Avaliação' }, class_name: 'Instruction', inverse_of: :competition
   has_one :rules,           -> { where name: 'Regras' },    class_name: 'Instruction', inverse_of: :competition
 
+  accepts_nested_attributes_for :instructions
   accepts_nested_attributes_for :description
   accepts_nested_attributes_for :evaluation_text
   accepts_nested_attributes_for :rules

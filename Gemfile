@@ -18,11 +18,17 @@ gem 'devise', '~> 4.2'
 # =================================
 gem 'high_voltage', '~> 3.0'
 gem 'rails-i18n', '~> 5.0'
+gem 'redcarpet', '~> 3.3'
 
 # =================================
 # Webserver
 # =================================
 gem 'puma', '~> 3.6'
+
+# =================================
+# Forms and Views
+# =================================
+gem 'nested_form', '~> 0.3'
 
 # =================================
 # Assets
@@ -33,6 +39,7 @@ gem 'sass-rails', '~> 5.0'
 source 'https://rails-assets.org' do
   gem 'rails-assets-bulma', '~> 0.1'
   gem 'rails-assets-fontawesome', '~> 4.6'
+  gem 'rails-assets-markdown-js', '~> 0.6'
 end
 
 # =================================

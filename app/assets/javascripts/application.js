@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery_nested_form
+//= require markdown-js/dist/markdown
 //= require_tree .

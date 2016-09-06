@@ -34,7 +34,17 @@ class Instruction < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :competition_id }
   validates :markdown, presence: true
 
+  # =================================
+  # Callbacks
+  # =================================
 
+  before_save :process_markdown, if: :markdown_changed?
+
+  # TODO: Move to background
+  def process_markdown
+    md_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    self.html = md_renderer.render(self.markdown).gsub(/[\n]+/, '')
+  end
 
   def text
     html || markdown
