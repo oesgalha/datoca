@@ -275,9 +275,9 @@ end
 
 # append to end of config/initializers/devise.rb
 Rails.application.config.to_prepare do
-  Devise::SessionsController.layout "devise"
-  Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "application" : "devise" }
-  Devise::ConfirmationsController.layout "devise"
-  Devise::UnlocksController.layout "devise"
-  Devise::PasswordsController.layout "devise"
+  Devise::SessionsController.layout "minimal"
+  Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "application" : "minimal" }
+  Devise::ConfirmationsController.layout "minimal"
+  Devise::UnlocksController.layout "minimal"
+  Devise::PasswordsController.layout "minimal"
 end

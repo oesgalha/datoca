@@ -1,6 +1,101 @@
-<section class="hero is-primary is-bold is-fullheight">
+<section class="hero is-primary is-large header-image">
+  <div class="hero-head">
+    <header class="nav">
+      <div class="container">
+        <div class="nav-left">
+          <%= link_to 'COPAS', root_path, class: 'nav-item' %>
+        </div>
+        <span class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div class="nav-center nav-menu">
+          <%= link_to competitions_path, class: 'nav-item' do %>
+            <i class="fa fa-trophy"></i>
+            &nbsp;
+            Competições
+          <% end %>
+          <a class="nav-item">
+            <i class="fa fa-info"></i>
+            &nbsp;
+            Sobre
+          </a>
+          <a class="nav-item">
+            <i class="fa fa-question"></i>
+            &nbsp;
+            FAQ
+          </a>
+        </div>
+        <div class="nav-right nav-menu">
+          <% if current_user %>
+            <div class="nav-item">
+              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined' %>
+            </div>
+          <% else %>
+            <div class="nav-item">
+              <%= link_to 'Cadastrar',  new_user_registration_path, class: 'button is-success is-outlined' %>
+            </div>
+            <div class="nav-item">
+              <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </header>
+  </div>
   <div class="hero-body">
-    <div class="container">
+    <div class="container has-text-centered">
+      <h1 class="title is-1">
+        A plataforma brasileira de ciência de dados
+      </h1>
     </div>
   </div>
 </section>
+<div class="section main">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4">
+        <div class="panel">
+          <div class="panel-block section has-text-centered">
+            <p><i class="fa fa-globe icon-block"></i></p>
+            <br>
+            <p>Resolva problemas reais de empresas, ONGS e cidades.</p>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="panel">
+          <div class="panel-block section has-text-centered">
+            <p><i class="fa fa-trophy icon-block"></i></p>
+            <br>
+            <p>Participe de competições contra cientistas de dados do mundo todo.</p>
+            <br>
+          </div>
+        </div>
+
+      </div>
+      <div class="column is-4">
+        <div class="panel">
+          <div class="panel-block section has-text-centered">
+            <p><i class="fa fa-dollar icon-block"></i></p>
+            <br>
+            <p>Faça a melhor solução e ganhe prêmios em dinheiro e vagas de emprego.</p>
+            <br>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Leite de capivaris, leite de mula manquis. Manduma pindureta quium dia nois paga. undefined
+      </p>
+    </div>
+  </div>
+</footer>

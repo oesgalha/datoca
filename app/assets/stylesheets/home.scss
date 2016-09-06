@@ -1,0 +1,11 @@
+.header-image {
+  background: linear-gradient(rgba(200, 200, 200, 0.48),rgba(0, 0, 0, 0.64)), image-url("home.jpg") center center no-repeat fixed;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.icon-block {
+  font-size:5em;
+}

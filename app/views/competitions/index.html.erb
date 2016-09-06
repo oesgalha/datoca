@@ -10,7 +10,6 @@
           </div>
           <div class="column is-8">
             <p class="title is-bold"><%= link_to competition.name, competition %></p>
-            <p class="subtitle is-5"><%= truncate(competition.description.text, length: 150) %></p>
           </div>
           <div class="column has-text-right">
             <p>Começou há <%= distance_of_time_in_words_to_now(competition.created_at) %></p>
