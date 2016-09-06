@@ -13,8 +13,8 @@
             <p class="subtitle is-5"><%= truncate(competition.description.markdown, length: 150) %></p>
           </div>
           <div class="column has-text-right">
-            <p><%= distance_of_time_in_words_to_now(competition.created_at) %></p>
-            <p><%= number_to_currency(competition.total_prize, unit: 'R$', separator: ',', delimiter: '.') %></p>
+            <p>Começou há <%= distance_of_time_in_words_to_now(competition.created_at) %></p>
+            <p><%= number_to_currency(competition.total_prize) %></p>
           </div>
         </div>
       </div>
