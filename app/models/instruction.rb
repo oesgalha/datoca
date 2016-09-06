@@ -43,7 +43,7 @@ class Instruction < ApplicationRecord
   # TODO: Move to background
   def process_markdown
     md_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-    self.html = md_renderer.render(self.markdown).gsub(/[\n]+/, '')
+    self.html = md_renderer.render(self.markdown).gsub(/[\r\n]+/, '')
   end
 
   def text
