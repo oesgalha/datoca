@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    redirect_to @user unless @user == current_user
   end
 
   def update
