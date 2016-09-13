@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="spacing-40"></div>
+  <div class="section">
+    <div class="columns">
+      <div class="column is-2">
+        <div class="image is-128x128 has-auto-margin">
+          <% if @user.avatar.exists? %>
+            <%= image_tag @user.avatar.url(:medium) %>
+          <% else %>
+            <%= image_tag "https://robohash.org/#{Digest::MD5.hexdigest(@user.email)}.png", alt: 'avatar' %>
+          <% end %>
+        </div>
+        <nav class="level">
+          <div class="level-left"><span class="level-item icon"><i class="fa fa-clock-o"></i></span></div>
+          <div class="level-right"><p class="level-item">Se cadastrou há <%= distance_of_time_in_words_to_now(@user.created_at) %></p></div>
+        </nav>
+        <% if @user.location %>
+          <nav class="level">
+            <div class="level-left"><span class="level-item icon"><i class="fa fa-map-marker"></i></span></div>
+            <div class="level-right"><p class="level-item"><%= @user.location %></p></div>
+          </nav>
+        <% end %>
+        <% if @user.company %>
+          <nav class="level">
+            <div class="level-left"><span class="level-item icon"><i class="fa fa-building"></i></span></div>
+            <div class="level-right"><p class="level-item"><%= @user.company %></p></div>
+          </nav>
+        <% end %>
+      </div>
+      <div class="column is-6">
+        <p class="title is-bold is-3"><%= @user.name || "Sem nome" %></p>
+        <div class="spacing-20"></div>
+        <p class="subtitle is-4"><%= @user.bio || "Ainda não se descreveu" %></p>
+      </div>
+      <div class="column">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div class="spacing-40"></div>
+            <p class="heading">Competições</p>
+            <p class="title">0</p>
+            <div class="spacing-40"></div>
+            <p class="heading">Ranking</p>
+            <p class="title">0</p>
+          </div>
+          <div class="level-item has-text-right">
+            <% if @user == current_user %>
+              <%= link_to 'Editar Perfil', edit_user_path(@user), class: 'button is-info is-outlined' %>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="spacing-40"></div>
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <div class="box">
+        <p class="title">Equipes</p>
+        <hr>
+        <div class="columns">
+          <div class="column is-half  is-offset-one-quarter has-text-centered">
+            <p>Você ainda não participa de nenhuma equipe ):</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <p class="title">Competições</p>
+        <hr>
+        <div class="columns">
+          <div class="column is-half  is-offset-one-quarter has-text-centered">
+            <p>Você ainda não particiou de nenhuma competição ):</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<section class="section">
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Editar Perfil</h1>
+    </div>
+
+    <%= form_for @user, html: { multipart: true } do |f| %>
+      <%= f.label :name, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :name, class: 'input', type: 'text' %>
+      </p>
+
+      <%= f.label :avatar, class: 'label' %>
+      <p class="control">
+        <%= f.file_field :avatar %>
+      </p>
+
+      <%= f.label :handle, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :handle, class: 'input', type: 'text' %>
+      </p>
+
+      <%= f.label :bio, class: 'label' %>
+      <p class="control">
+        <%= f.text_area :bio, class: 'textarea', type: 'text' %>
+      </p>
+
+      <%= f.label :location, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :location, class: 'input', type: 'text' %>
+      </p>
+
+      <%= f.label :company, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :company, class: 'input', type: 'text' %>
+      </p>
+
+      <p class="control">
+        <%= f.submit class: 'button is-success' %>
+      </p>
+      </div>
+    <% end %>
+  </div>
+</section>

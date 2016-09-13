@@ -43,6 +43,7 @@ class User < ApplicationRecord
   # Validations
   # =================================
 
+  validates :bio, length: { maximum: 256 }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 end
