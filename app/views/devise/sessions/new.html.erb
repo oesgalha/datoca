@@ -34,7 +34,6 @@
               Entrar com e-mail:
             </div>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
               <p class="control has-icon">
                 <%= f.email_field :email, autofocus: true, class: 'input', placeholder: 'e-mail' %>
                 <i class="fa fa-envelope"></i>
