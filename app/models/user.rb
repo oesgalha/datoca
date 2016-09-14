@@ -44,6 +44,7 @@ class User < ApplicationRecord
   # =================================
 
   has_many :submissions, as: :competitor
+  has_many :competitions, -> { order(:created_at).distinct }, through: :submissions
   has_and_belongs_to_many :teams
 
   # =================================

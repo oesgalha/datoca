@@ -1,60 +1,63 @@
 <div class="container">
   <div class="spacing-40"></div>
   <div class="section">
-    <div class="columns">
-      <div class="column is-2">
-        <div class="image is-128x128 has-auto-margin">
-          <%= image_tag @user.image(:medium) %>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <div class="image is-128x128 has-auto-margin">
+            <%= image_tag @user.image(:medium) %>
+          </div>
+          <div class="spacing-20"></div>
+          <p>
+            <span class="level-item icon"><i class="fa fa-clock-o"></i></span>
+            Se cadastrou há <%= distance_of_time_in_words_to_now(@user.created_at) %>
+          </p>
+          <% if @user.location.present? %>
+            <p>
+              <span class="level-item icon"><i class="fa fa-map-marker"></i></span>
+              <%= @user.location %>
+            </p>
+          <% end %>
+          <% if @user.company.present? %>
+            <p>
+              <span class="level-item icon"><i class="fa fa-building"></i></span>
+              <%= @user.company %>
+            </p>
+          <% end %>
         </div>
-        <nav class="level">
-          <div class="level-left"><span class="level-item icon"><i class="fa fa-clock-o"></i></span></div>
-          <div class="level-right"><p class="level-item">Se cadastrou há <%= distance_of_time_in_words_to_now(@user.created_at) %></p></div>
-        </nav>
-        <% if @user.location.present? %>
-          <nav class="level">
-            <div class="level-left"><span class="level-item icon"><i class="fa fa-map-marker"></i></span></div>
-            <div class="level-right"><p class="level-item"><%= @user.location %></p></div>
-          </nav>
-        <% end %>
-        <% if @user.company.present? %>
-          <nav class="level">
-            <div class="level-left"><span class="level-item icon"><i class="fa fa-building"></i></span></div>
-            <div class="level-right"><p class="level-item"><%= @user.company %></p></div>
-          </nav>
-        <% end %>
+        <div class="level-item">
+          <p class="title is-bold is-3"><%= @user.name || "Sem nome" %></p>
+          <div class="spacing-20"></div>
+          <p class="subtitle is-4"><%= @user.bio || "Ainda não se descreveu" %></p>
+        </div>
       </div>
-      <div class="column is-6">
-        <p class="title is-bold is-3"><%= @user.name || "Sem nome" %></p>
-        <div class="spacing-20"></div>
-        <p class="subtitle is-4"><%= @user.bio || "Ainda não se descreveu" %></p>
+
+      <div class="level-right">
+        <div class="level-item has-text-centered">
+          <p class="heading">Competições</p>
+          <p class="title"><%= @user.competitions.size %></p>
+          <div class="spacing-40"></div>
+          <p class="heading">Ranking</p>
+          <p class="title">0</p>
+        </div>
+        <div class="level-item has-text-right">
+          <% if @user == current_user %>
+            <%= link_to 'Editar Perfil', edit_user_path(@user), class: 'button is-info is-outlined' %>
+          <% end %>
+        </div>
       </div>
-      <div class="column">
-        <nav class="level">
-          <div class="level-item has-text-centered">
-            <div class="spacing-40"></div>
-            <p class="heading">Competições</p>
-            <p class="title">0</p>
-            <div class="spacing-40"></div>
-            <p class="heading">Ranking</p>
-            <p class="title">0</p>
-          </div>
-          <div class="level-item has-text-right">
-            <% if @user == current_user %>
-              <%= link_to 'Editar Perfil', edit_user_path(@user), class: 'button is-info is-outlined' %>
-            <% end %>
-          </div>
-        </nav>
-      </div>
-    </div>
+    </nav>
   </div>
   <div class="spacing-40"></div>
   <div class="columns">
     <div class="column is-one-quarter">
       <div class="box">
-        <%= link_to 'Criar Equipe', new_team_path, class: 'button is-info is-pulled-right' %>
+        <% if @user == current_user %>
+          <%= link_to 'Criar Equipe', new_team_path, class: 'button is-info is-pulled-right' %>
+        <% end %>
         <p class="title">Equipes</p>
         <hr>
-        <div class="columns">
+        <div class="columns is-multiline">
           <% if @user.teams.any? %>
             <% @user.teams.each do |team| %>
               <div class="column has-text-centered is-one-third">
@@ -75,11 +78,27 @@
       <div class="box">
         <p class="title">Competições</p>
         <hr>
-        <div class="columns">
-          <div class="column is-half  is-offset-one-quarter has-text-centered">
-            <p>Você ainda não particiou de nenhuma competição ):</p>
-          </div>
-        </div>
+        <% if @user.competitions.any? %>
+          <% @user.competitions.each do |competition| %>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <%= image_tag competition.ilustration.url(:regular), class: 'image is-64x64' %>
+                </div>
+                <div class="level-item">
+                  <p class="title"><%= competition.name %></p>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <%= link_to 'Ver Competição', competition, class: 'button is-info' %>
+                </div>
+              </div>
+            </nav>
+          <% end %>
+        <% else %>
+          <p class="has-text-centered">Ainda não particiou de nenhuma competição ):</p>
+        <% end %>
       </div>
     </div>
   </div>

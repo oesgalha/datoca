@@ -14,18 +14,20 @@
       </div>
       <div class="column">
         <nav class="level">
-          <div class="level-item has-text-centered">
-            <div class="spacing-40"></div>
-            <p class="heading">Competições</p>
-            <p class="title">0</p>
-            <div class="spacing-40"></div>
-            <p class="heading">Ranking</p>
-            <p class="title">0</p>
-          </div>
-          <div class="level-item has-text-right">
-            <% if @team.users.include?(current_user) %>
-              <%= link_to 'Editar Equipe', edit_team_path(@team), class: 'button is-info is-outlined' %>
-            <% end %>
+          <div class="level-left"></div>
+          <div class="level-right">
+            <div class="level-item has-text-centered">
+              <p class="heading">Competições</p>
+              <p class="title"><%= @team.competitions.size %></p>
+              <div class="spacing-40"></div>
+              <p class="heading">Ranking</p>
+              <p class="title">0</p>
+            </div>
+            <div class="level-item has-text-right">
+              <% if @team.users.include?(current_user) %>
+                <%= link_to 'Editar Equipe', edit_team_path(@team), class: 'button is-info is-outlined' %>
+              <% end %>
+            </div>
           </div>
         </nav>
       </div>
@@ -37,7 +39,7 @@
       <div class="box">
         <p class="title">Membros</p>
         <hr>
-        <div class="columns">
+        <div class="columns is-multiline">
           <% @team.users.each do |user| %>
             <div class="column has-text-centered is-one-third">
               <%= link_to user do %>
@@ -52,11 +54,27 @@
       <div class="box">
         <p class="title">Competições</p>
         <hr>
-        <div class="columns">
-          <div class="column is-half  is-offset-one-quarter has-text-centered">
-            <p>Esta equipe ainda não particiou de nenhuma competição ):</p>
-          </div>
-        </div>
+        <% if @team.competitions.any? %>
+          <% @team.competitions.each do |competition| %>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <%= image_tag competition.ilustration.url(:regular), class: 'image is-64x64' %>
+                </div>
+                <div class="level-item">
+                  <p class="title"><%= competition.name %></p>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <%= link_to 'Ver Competição', competition, class: 'button is-info' %>
+                </div>
+              </div>
+            </nav>
+          <% end %>
+        <% else %>
+          <p class="has-text-centered">Ainda não particiou de nenhuma competição ):</p>
+        <% end %>
       </div>
     </div>
   </div>
