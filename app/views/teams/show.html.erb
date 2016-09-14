@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="spacing-40"></div>
+  <div class="section">
+    <div class="columns">
+      <div class="column is-2">
+        <div class="image is-128x128 has-auto-margin">
+          <%= image_tag @team.image(:medium) %>
+        </div>
+      </div>
+      <div class="column is-6">
+        <p class="title is-bold is-3"><%= @team.name %></p>
+        <div class="spacing-20"></div>
+        <p class="subtitle is-4"><%= @team.description || "Ainda não se descreveu" %></p>
+      </div>
+      <div class="column">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div class="spacing-40"></div>
+            <p class="heading">Competições</p>
+            <p class="title">0</p>
+            <div class="spacing-40"></div>
+            <p class="heading">Ranking</p>
+            <p class="title">0</p>
+          </div>
+          <div class="level-item has-text-right">
+            <% if @team.users.include?(current_user) %>
+              <%= link_to 'Editar Equipe', edit_team_path(@team), class: 'button is-info is-outlined' %>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="spacing-40"></div>
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <div class="box">
+        <p class="title">Membros</p>
+        <hr>
+        <div class="columns">
+          <% @team.users.each do |user| %>
+            <div class="column has-text-centered is-one-third">
+              <%= link_to user do %>
+                <%= image_tag user.image(:thumb), class: 'image is-64x64' %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <p class="title">Competições</p>
+        <hr>
+        <div class="columns">
+          <div class="column is-half  is-offset-one-quarter has-text-centered">
+            <p>Esta equipe ainda não particiou de nenhuma competição ):</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

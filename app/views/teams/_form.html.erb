@@ -1,0 +1,26 @@
+<%= form_for team, html: { multipart: true } do |f| %>
+  <%= f.label :name, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :name, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :avatar, class: 'label' %>
+  <p class="control">
+    <%= f.file_field :avatar %>
+  </p>
+
+  <%= f.label :description, class: 'label' %>
+  <p class="control">
+    <%= f.text_area :description, class: 'textarea', type: 'text' %>
+  </p>
+
+  <%= f.label :users, class: 'label' %>
+  <p class="control">
+    <%= f.collection_select(:user_ids, @users, :id, :name, { }, { multiple: true, class: 'input chosen' }) %>
+  </p>
+
+  <p class="control">
+    <%= f.submit class: 'button is-success' %>
+  </p>
+  </div>
+<% end %>

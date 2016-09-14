@@ -121,7 +121,10 @@ GEM
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-bulma (0.1.2)
+    rails-assets-chosen (1.6.2)
+      rails-assets-jquery (>= 1.4.4)
     rails-assets-fontawesome (4.6.3)
+    rails-assets-jquery (3.1.0)
     rails-assets-markdown-js (0.6.2)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
@@ -192,6 +195,7 @@ DEPENDENCIES
   puma (~> 3.6)
   rails (~> 5.0)
   rails-assets-bulma (~> 0.1)!
+  rails-assets-chosen (~> 1.6)!
   rails-assets-fontawesome (~> 4.6)!
   rails-assets-markdown-js (~> 0.6)!
   rails-i18n (~> 5.0)
