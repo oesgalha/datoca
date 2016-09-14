@@ -27,6 +27,6 @@ class SubmissionsController < ApplicationController
   end
 
   def submission_params
-    params.require(:submission).permit(:result, :explanation_md, :competitor_sgid)
+    params.require(:submission).permit(:csv, :explanation_md, :competitor_sgid)
   end
 end

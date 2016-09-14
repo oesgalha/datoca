@@ -2,19 +2,19 @@
 #
 # Table name: submissions
 #
-#  id                  :integer          not null, primary key
-#  explanation_md      :text
-#  explanation_html    :text
-#  result_file_name    :string
-#  result_content_type :string
-#  result_file_size    :integer
-#  result_updated_at   :datetime
-#  competition_id      :integer
-#  competitor_type     :string
-#  competitor_id       :integer
-#  evaluation_score    :decimal(11, 10)
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id               :integer          not null, primary key
+#  explanation_md   :text
+#  explanation_html :text
+#  csv_file_name    :string
+#  csv_content_type :string
+#  csv_file_size    :integer
+#  csv_updated_at   :datetime
+#  competition_id   :integer
+#  competitor_type  :string
+#  competitor_id    :integer
+#  evaluation_score :decimal(11, 10)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 # Indexes
 #
@@ -31,7 +31,7 @@ class Submission < ApplicationRecord
   # =================================
   # Plugins
   # =================================
-  has_attached_file :result
+  has_attached_file :csv
 
   # =================================
   # Associations
@@ -44,9 +44,9 @@ class Submission < ApplicationRecord
   # Validations
   # =================================
 
-  validates :result, presence: true
-  validates_attachment_file_name :result, matches: /\.csv\Z/
-  validates_attachment_content_type :result, content_type: %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
+  validates :csv, presence: true
+  validates_attachment_file_name :csv, matches: /\.csv\Z/
+  validates_attachment_content_type :csv, content_type: %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
 
   # =================================
   # Callbacks

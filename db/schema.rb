@@ -42,16 +42,16 @@ ActiveRecord::Schema.define(version: 20160914004109) do
   create_table "submissions", force: :cascade do |t|
     t.text     "explanation_md"
     t.text     "explanation_html"
-    t.string   "result_file_name"
-    t.string   "result_content_type"
-    t.integer  "result_file_size"
-    t.datetime "result_updated_at"
+    t.string   "csv_file_name"
+    t.string   "csv_content_type"
+    t.integer  "csv_file_size"
+    t.datetime "csv_updated_at"
     t.integer  "competition_id"
     t.string   "competitor_type"
     t.integer  "competitor_id"
-    t.decimal  "evaluation_score",    precision: 11, scale: 10
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.decimal  "evaluation_score", precision: 11, scale: 10
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.index ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
     t.index ["competitor_type", "competitor_id"], name: "index_submissions_on_competitor_type_and_competitor_id", using: :btree
   end
