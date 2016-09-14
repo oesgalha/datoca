@@ -19,14 +19,18 @@ ActiveRecord::Schema.define(version: 20160914004109) do
     t.string   "name"
     t.integer  "max_team_size"
     t.integer  "evaluation_type"
-    t.decimal  "total_prize",              precision: 9, scale: 2
+    t.decimal  "total_prize",               precision: 9, scale: 2
     t.datetime "deadline"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
     t.string   "ilustration_file_name"
     t.string   "ilustration_content_type"
     t.integer  "ilustration_file_size"
     t.datetime "ilustration_updated_at"
+    t.string   "expected_csv_file_name"
+    t.string   "expected_csv_content_type"
+    t.integer  "expected_csv_file_size"
+    t.datetime "expected_csv_updated_at"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "instructions", force: :cascade do |t|
@@ -90,12 +94,12 @@ ActiveRecord::Schema.define(version: 20160914004109) do
     t.text     "bio"
     t.string   "location"
     t.string   "company"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

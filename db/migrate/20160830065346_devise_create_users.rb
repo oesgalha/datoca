@@ -37,6 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.text :bio
       t.string :location
       t.string :company
+      t.has_attached_file :avatar
 
 
       t.timestamps null: false

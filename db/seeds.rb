@@ -1,3 +1,4 @@
+require 'csv'
 require 'laranja'
 Laranja.load('pt-BR')
 
@@ -17,11 +18,23 @@ def competition_name
   "#{PROBLEMS.sample} #{Laranja::Nome.sobrenome} #{COMPANIES.sample}"
 end
 
+def random_csv
+  File.join(Rails.root, 'tmp', "#{rand(10)}.csv").tap do |fullpath|
+    CSV.open(fullpath, 'wb') do |csv|
+      csv << ['id', 'val']
+      for i in 0...10
+        csv << [i.to_s, rand(1_000).to_s]
+      end
+    end
+  end
+end
+
 def competiton_params
   {
     name: competition_name,
     total_prize: 2000 + rand(48_000),
     deadline: Time.now.midnight + (5 + rand(20)).days,
+    expected_csv: File.open(random_csv),
     ilustration: open("http://lorempixel.com/128/128/"),
     created_at: Time.now - (5 + rand(20)).days,
     description_attributes: {
@@ -39,6 +52,43 @@ def competiton_params
   }
 end
 
-10.times do
-  Competition.create!(competiton_params)
+def user_params
+  {
+    name: Laranja::Nome.nome,
+    email: Laranja::Internet.email,
+    location: Laranja::Endereco.cidade,
+    password: Laranja::Internet.password
+  }
+end
+
+def team_params(users)
+  base_name = lorem
+  base_desc = lorem
+  users_amount = 1 + rand(users.size)
+  {
+    name: base_name[rand(base_name.size - 16), 16],
+    description: base_desc[rand(base_desc.size - 128), 128],
+    users: users_amount.times.map { users.sample }.uniq
+  }
+end
+
+puts 'GERANDO USUARIOS'
+users = 20.times.map { User.create!(user_params) }
+
+puts 'GERANDO TIMES'
+teams = 10.times.map { Team.create!(team_params(users)) }
+
+competitors = users + teams
+
+puts 'GERANDO COMPETIÇÕES'
+competitions = 4.times.map { Competition.create!(competiton_params) }
+
+puts 'GERANDO SUBMISSÕES'
+competitions.each do |competition|
+  (1 + rand(9)).times do
+    competition.submissions.create(
+      csv: File.open(random_csv),
+      competitor: competitors.sample
+    )
+  end
 end

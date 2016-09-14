@@ -44,6 +44,7 @@ class Submission < ApplicationRecord
   # Validations
   # =================================
 
+  validates :competitor, presence: true
   validates :csv, presence: true
   validates_attachment_file_name :csv, matches: /\.csv\Z/
   validates_attachment_content_type :csv, content_type: %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
@@ -75,11 +76,11 @@ class Submission < ApplicationRecord
   end
 
   def number
-    @number ||= competition.submissions.select(:id).order(:created_at).map(&:id).index(id) + 1
+    @number ||= competition.submissions.order(:created_at).pluck(:id).index(id) + 1
   end
 
   def competitor_attempt
-    @number ||= competitor.submissions.select(:id).order(:created_at).map(&:id).index(id) + 1
+    @number ||= competitor.submissions.order(:created_at).pluck(:id).index(id) + 1
   end
 
   private
@@ -91,7 +92,7 @@ class Submission < ApplicationRecord
   # TODO: Move to background
   def process_markdown
     Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true).tap do |renderer|
-      self.explanation_html = renderer.render(explanation_md).gsub(/[\r\n]+/, '')
+      self.explanation_html = renderer.render(explanation_md || '').gsub(/[\r\n]+/, '')
     end
   end
 end
