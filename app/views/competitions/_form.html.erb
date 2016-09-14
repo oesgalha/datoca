@@ -21,6 +21,11 @@
     <%= f.number_field :max_team_size, class: 'input', type: 'text' %>
   </p>
 
+  <%= f.label :expected_csv, class: 'label' %>
+  <p class="control">
+    <%= f.file_field :expected_csv %>
+  </p>
+
   <hr>
 
   <h2 class="title">Instruções</h2>

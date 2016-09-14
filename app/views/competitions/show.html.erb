@@ -11,8 +11,12 @@
           <p class="title"><%= number_to_currency(@competition.total_prize) %></p>
         </div>
         <div class="level-item has-text-centered">
-          <p class="heading">Participantes</p>
-          <p class="title">0</p>
+          <p class="heading">Submissões</p>
+          <p class="title"><%= @competition.submissions.size %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Times</p>
+          <p class="title"><%= @competition.teams.size %></p>
         </div>
         <div class="level-item has-text-centered">
           <p class="heading">Prazo</p>
