@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905233700) do
+ActiveRecord::Schema.define(version: 20160913212543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,24 @@ ActiveRecord::Schema.define(version: 20160905233700) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["competition_id"], name: "index_instructions_on_competition_id", using: :btree
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+    t.index ["team_id"], name: "index_teams_users_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_teams_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

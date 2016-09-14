@@ -40,10 +40,25 @@ class User < ApplicationRecord
   has_attached_file :avatar, styles: { medium: "256x256>", thumb: "96x96" }
 
   # =================================
+  # Associations
+  # =================================
+
+  has_and_belongs_to_many :teams
+
+  # =================================
   # Validations
   # =================================
 
-  validates :bio, length: { maximum: 256 }
+  validates :bio, length: { maximum: 256 }, allow_blank: true
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+  # =================================
+
+  def image(style=:medium)
+    if avatar.exists?
+      avatar.url(style)
+    else
+      "https://robohash.org/#{Digest::MD5.hexdigest(email)}.png"
+    end
+  end
 end

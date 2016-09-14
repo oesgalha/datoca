@@ -4,23 +4,19 @@
     <div class="columns">
       <div class="column is-2">
         <div class="image is-128x128 has-auto-margin">
-          <% if @user.avatar.exists? %>
-            <%= image_tag @user.avatar.url(:medium) %>
-          <% else %>
-            <%= image_tag "https://robohash.org/#{Digest::MD5.hexdigest(@user.email)}.png", alt: 'avatar' %>
-          <% end %>
+          <%= image_tag @user.image(:medium) %>
         </div>
         <nav class="level">
           <div class="level-left"><span class="level-item icon"><i class="fa fa-clock-o"></i></span></div>
           <div class="level-right"><p class="level-item">Se cadastrou há <%= distance_of_time_in_words_to_now(@user.created_at) %></p></div>
         </nav>
-        <% if @user.location %>
+        <% if @user.location.present? %>
           <nav class="level">
             <div class="level-left"><span class="level-item icon"><i class="fa fa-map-marker"></i></span></div>
             <div class="level-right"><p class="level-item"><%= @user.location %></p></div>
           </nav>
         <% end %>
-        <% if @user.company %>
+        <% if @user.company.present? %>
           <nav class="level">
             <div class="level-left"><span class="level-item icon"><i class="fa fa-building"></i></span></div>
             <div class="level-right"><p class="level-item"><%= @user.company %></p></div>
@@ -55,12 +51,23 @@
   <div class="columns">
     <div class="column is-one-quarter">
       <div class="box">
+        <%= link_to 'Criar Equipe', new_team_path, class: 'button is-info is-pulled-right' %>
         <p class="title">Equipes</p>
         <hr>
         <div class="columns">
-          <div class="column is-half  is-offset-one-quarter has-text-centered">
-            <p>Você ainda não participa de nenhuma equipe ):</p>
-          </div>
+          <% if @user.teams.any? %>
+            <% @user.teams.each do |team| %>
+              <div class="column has-text-centered is-one-third">
+                <%= link_to team do %>
+                  <%= image_tag team.image(:thumb), class: 'image is-64x64' %>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="column is-half  is-offset-one-quarter has-text-centered">
+              <p>Você ainda não participa de nenhuma equipe ):</p>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
