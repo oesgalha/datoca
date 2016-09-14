@@ -1,0 +1,68 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Submissão #<%= @submission.number %></h1>
+      <h2 class="subtitle"><%= link_to @competition.name, @competition %></h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <h1 class="title">Submetido por:</h1>
+        <div class="box">
+          <nav class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <%= image_tag @submission.competitor.image(:thumb), class: 'image is-64x64' %>
+              </div>
+              <div class="level-item">
+                <p class="title"><%= @submission.competitor.name || 'Sem nome' %></p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <p class="heading">Tentativa n&ordm;</p>
+              <p class="title"><%= @submission.competitor_attempt %></p>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <%= link_to 'Ver Perfil', @submission.competitor, class: 'button is-info' %>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <hr>
+        <h1 class="title">Descrição:</h1>
+        <div class="box">
+          <div class="content">
+            <%= raw(@submission.explanation_html.gsub(/[\"]+/, '\\\"')) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <section class="section">
+          <div class="heading has-text-right">
+            <h2 class="title is-3">Pontuação</h2>
+            <h1 class="subtitle is-1"><%= number_with_precision(@submission.evaluation_score, precision: 10)  %></h1>
+          </div>
+        </section>
+        <section class="section">
+          <div class="heading has-text-right">
+            <h2 class="title is-3">Posição</h2>
+            <h1 class="subtitle is-1">#<%= number_with_delimiter(@submission.rank, delimiter: '.') %></h1>
+          </div>
+        </section>
+        <div class="has-text-right">
+          <%= link_to @submission.result.url, class: 'button is-primary' do %>
+            <span class="icon">
+              <i class="fa fa-download"></i>
+            </span>
+            <span>Baixar CSV</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -24,6 +24,7 @@ class Team < ApplicationRecord
   # Associations
   # =================================
 
+  has_many :submissions, as: :competitor
   has_and_belongs_to_many :users
 
   # =================================

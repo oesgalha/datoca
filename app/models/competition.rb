@@ -27,6 +27,7 @@ class Competition < ApplicationRecord
   # Associations
   # =================================
 
+  has_many :submissions
   has_many :instructions, inverse_of: :competition
   has_one :description,     -> { where name: 'Descrição' }, class_name: 'Instruction', inverse_of: :competition
   has_one :evaluation_text, -> { where name: 'Avaliação' }, class_name: 'Instruction', inverse_of: :competition
