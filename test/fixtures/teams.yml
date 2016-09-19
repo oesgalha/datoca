@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-
-two:
-  name: MyString
-  description: MyText
+dados_viciados:
+  name: Dados Viciados
+  description: Poliedros consumidores de entorpecentes
+  users: alberto_botelho ana_barbosa
