@@ -1,16 +1,4 @@
 <%= nested_form_for(competition) do |f| %>
-  <% if competition.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(competition.errors.count, "error") %> prohibited this competition from being saved:</h2>
-
-      <ul>
-      <% competition.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <%= f.label :name, class: 'label' %>
   <p class="control">
     <%= f.text_field :name, class: 'input', type: 'text' %>

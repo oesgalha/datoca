@@ -49,12 +49,18 @@ class Competition < ApplicationRecord
   # Validations
   # =================================
 
-  validates :description, presence: true
-  validates :evaluation_text, presence: true
-  validates :rules, presence: true
+  validates :name, presence: true
+  validate :has_required_instructions
   validates :expected_csv, presence: true
   validates_attachment_file_name :expected_csv, matches: /\.csv\Z/
   validates_attachment_content_type :expected_csv, content_type: %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
   validates_attachment_content_type :ilustration, content_type: /\Aimage\/.*\z/
+
+  def has_required_instructions
+    required_instructions = ['Descrição', 'Avaliação', 'Regras']
+    unless (required_instructions & instructions.map(&:name)).size == required_instructions.size
+      errors.add(:instructions, "precisa pelo menos conter as seguintes instruções: " + required_instructions.join(', '))
+    end
+  end
 
 end

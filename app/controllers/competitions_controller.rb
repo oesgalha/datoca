@@ -3,7 +3,7 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions
   def index
-    @competitions = Competition.includes(:description)
+    @competitions = Competition.all
   end
 
   # GET /competitions/1
@@ -13,6 +13,11 @@ class CompetitionsController < ApplicationController
   # GET /competitions/new
   def new
     @competition = Competition.new
+    @competition.instructions.build([
+      { name: 'Avaliação' },
+      { name: 'Descrição' },
+      { name: 'Regras' }
+    ])
   end
 
   # GET /competitions/1/edit
@@ -53,6 +58,6 @@ class CompetitionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def competition_params
-      params.require(:competition).permit(:name, :max_team_size, :evaluation_type, instructions_attributes: [:id, :name, :markdown, :_destroy])
+      params.require(:competition).permit(:name, :max_team_size, :evaluation_type, :expected_csv, instructions_attributes: [:id, :name, :markdown, :_destroy])
     end
 end
