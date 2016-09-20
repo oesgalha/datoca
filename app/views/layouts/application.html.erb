@@ -3,7 +3,7 @@
   <head>
     <title>Copas</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
@@ -52,6 +52,13 @@
         </header>
       </div>
     </section>
+
+    <% if has_flash? %>
+      <div class="spacing-40"></div>
+      <div class="container">
+        <%= flash_msgs %>
+      </div>
+    <% end %>
 
     <%= yield %>
 

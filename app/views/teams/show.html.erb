@@ -1,6 +1,6 @@
 <div class="container">
   <div class="spacing-40"></div>
-  <div class="section">
+  <div class="box">
     <div class="columns">
       <div class="column is-2">
         <div class="image is-128x128 has-auto-margin">
@@ -24,7 +24,7 @@
               <p class="title">0</p>
             </div>
             <div class="level-item has-text-right">
-              <% if @team.users.include?(current_user) %>
+              <% if policy(@team).update? %>
                 <%= link_to 'Editar Equipe', edit_team_path(@team), class: 'button is-info is-outlined' %>
               <% end %>
             </div>

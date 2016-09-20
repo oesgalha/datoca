@@ -12,6 +12,7 @@ gem 'paperclip', '~> 5.0'
 # Authentication and Authorization
 # =================================
 gem 'devise', '~> 4.2'
+gem 'pundit', '~> 1.1'
 
 # =================================
 # Content

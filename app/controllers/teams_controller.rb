@@ -4,20 +4,23 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   def show
+    authorize(@team)
   end
 
   # GET /teams/new
   def new
-    @team = Team.new
+    authorize(@team = Team.new)
   end
 
   # GET /teams/1/edit
   def edit
+    authorize(@team)
   end
 
   # POST /teams
   def create
     @team = Team.new(team_params)
+    authorize(@team)
     if @team.save
       redirect_to @team, notice: 'Team was successfully created.'
     else
@@ -27,6 +30,7 @@ class TeamsController < ApplicationController
 
   # PATCH/PUT /teams/1
   def update
+    authorize(@team)
     if @team.update(team_params)
       redirect_to @team, notice: 'Team was successfully updated.'
     else

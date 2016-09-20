@@ -3,11 +3,12 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions
   def index
-    @competitions = Competition.all
+    @competitions = policy_scope(Competition.all)
   end
 
   # GET /competitions/1
   def show
+    authorize(@competition)
   end
 
   # GET /competitions/new

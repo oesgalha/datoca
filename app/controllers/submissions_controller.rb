@@ -7,11 +7,12 @@ class SubmissionsController < ApplicationController
   end
 
   def new
-    @submission = Submission.new
+    authorize(@submission = Submission.new(competition: @competition))
   end
 
   def create
     @submission = @competition.submissions.build(submission_params)
+    authorize(@submission)
     if @submission.save
       redirect_to [@competition, @submission]
     else

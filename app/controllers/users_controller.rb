@@ -2,15 +2,17 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
+    authorize(@user)
   end
 
   def edit
-    redirect_to @user unless @user == current_user
+    authorize(@user)
   end
 
   def update
+    authorize(@user)
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit
     end

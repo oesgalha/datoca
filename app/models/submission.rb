@@ -28,6 +28,8 @@
 
 class Submission < ApplicationRecord
 
+  MAX_DAILY_ATTEMPTS = 3
+
   # =================================
   # Plugins
   # =================================
@@ -80,7 +82,7 @@ class Submission < ApplicationRecord
   end
 
   def competitor_attempt
-    @number ||= competitor.submissions.order(:created_at).pluck(:id).index(id) + 1
+    @competitor_attempt ||= competitor.submissions.where(competition: competition).order(:created_at).pluck(:id).index(id) + 1
   end
 
   private
