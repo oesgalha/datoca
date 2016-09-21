@@ -1,0 +1,45 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Submissões</h1>
+      <h2 class="subtitle"><%= link_to @competition.name, @competition %></h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>MAE (mean absolute error)</th>
+          <th>Submetente</th>
+          <th>Ver Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @submissions.each do |submission| %>
+          <tr>
+            <td><%= submission.evaluation_score %></td>
+            <td>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <%= link_to submission.competitor do %>
+                      <%= image_tag submission.competitor.image(:thumb), class: 'image is-32x32' %>
+                    <% end %>
+                  </div>
+                  <div class="level-item">
+                    <p class="title is-5"><%= link_to submission.competitor.name || 'Sem nome', submission.competitor %></p>
+                  </div>
+                </div>
+              </nav>
+            </td>
+            <td class="is-icon">
+              <%= link_to [@competition, submission] do %><i class="fa fa-eye"></i><% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
