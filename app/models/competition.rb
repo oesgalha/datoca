@@ -5,7 +5,7 @@
 #  id                        :integer          not null, primary key
 #  name                      :string
 #  max_team_size             :integer
-#  evaluation_type           :integer
+#  evaluation_type           :integer          default("mae")
 #  total_prize               :decimal(9, 2)
 #  deadline                  :datetime
 #  ilustration_file_name     :string
@@ -23,8 +23,17 @@
 class Competition < ApplicationRecord
 
   # =================================
+  # Constants
+  # =================================
+
+  enum evaluation_type: {
+    mae: 0,                     # Mean Absolute Error
+  }
+
+  # =================================
   # Plugins
   # =================================
+
   has_attached_file :expected_csv
   has_attached_file :ilustration, styles: { regular: "128x128>" }
 

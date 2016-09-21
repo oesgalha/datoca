@@ -12,7 +12,7 @@
 #  competition_id   :integer
 #  competitor_type  :string
 #  competitor_id    :integer
-#  evaluation_score :decimal(11, 10)
+#  evaluation_score :decimal(20, 10)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
@@ -87,8 +87,25 @@ class Submission < ApplicationRecord
 
   private
 
+  # TODO: Move to background
   def set_score
-    self.evaluation_score = rand
+    case competition.evaluation_type
+    when 'mae'
+      d1 = CSV.new(Paperclip.io_adapters.for(competition.expected_csv).read).read.transpose
+      d2 = CSV.new(Paperclip.io_adapters.for(csv).read).read.transpose
+      d1 = d1.map do |arr|
+        arr.shift
+        arr.map(&:to_d)
+      end
+      d2 = d2.map do |arr|
+        arr.shift
+        arr.map(&:to_d)
+      end
+      df1 = Daru::DataFrame.new(d1, order: [:id, :value])
+      df2 = Daru::DataFrame.new(d2, order: [:id, :value])
+      means = df1.join(df2, on: [:id], how: :inner).vector_by_calculation { (value_1 - value_2).abs }
+      self.evaluation_score = (means.sum.to_d / means.size.to_d)
+    end
   end
 
   # TODO: Move to background

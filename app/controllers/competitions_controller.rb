@@ -28,7 +28,6 @@ class CompetitionsController < ApplicationController
   # POST /competitions
   def create
     @competition = Competition.new(competition_params)
-
     if @competition.save
       redirect_to @competition, notice: 'Competition was successfully created.'
     else

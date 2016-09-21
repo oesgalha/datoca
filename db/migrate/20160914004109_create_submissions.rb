@@ -6,7 +6,7 @@ class CreateSubmissions < ActiveRecord::Migration[5.0]
       t.has_attached_file :csv
       t.references :competition, foreign_key: true
       t.references :competitor, polymorphic: true, index: true
-      t.decimal :evaluation_score, precision: 11, scale: 10
+      t.decimal :evaluation_score, precision: 20, scale: 10
 
       t.timestamps
     end

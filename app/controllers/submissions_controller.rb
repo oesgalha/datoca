@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
   before_action :set_competitor_opts, only: [:new, :create]
 
   def show
-    @submission = Submission.with_rank.find(params[:id])
+    @submission = @competition.submissions.with_rank.find(params[:id])
   end
 
   def new

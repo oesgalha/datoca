@@ -3,7 +3,7 @@ class CreateCompetitions < ActiveRecord::Migration[5.0]
     create_table :competitions do |t|
       t.string :name
       t.integer :max_team_size
-      t.integer :evaluation_type
+      t.integer :evaluation_type, default: 0
       t.decimal :total_prize, precision: 9, scale: 2
       t.datetime :deadline
       t.has_attached_file :ilustration

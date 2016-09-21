@@ -37,18 +37,11 @@ def competiton_params
     expected_csv: File.open(random_csv),
     ilustration: open("http://lorempixel.com/128/128/"),
     created_at: Time.now - (5 + rand(20)).days,
-    description_attributes: {
-      name: 'Descrição',
-      markdown: lorem
-    },
-    evaluation_text_attributes: {
-      name: 'Avaliação',
-      markdown: lorem
-    },
-    rules_attributes: {
-      name: 'Regras',
-      markdown: lorem
-    }
+    instructions_attributes: [
+      { name: 'Avaliação', markdown: lorem },
+      { name: 'Descrição', markdown: lorem },
+      { name: 'Regras', markdown: lorem }
+    ]
   }
 end
 

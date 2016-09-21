@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160914004109) do
   create_table "competitions", force: :cascade do |t|
     t.string   "name"
     t.integer  "max_team_size"
-    t.integer  "evaluation_type"
+    t.integer  "evaluation_type",                                   default: 0
     t.decimal  "total_prize",               precision: 9, scale: 2
     t.datetime "deadline"
     t.string   "ilustration_file_name"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20160914004109) do
     t.string   "expected_csv_content_type"
     t.integer  "expected_csv_file_size"
     t.datetime "expected_csv_updated_at"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
   end
 
   create_table "instructions", force: :cascade do |t|
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160914004109) do
     t.integer  "competition_id"
     t.string   "competitor_type"
     t.integer  "competitor_id"
-    t.decimal  "evaluation_score", precision: 11, scale: 10
+    t.decimal  "evaluation_score", precision: 20, scale: 10
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.index ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
