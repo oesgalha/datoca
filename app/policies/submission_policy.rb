@@ -6,7 +6,11 @@ class SubmissionPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope
+      if user.admin?
+        scope.all
+      else
+        scope.where(competitor: user)
+      end
     end
   end
 

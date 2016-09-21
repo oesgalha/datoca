@@ -1,5 +1,8 @@
 <section class="section">
   <div class="container">
+    <% if policy(Competition).create? %>
+      <%= link_to 'Criar', new_competition_path, class: 'button is-success' %>
+    <% end %>
     <% @competitions.each do |competition| %>
       <div class="box">
         <div class="columns">

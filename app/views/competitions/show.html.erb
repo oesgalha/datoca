@@ -31,22 +31,25 @@
     <div class="columns">
       <div class="column is-3">
         <aside class="menu">
-          <p class="menu-label">
-            Informações
-          </p>
+          <p class="menu-label">Informações</p>
           <ul class="menu-list">
             <% @competition.instructions.each_with_index do |instruction, i| %>
               <li><%= link_to instruction.name, instruction, remote: true, id: "instruction-#{instruction.id}", class: ( i.zero? ? 'is-active' : '' ) %></li>
             <% end %>
           </ul>
-          <p class="menu-label">
-            Competir
-          </p>
+          <p class="menu-label">Competir</p>
           <ul class="menu-list">
             <li><a href="#">Baixar os dados</a></li>
-            <li><%= link_to 'Submtere resultado', new_competition_submission_path(@competition) %></li>
-            <li><a href="#">Placar</a></li>
+            <li><%= link_to 'Submter resultado', new_competition_submission_path(@competition) %></li>
+            <li><%= link_to 'Ver Submissões',  competition_submissions_path(@competition) %></li>
           </ul>
+          <% if policy(@competition).edit? %>
+            <p class="menu-label">Administrativo</p>
+            <ul class="menu-list">
+              <li><%= link_to 'Editar', edit_competition_path(@competition) %></li>
+              <li><%= link_to 'Apagar', competition_path(@competition), method: :delete, data: { confirm: 'Tem certeza que quer apagar esta competição, dados, instruções e participações?' } %></li>
+            </ul>
+          <% end %>
         </aside>
       </div>
       <div class="column">

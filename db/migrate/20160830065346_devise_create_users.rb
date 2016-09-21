@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :location
       t.string :company
       t.has_attached_file :avatar
+      t.integer :role, default: 0
 
 
       t.timestamps null: false

@@ -14,6 +14,11 @@
     <%= f.file_field :expected_csv %>
   </p>
 
+  <%= f.label :deadline, class: 'label' %>
+  <p class="control">
+    <%= f.date_select :deadline %>
+  </p>
+
   <hr>
 
   <h2 class="title">Instruções</h2>

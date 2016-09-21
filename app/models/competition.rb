@@ -44,7 +44,7 @@ class Competition < ApplicationRecord
   has_many :submissions
   has_many :users, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'User'
   has_many :teams, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'Team'
-  has_many :instructions, inverse_of: :competition
+  has_many :instructions, inverse_of: :competition, dependent: :destroy
   has_one :description,     -> { where name: 'Descrição' }, class_name: 'Instruction', inverse_of: :competition
   has_one :evaluation_text, -> { where name: 'Avaliação' }, class_name: 'Instruction', inverse_of: :competition
   has_one :rules,           -> { where name: 'Regras' },    class_name: 'Instruction', inverse_of: :competition

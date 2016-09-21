@@ -18,12 +18,13 @@
 #  bio                    :text
 #  location               :string
 #  company                :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
 #  avatar_file_name       :string
 #  avatar_content_type    :string
 #  avatar_file_size       :integer
 #  avatar_updated_at      :datetime
+#  role                   :integer          default("user")
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #
@@ -32,6 +33,12 @@
 #
 
 class User < ApplicationRecord
+
+  # =================================
+  # Constants
+  # =================================
+
+  enum role: { user: 0, admin: 1 }
 
   # =================================
   # Plugins
@@ -61,7 +68,8 @@ class User < ApplicationRecord
     if avatar.exists?
       avatar.url(style)
     else
-      "https://robohash.org/#{Digest::MD5.hexdigest(email)}.png"
+      "http://lorempixel.com/256/256/people/"
+      # "https://robohash.org/#{Digest::MD5.hexdigest(email)}.png"
     end
   end
 end

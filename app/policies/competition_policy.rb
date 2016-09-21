@@ -9,4 +9,16 @@ class CompetitionPolicy < ApplicationPolicy
       scope
     end
   end
+
+  # =================================
+  # Actions
+  # =================================
+
+  def create?
+    user.admin?
+  end
+
+  def update?
+    user.admin?
+  end
 end
