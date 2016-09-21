@@ -45,7 +45,7 @@ source 'https://rails-assets.org' do
 end
 
 # =================================
-# 🌈 M A D  M A T H 🌈
+# ⚡️  M A D  M A T H  S T U F F  ⚡️
 # =================================
 gem 'daru', '~> 0.1'
 
@@ -57,6 +57,7 @@ group :development do
   gem 'listen', '~> 3.1'
   gem 'spring', '~> 1.7'
   gem 'annotate', '~> 2.7'
+  gem 'rack-mini-profiler', '~> 0.10', require: false
 end
 
 # =================================
