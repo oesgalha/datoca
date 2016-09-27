@@ -1,25 +1,53 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Competições</h1>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="container">
-    <% if policy(Competition).create? %>
-      <%= link_to 'Criar', new_competition_path, class: 'button is-success' %>
-    <% end %>
-    <% @competitions.each do |competition| %>
-      <div class="box">
-        <div class="columns">
-          <div class="column is-2">
-            <div class="image is-128x128 is-pulled-right">
-              <%= image_tag competition.ilustration.url(:regular) %>
-            </div>
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <nav class="panel">
+          <p class="panel-heading">
+            Filtros
+          </p>
+          <div class="panel-block">
+            <aside class="menu">
+              <p class="menu-label">Métrica</p>
+              <ul class="menu-list"><%= evaluation_filters %></ul>
+              <p class="menu-label">Prazo</p>
+              <ul class="menu-list"><%= time_filters %></ul>
+              <p class="menu-label">Ordem</p>
+              <ul class="menu-list"><%= order_filters %></ul>
+            </aside>
           </div>
-          <div class="column is-8">
-            <p class="title is-bold"><%= link_to competition.name, competition %></p>
-          </div>
-          <div class="column has-text-right">
-            <p>Começou há <%= distance_of_time_in_words_to_now(competition.created_at) %></p>
-            <p><%= number_to_currency(competition.total_prize) %></p>
-          </div>
-        </div>
+        </nav>
       </div>
-    <% end %>
+      <div class="column">
+        <% @competitions.each do |competition| %>
+          <%= link_to competition, class: 'box' do %>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item"><%= image_tag competition.ilustration.url(:regular), class: 'image is-64x64' %></div>
+                <div class="level-item"><p class="title is-5"><%= competition.name %></p></div>
+              </div>
+              <div class="level-right">
+                <div class="level-item has-text-centered">
+                  <p class="heading">Prazo</p>
+                  <p class="title is-5"><%= distance_of_time_in_words_to_now(competition.deadline) %></p>
+                </div>
+                <div class="level-item"></div>
+                <div class="level-item has-text-centered">
+                  <p class="heading">Prêmio</p>
+                  <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
+                </div>
+              </div>
+            </nav>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </section>

@@ -4,7 +4,8 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions
   def index
-    @competitions = policy_scope(Competition.all)
+    @q = Competition.ransack(params[:q])
+    @competitions = policy_scope(@q.result)
   end
 
   # GET /competitions/1
