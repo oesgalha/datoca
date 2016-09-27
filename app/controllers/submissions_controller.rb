@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   before_action :set_competitor_opts, only: [:new, :create]
 
   def index
-    @submissions = policy_scope(Submission.order(:evaluation_score).includes(:competitor))
+    @submissions = policy_scope(@competition.submissions.order(:evaluation_score).includes(:competitor))
   end
 
   def show
