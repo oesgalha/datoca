@@ -41,6 +41,7 @@ class Competition < ApplicationRecord
   # Associations
   # =================================
 
+  has_many :rankings
   has_many :submissions
   has_many :users, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'User'
   has_many :teams, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'Team'

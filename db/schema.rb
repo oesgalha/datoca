@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914004109) do
+ActiveRecord::Schema.define(version: 20160927044630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "competitions", force: :cascade do |t|
     t.string   "name"
@@ -107,4 +113,31 @@ ActiveRecord::Schema.define(version: 20160914004109) do
 
   add_foreign_key "instructions", "competitions"
   add_foreign_key "submissions", "competitions"
+
+  create_view :rankings, materialized: true,  sql_definition: <<-SQL
+      WITH top_submissions AS (
+           SELECT per_competitor.submission_id,
+              per_competitor.competitor_id,
+              per_competitor.competitor_type,
+              per_competitor.evaluation_score,
+              per_competitor.competition_id,
+              per_competitor.competitor_rank
+             FROM ( SELECT submissions.id AS submission_id,
+                      submissions.competitor_id,
+                      submissions.competitor_type,
+                      submissions.evaluation_score,
+                      submissions.competition_id,
+                      rank() OVER (PARTITION BY submissions.competition_id, submissions.competitor_id, submissions.competitor_type ORDER BY submissions.evaluation_score) AS competitor_rank
+                     FROM submissions) per_competitor
+            WHERE (per_competitor.competitor_rank = 1)
+          )
+   SELECT top_submissions.submission_id,
+      top_submissions.competitor_id,
+      top_submissions.competitor_type,
+      top_submissions.evaluation_score,
+      top_submissions.competition_id,
+      rank() OVER (PARTITION BY top_submissions.competition_id ORDER BY top_submissions.evaluation_score) AS rank
+     FROM top_submissions;
+  SQL
+
 end

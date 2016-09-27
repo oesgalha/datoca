@@ -8,6 +8,7 @@ gem 'rails', '~> 5.0'
 gem 'pg', '~> 0.18'
 gem 'paperclip', '~> 5.0'
 gem 'ransack', '~> 1.8'
+gem 'scenic', '~> 1.3'
 
 # =================================
 # Authentication and Authorization

@@ -1,0 +1,43 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Ranking</h1>
+      <h2 class="subtitle"><%= link_to @competition.name, @competition %></h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Submetente</th>
+          <th>MAE (mean absolute error)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rankings.each do |ranking| %>
+          <tr>
+            <td><%= ranking.rank %></td>
+            <td>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <%= link_to ranking.competitor do %>
+                      <%= image_tag ranking.competitor.image(:thumb), class: 'image is-32x32' %>
+                    <% end %>
+                  </div>
+                  <div class="level-item">
+                    <p class="title is-5"><%= link_to ranking.competitor.name || 'Sem nome', ranking.competitor %></p>
+                  </div>
+                </div>
+              </nav>
+            </td>
+            <td><%= ranking.evaluation_score %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

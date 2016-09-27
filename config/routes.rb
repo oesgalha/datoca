@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :competitions do
+    resources :rankings, only: [:index]
     resources :submissions, only: [:index, :show, :new, :create]
   end
   resources :instructions, only: [:show]

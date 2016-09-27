@@ -39,6 +39,7 @@ class Submission < ApplicationRecord
   # Associations
   # =================================
 
+  has_one :ranking
   belongs_to :competition
   belongs_to :competitor, polymorphic: true
 
