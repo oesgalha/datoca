@@ -1,5 +1,5 @@
 
-$family-serif: 'Cabin', sans-serif;
+$family-sans-serif: 'Cabin', sans-serif;
 
 $primary: #645e9d;
 $info: #4faec1;
@@ -16,10 +16,10 @@ $fa-font-path: "/assets/fontawesome/fonts";
 
 @each $name, $pair in $colors {
   $color: nth($pair, 1);
-  .has-text-#{$name} {
+  .has-text-#{"" + $name} {
     color: $color;
   }
-  a.has-text-#{$name} {
+  a.has-text-#{"" + $name} {
     &:hover,
     &:focus {
       color: darken($color, 10%);
