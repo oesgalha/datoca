@@ -15,10 +15,10 @@ class CompetitionPolicy < ApplicationPolicy
   # =================================
 
   def create?
-    user.admin?
+    user&.admin?
   end
 
   def update?
-    user.admin?
+    user&.admin?
   end
 end
