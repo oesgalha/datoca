@@ -158,6 +158,7 @@ GEM
     rails-assets-chosen (1.6.2)
       rails-assets-jquery (>= 1.4.4)
     rails-assets-fontawesome (4.6.3)
+    rails-assets-inline-attachment (2.0.3)
     rails-assets-jquery (3.1.1)
     rails-assets-markdown-js (0.6.2)
     rails-dom-testing (2.0.1)
@@ -250,6 +251,7 @@ DEPENDENCIES
   rails-assets-bulma (~> 0.2)!
   rails-assets-chosen (~> 1.6)!
   rails-assets-fontawesome (~> 4.6)!
+  rails-assets-inline-attachment (~> 2.0)!
   rails-assets-markdown-js (~> 0.6)!
   rails-i18n (~> 5.0)
   ransack (~> 1.8)

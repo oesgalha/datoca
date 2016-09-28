@@ -16,4 +16,5 @@
 //= require chosen
 //= require markdown-js/dist/markdown
 //= require refile
+//= require inline-attachment/jquery.inline-attachment
 //= require_tree .

@@ -26,6 +26,9 @@ class Instruction < ApplicationRecord
   # =================================
 
   belongs_to :competition, inverse_of: :instructions
+  has_many :attachments, dependent: :destroy
+
+  accepts_attachments_for :attachments
 
   # =================================
   # Validations
@@ -43,6 +46,12 @@ class Instruction < ApplicationRecord
   # TODO: Move to background
   def process_markdown
     md_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    attachments.each do |att|
+      self.markdown = self.markdown.sub(/\!\[#{att.file.id}\]\((.+?)\)/) do |md_str|
+        att.file_attacher.store!
+        "![#{att.file_filename}](#{att.file_url})"
+      end
+    end
     self.html = md_renderer.render(self.markdown).gsub(/[\r\n]+/, '')
   end
 

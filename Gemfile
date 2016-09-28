@@ -47,6 +47,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-chosen', '~> 1.6'
   gem 'rails-assets-fontawesome', '~> 4.6'
   gem 'rails-assets-markdown-js', '~> 0.6'
+  gem 'rails-assets-inline-attachment', '~> 2.0'
 end
 
 # =================================

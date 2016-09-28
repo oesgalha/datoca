@@ -38,7 +38,9 @@
     <div class="columns">
       <div class="column">
         <%= iff.label :markdown, class: 'label' %>
-        <%= iff.text_area :markdown, class: 'textarea markdown-input', type: 'text', height: 360 %>
+        <%= iff.text_area :markdown, class: 'textarea markdown-input', type: 'text', height: 240 %>
+
+        <%= iff.attachment_field :attachments_files, multiple: true, direct: true, class: 'is-hidden' %>
       </div>
       <div class="column">
         <label class="label">Pré-visualização</label>
