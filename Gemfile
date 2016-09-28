@@ -23,7 +23,7 @@ gem 'pundit', '~> 1.1'
 # =================================
 gem 'high_voltage', '~> 3.0'
 gem 'rails-i18n', '~> 5.0'
-gem 'redcarpet', '~> 3.3'
+gem 'kramdown', '~> 1.12'
 gem 'devise-i18n', '~> 1.1'
 
 # =================================

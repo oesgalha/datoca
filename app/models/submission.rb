@@ -109,8 +109,6 @@ class Submission < ApplicationRecord
 
   # TODO: Move to background
   def process_markdown
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true).tap do |renderer|
-      self.explanation_html = renderer.render(explanation_md || '').gsub(/[\r\n]+/, '')
-    end
+    self.explanation_html = Kramdown::Document.new(explanation_md || '').to_html.gsub(/[\r\n]+/, '')
   end
 end

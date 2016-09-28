@@ -1,10 +1,15 @@
 function applyMarkdownPreview(input, preview) {
-  preview.html(markdown.toHTML(input.val()));
+  preview.html(markdown.toHTML(input.val(), 'Maruku'));
 }
 function bindMarkdownPreview(input, preview) {
   input.keyup(function() {
     applyMarkdownPreview(input, preview);
   });
+}
+
+function fileIsImage(file) {
+  var images_types = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+  return images_types.indexOf(file.type) > -1;
 }
 
 // Ugly nasty glue between refile and inlineattachment
@@ -13,8 +18,25 @@ function bindMarkdownUpload(input) {
   input.inlineattachment({
     uploadUrl: '/attachments/cache',
     jsonFieldName: 'url',
+    allowedTypes: [
+        'image/jpeg',
+        'image/png',
+        'image/jpg',
+        'image/gif',
+        'text/plain',
+        'text/comma-separated-values',
+        'text/csv',
+        'application/csv',
+        'application/excel',
+        'application/vnd.ms-excel',
+        'application/vnd.msexcel'
+    ],
     urlText: function(filename, result) {
-      return "![" + result.id + "](" + filename + ")";
+      var url = "[" + _pfile.name + "](" + filename + ")";
+      if (fileIsImage(_pfile)) {
+        url = "!" + url;
+      }
+      return url;
     },
     onFileReceived: function(file) {
       _pfile = file;
@@ -40,10 +62,10 @@ function bindMarkdownUpload(input) {
 }
 
 $(document).on("nested:fieldAdded", function(event){
-  bindMarkdownPreview(
-    event.field.find(".markdown-input"),
-    event.field.find(".markdown-preview")
-  );
+  var mdinput = event.field.find(".markdown-input");
+  var mdpreview = event.field.find(".markdown-preview");
+  bindMarkdownPreview(mdinput, mdpreview);
+  bindMarkdownUpload(mdinput);
 });
 
 $(".markdown-input").each(function(_) {

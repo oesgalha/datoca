@@ -45,14 +45,14 @@ class Instruction < ApplicationRecord
 
   # TODO: Move to background
   def process_markdown
-    md_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     attachments.each do |att|
-      self.markdown = self.markdown.sub(/\!\[#{att.file.id}\]\((.+?)\)/) do |md_str|
+      # ~ magic regex ~
+      self.markdown = self.markdown.sub(/\[.+?\]\(.+?\/#{att.file.id}\/.+?\)/) do |md_str|
         att.file_attacher.store!
-        "![#{att.file_filename}](#{att.file_url})"
+        "[#{att.file_filename}](#{att.file_url})"
       end
     end
-    self.html = md_renderer.render(self.markdown).gsub(/[\r\n]+/, '')
+    self.html = Kramdown::Document.new(self.markdown || '').to_html.gsub(/[\r\n]+/, '')
   end
 
   def text
