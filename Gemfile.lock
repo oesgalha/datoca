@@ -60,6 +60,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.1.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
@@ -203,6 +204,7 @@ DEPENDENCIES
   annotate (~> 2.7)
   daru (~> 0.1)
   devise (~> 4.2)
+  devise-i18n (~> 1.1)
   high_voltage (~> 3.0)
   jquery-rails
   laranja (~> 2.0)
