@@ -37,7 +37,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.text :bio
       t.string :location
       t.string :company
-      t.has_attached_file :avatar
+      t.string :avatar_id
+      t.string :avatar_filename
+      t.string :avatar_content_type
+      t.integer :avatar_size
       t.integer :role, default: 0
 
 

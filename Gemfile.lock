@@ -1,3 +1,31 @@
+GIT
+  remote: git://github.com/refile/refile-mini_magick.git
+  revision: 9c74f7b61c794837a02af3f21d1be96286b7ce4d
+  specs:
+    refile-mini_magick (0.2.0)
+      mini_magick (~> 4.0)
+      refile (~> 0.5)
+
+GIT
+  remote: git://github.com/refile/refile.git
+  revision: d7a42dcd7cf631ba94b01231f535bda061f6af92
+  specs:
+    refile (0.6.2)
+      mime-types
+      rest-client (~> 1.8)
+      sinatra (>= 1.4.5)
+
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: af6dad2a6c31e31617712b15f455b2a3d3eb1c06
+  branch: master
+  specs:
+    sinatra (2.0.0.beta2)
+      mustermann (= 1.0.0.beta2)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0.beta2)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -42,14 +70,10 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
-    arel (7.1.1)
+    arel (7.1.2)
     backports (3.6.8)
     bcrypt (3.1.11)
     builder (3.2.2)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     daru (0.1.4.1)
@@ -61,12 +85,16 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-i18n (1.1.0)
+    domain_name (0.5.20160826)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     high_voltage (3.0.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
@@ -84,25 +112,19 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mime-types (2.99.3)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
+    mustermann (1.0.0.beta2)
     nested_form (0.3.2)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
-    paperclip (5.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (~> 0.3.0)
-    pg (0.18.4)
+    pg (0.19.0)
     pkg-config (1.1.7)
     polyamorous (1.3.1)
       activerecord (>= 3.0)
@@ -116,6 +138,8 @@ GEM
     rack (2.0.1)
     rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
+    rack-protection (2.0.0.beta2)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -134,14 +158,14 @@ GEM
     rails-assets-chosen (1.6.2)
       rails-assets-jquery (>= 1.4.4)
     rails-assets-fontawesome (4.6.3)
-    rails-assets-jquery (3.1.0)
+    rails-assets-jquery (3.1.1)
     rails-assets-markdown-js (0.6.2)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails-i18n (5.0.0)
+    rails-i18n (5.0.1)
       i18n (~> 0.7)
       railties (~> 5.0)
     railties (5.0.0.1)
@@ -150,7 +174,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
+    rake (11.3.0)
     ransack (1.8.2)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -163,6 +187,10 @@ GEM
     redcarpet (3.3.4)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     ruby_dep (1.4.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -180,7 +208,7 @@ GEM
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.1.1)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -191,6 +219,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     warden (1.2.6)
       rack (>= 1.0)
     websocket-driver (0.6.4)
@@ -210,7 +241,6 @@ DEPENDENCIES
   laranja (~> 2.0)
   listen (~> 3.1)
   nested_form (~> 0.3)
-  paperclip (~> 5.0)
   pg (~> 0.18)
   pry (~> 0.10)
   puma (~> 3.6)
@@ -224,8 +254,11 @@ DEPENDENCIES
   rails-i18n (~> 5.0)
   ransack (~> 1.8)
   redcarpet (~> 3.3)
+  refile!
+  refile-mini_magick!
   sass-rails (~> 5.0)
   scenic (~> 1.3)
+  sinatra!
   spring (~> 1.7)
   uglifier (>= 1.3.0)
 

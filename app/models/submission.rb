@@ -5,10 +5,10 @@
 #  id               :integer          not null, primary key
 #  explanation_md   :text
 #  explanation_html :text
-#  csv_file_name    :string
+#  csv_id           :string
+#  csv_filename     :string
 #  csv_content_type :string
-#  csv_file_size    :integer
-#  csv_updated_at   :datetime
+#  csv_size         :integer
 #  competition_id   :integer
 #  competitor_type  :string
 #  competitor_id    :integer
@@ -33,7 +33,7 @@ class Submission < ApplicationRecord
   # =================================
   # Plugins
   # =================================
-  has_attached_file :csv
+  attachment :csv, type: :csv, extension: 'csv'
 
   # =================================
   # Associations
@@ -49,8 +49,6 @@ class Submission < ApplicationRecord
 
   validates :competitor, presence: true
   validates :csv, presence: true
-  validates_attachment_file_name :csv, matches: /\.csv\Z/
-  validates_attachment_content_type :csv, content_type: %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
 
   # =================================
   # Callbacks
@@ -92,8 +90,8 @@ class Submission < ApplicationRecord
   def set_score
     case competition.evaluation_type
     when 'mae'
-      d1 = CSV.new(Paperclip.io_adapters.for(competition.expected_csv).read).read.transpose
-      d2 = CSV.new(Paperclip.io_adapters.for(csv).read).read.transpose
+      d1 = CSV.new(competition.expected_csv.read).read.transpose
+      d2 = CSV.new(csv.read).read.transpose
       d1 = d1.map do |arr|
         arr.shift
         arr.map(&:to_d)

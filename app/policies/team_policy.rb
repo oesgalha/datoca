@@ -9,7 +9,7 @@ class TeamPolicy < ApplicationPolicy
   end
 
   def update?
-    record.users.exists?(user.id)
+    record.users.exists?(user&.id)
   end
 
   # =================================

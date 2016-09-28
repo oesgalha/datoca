@@ -3,7 +3,10 @@ class CreateTeams < ActiveRecord::Migration[5.0]
     create_table :teams do |t|
       t.string :name
       t.text :description
-      t.has_attached_file :avatar
+      t.string :avatar_id
+      t.string :avatar_filename
+      t.string :avatar_content_type
+      t.integer :avatar_size
 
       t.timestamps
     end

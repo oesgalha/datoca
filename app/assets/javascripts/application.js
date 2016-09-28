@@ -15,4 +15,5 @@
 //= require jquery_nested_form
 //= require chosen
 //= require markdown-js/dist/markdown
+//= require refile
 //= require_tree .

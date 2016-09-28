@@ -6,7 +6,8 @@
 
   <%= f.label :avatar, class: 'label' %>
   <p class="control">
-    <%= f.file_field :avatar %>
+    <%= f.attachment_field :avatar, direct: true %>
+    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
   </p>
 
   <%= f.label :description, class: 'label' %>

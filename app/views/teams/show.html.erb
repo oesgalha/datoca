@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="column is-2">
         <div class="image is-128x128 has-auto-margin">
-          <%= image_tag @team.image(:medium) %>
+          <%= attachment_image_tag @team, :avatar, :fill, 128, 128 %>
         </div>
       </div>
       <div class="column is-6">
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <div class="spacing-40"></div>
+  <div class="spacing-20"></div>
   <div class="columns">
     <div class="column is-one-quarter">
       <div class="box">
@@ -43,7 +43,7 @@
           <% @team.users.each do |user| %>
             <div class="column has-text-centered is-one-third">
               <%= link_to user do %>
-                <%= image_tag user.image(:thumb), class: 'image is-64x64' %>
+                <%= attachment_image_tag user, :avatar, :fill, 64, 64, class: 'image is-64x64' %>
               <% end %>
             </div>
           <% end %>
@@ -59,7 +59,7 @@
             <nav class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <%= image_tag competition.ilustration.url(:regular), class: 'image is-64x64' %>
+                  <%= attachment_image_tag competition, :ilustration, :fill, 64, 64, class: 'image is-64x64' %>
                 </div>
                 <div class="level-item">
                   <p class="title"><%= competition.name %></p>

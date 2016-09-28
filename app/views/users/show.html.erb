@@ -5,7 +5,7 @@
       <div class="level-left">
         <div class="level-item">
           <div class="image is-128x128 has-auto-margin">
-            <%= image_tag @user.image(:medium) %>
+            <%= attachment_image_tag @user, :avatar, :fill, 128, 128 %>
           </div>
           <div class="spacing-20"></div>
           <p>
@@ -62,7 +62,7 @@
             <% @user.teams.each do |team| %>
               <div class="column has-text-centered is-one-third">
                 <%= link_to team do %>
-                  <%= image_tag team.image(:thumb), class: 'image is-64x64' %>
+                  <%= attachment_image_tag team, :avatar, :fill, 64, 64, class: 'image is-64x64' %>
                 <% end %>
               </div>
             <% end %>
@@ -83,7 +83,7 @@
             <nav class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <%= image_tag competition.ilustration.url(:regular), class: 'image is-64x64' %>
+                  <%= attachment_image_tag competition, :ilustration, :fill, 64, 64, class: 'image is-64x64' %>
                 </div>
                 <div class="level-item">
                   <p class="title"><%= competition.name %></p>

@@ -23,7 +23,7 @@ install Git git
 install SQLite sqlite3 libsqlite3-dev
 install 'Nokogiri dependencies' zlib1g-dev libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
-install 'Image Magick (paperclip dependecy)' imagemagick
+install 'Image Magick (refile dependecy)' imagemagick
 
 install PostgreSQL postgresql-9.5 postgresql-contrib libpq-dev
 sudo -u postgres createuser --superuser joker

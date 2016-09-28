@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20160927044630) do
     t.integer  "evaluation_type",                                   default: 0
     t.decimal  "total_prize",               precision: 9, scale: 2
     t.datetime "deadline"
-    t.string   "ilustration_file_name"
+    t.string   "ilustration_id"
+    t.string   "ilustration_filename"
     t.string   "ilustration_content_type"
-    t.integer  "ilustration_file_size"
-    t.datetime "ilustration_updated_at"
-    t.string   "expected_csv_file_name"
+    t.integer  "ilustration_size"
+    t.string   "expected_csv_id"
+    t.string   "expected_csv_filename"
     t.string   "expected_csv_content_type"
-    t.integer  "expected_csv_file_size"
-    t.datetime "expected_csv_updated_at"
+    t.integer  "expected_csv_size"
     t.datetime "created_at",                                                    null: false
     t.datetime "updated_at",                                                    null: false
   end
@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 20160927044630) do
   create_table "submissions", force: :cascade do |t|
     t.text     "explanation_md"
     t.text     "explanation_html"
-    t.string   "csv_file_name"
+    t.string   "csv_id"
+    t.string   "csv_filename"
     t.string   "csv_content_type"
-    t.integer  "csv_file_size"
-    t.datetime "csv_updated_at"
+    t.integer  "csv_size"
     t.integer  "competition_id"
     t.string   "competitor_type"
     t.integer  "competitor_id"
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20160927044630) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "avatar_file_name"
+    t.string   "avatar_id"
+    t.string   "avatar_filename"
     t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.integer  "avatar_size"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
@@ -100,10 +100,10 @@ ActiveRecord::Schema.define(version: 20160927044630) do
     t.text     "bio"
     t.string   "location"
     t.string   "company"
-    t.string   "avatar_file_name"
+    t.string   "avatar_id"
+    t.string   "avatar_filename"
     t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.integer  "avatar_size"
     t.integer  "role",                   default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false

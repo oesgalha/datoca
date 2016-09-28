@@ -18,10 +18,10 @@
 #  bio                    :text
 #  location               :string
 #  company                :string
-#  avatar_file_name       :string
+#  avatar_id              :string
+#  avatar_filename        :string
 #  avatar_content_type    :string
-#  avatar_file_size       :integer
-#  avatar_updated_at      :datetime
+#  avatar_size            :integer
 #  role                   :integer          default("user")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -44,7 +44,7 @@ class User < ApplicationRecord
   # Plugins
   # =================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  has_attached_file :avatar, styles: { medium: "256x256>", thumb: "96x96" }
+  attachment :avatar, type: :image
 
   # =================================
   # Associations
@@ -61,16 +61,4 @@ class User < ApplicationRecord
   # =================================
 
   validates :bio, length: { maximum: 256 }, allow_blank: true
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-
-  # =================================
-
-  def image(style=:medium)
-    if avatar.exists?
-      avatar.url(style)
-    else
-      "http://lorempixel.com/256/256/people/"
-      # "https://robohash.org/#{Digest::MD5.hexdigest(email)}.png"
-    end
-  end
 end

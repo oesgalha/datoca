@@ -5,10 +5,10 @@
 #  id                  :integer          not null, primary key
 #  name                :string
 #  description         :text
-#  avatar_file_name    :string
+#  avatar_id           :string
+#  avatar_filename     :string
 #  avatar_content_type :string
-#  avatar_file_size    :integer
-#  avatar_updated_at   :datetime
+#  avatar_size         :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
@@ -18,7 +18,7 @@ class Team < ApplicationRecord
   # =================================
   # Plugins
   # =================================
-  has_attached_file :avatar, styles: { medium: "256x256>", thumb: "96x96>" }
+  attachment :avatar, type: :image
 
   # =================================
   # Associations
@@ -35,15 +35,4 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
   validates :description, length: { maximum: 256 }, allow_blank: true
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-
-  # =================================
-
-  def image(style=:medium)
-    if avatar.exists?
-      avatar.url(style)
-    else
-      "https://identicons.github.com/#{Digest::MD5.hexdigest(name)}.png"
-    end
-  end
 end

@@ -23,6 +23,11 @@
               <ul class="menu-list"><%= order_filters %></ul>
             </aside>
           </div>
+          <% if policy(Competition).create? %>
+            <div class="panel-block">
+              <%= link_to 'Criar', new_competition_path, class: 'button is-success is-outlined is-fullwidth' %>
+            </div>
+          <% end %>
         </nav>
       </div>
       <div class="column">
@@ -30,7 +35,7 @@
           <%= link_to competition, class: 'box' do %>
             <nav class="level">
               <div class="level-left">
-                <div class="level-item"><%= image_tag competition.ilustration.url(:regular), class: 'image is-64x64' %></div>
+                <div class="level-item"><%= attachment_image_tag competition, :ilustration, :limit, 64, 64, class: 'image is-64x64' %></div>
                 <div class="level-item"><p class="title is-5"><%= competition.name %></p></div>
               </div>
               <div class="level-right">

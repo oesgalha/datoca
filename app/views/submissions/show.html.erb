@@ -15,7 +15,7 @@
           <nav class="level">
             <div class="level-left">
               <div class="level-item">
-                <%= image_tag @submission.competitor.image(:thumb), class: 'image is-64x64' %>
+                <%= attachment_image_tag @submission.competitor, :avatar, :fill, 64, 64, class: 'image is-32x32' %>
               </div>
               <div class="level-item">
                 <p class="title"><%= @submission.competitor.name || 'Sem nome' %></p>
@@ -55,7 +55,7 @@
           </div>
         </section>
         <div class="has-text-right">
-          <%= link_to @submission.csv.url, class: 'button is-primary' do %>
+          <%= link_to attachment_url(@submission, :csv), class: 'button is-primary' do %>
             <span class="icon">
               <i class="fa fa-download"></i>
             </span>

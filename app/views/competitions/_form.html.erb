@@ -4,14 +4,21 @@
     <%= f.text_field :name, class: 'input', type: 'text' %>
   </p>
 
-  <%= f.label :max_team_size, class: 'label' %>
+  <%= f.label :ilustration, class: 'label' %>
   <p class="control">
-    <%= f.number_field :max_team_size, class: 'input', type: 'text' %>
+    <%= f.attachment_field :ilustration, direct: true %>
+    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
   </p>
 
   <%= f.label :expected_csv, class: 'label' %>
   <p class="control">
-    <%= f.file_field :expected_csv %>
+    <%= f.attachment_field :expected_csv, direct: true %>
+    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
+  </p>
+
+  <%= f.label :max_team_size, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :max_team_size, class: 'input', type: 'text' %>
   </p>
 
   <%= f.label :deadline, class: 'label' %>

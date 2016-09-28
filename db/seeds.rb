@@ -29,13 +29,21 @@ def random_csv
   end
 end
 
+def random_lorem_pixel_image
+  File.join(Rails.root, 'tmp', "#{rand(10)}.jpeg").tap do |fullpath|
+    File.open(fullpath, 'wb') do |image|
+      image.write(open("http://lorempixel.com/128/128/#{['city', 'transport', 'business', 'technics', 'food'].sample}/").read)
+    end
+  end
+end
+
 def competiton_params
   {
     name: competition_name,
     total_prize: 2000 + rand(48_000),
     deadline: Time.now.midnight + (5 + rand(20)).days,
     expected_csv: File.open(random_csv),
-    ilustration: open("http://lorempixel.com/128/128/"),
+    ilustration: File.open(random_lorem_pixel_image),
     created_at: Time.now - (5 + rand(20)).days,
     instructions_attributes: [
       { name: 'Avaliação', markdown: lorem },
@@ -46,11 +54,13 @@ def competiton_params
 end
 
 def user_params
+  mail = Laranja::Internet.email
   {
     name: Laranja::Nome.nome,
-    email: Laranja::Internet.email,
+    email: mail,
     location: Laranja::Endereco.cidade,
-    password: Laranja::Internet.password
+    password: Laranja::Internet.password,
+    remote_avatar_url: "https://robohash.org/#{Digest::MD5.hexdigest(mail)}.png"
   }
 end
 
@@ -58,9 +68,11 @@ def team_params(users)
   base_name = lorem
   base_desc = lorem
   users_amount = 1 + rand(users.size)
+  name = base_name[rand(base_name.size - 16), 16]
   {
-    name: base_name[rand(base_name.size - 16), 16],
+    name: name,
     description: base_desc[rand(base_desc.size - 128), 128],
+    remote_avatar_url: "https://identicons.github.com/#{Digest::MD5.hexdigest(name)}.png",
     users: users_amount.times.map { users.sample }.uniq
   }
 end

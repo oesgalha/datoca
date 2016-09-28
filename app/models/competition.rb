@@ -8,14 +8,14 @@
 #  evaluation_type           :integer          default("mae")
 #  total_prize               :decimal(9, 2)
 #  deadline                  :datetime
-#  ilustration_file_name     :string
+#  ilustration_id            :string
+#  ilustration_filename      :string
 #  ilustration_content_type  :string
-#  ilustration_file_size     :integer
-#  ilustration_updated_at    :datetime
-#  expected_csv_file_name    :string
+#  ilustration_size          :integer
+#  expected_csv_id           :string
+#  expected_csv_filename     :string
 #  expected_csv_content_type :string
-#  expected_csv_file_size    :integer
-#  expected_csv_updated_at   :datetime
+#  expected_csv_size         :integer
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
@@ -34,8 +34,8 @@ class Competition < ApplicationRecord
   # Plugins
   # =================================
 
-  has_attached_file :expected_csv
-  has_attached_file :ilustration, styles: { regular: "128x128>" }
+  attachment :expected_csv, type: :csv, extension: 'csv'
+  attachment :ilustration, type: :image
 
   # =================================
   # Associations
@@ -62,9 +62,6 @@ class Competition < ApplicationRecord
   validates :name, presence: true
   validate :has_required_instructions
   validates :expected_csv, presence: true
-  validates_attachment_file_name :expected_csv, matches: /\.csv\Z/
-  validates_attachment_content_type :expected_csv, content_type: %w( text/plain text/comma-separated-values text/csv application/csv application/excel application/vnd.ms-excel application/vnd.msexcel )
-  validates_attachment_content_type :ilustration, content_type: /\Aimage\/.*\z/
 
   def has_required_instructions
     required_instructions = ['Descrição', 'Avaliação', 'Regras']

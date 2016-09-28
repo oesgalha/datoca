@@ -55,7 +55,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :description, { user_ids: [] }).tap do |tp|
+    params.require(:team).permit(:name, :description, :avatar, { user_ids: [] }).tap do |tp|
       tp[:user_ids] << current_user.id
     end
   end

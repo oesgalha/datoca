@@ -6,8 +6,14 @@ class CreateCompetitions < ActiveRecord::Migration[5.0]
       t.integer :evaluation_type, default: 0
       t.decimal :total_prize, precision: 9, scale: 2
       t.datetime :deadline
-      t.has_attached_file :ilustration
-      t.has_attached_file :expected_csv
+      t.string :ilustration_id
+      t.string :ilustration_filename
+      t.string :ilustration_content_type
+      t.integer :ilustration_size
+      t.string :expected_csv_id
+      t.string :expected_csv_filename
+      t.string :expected_csv_content_type
+      t.integer :expected_csv_size
 
       t.timestamps
     end
