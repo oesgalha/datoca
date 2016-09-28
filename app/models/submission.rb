@@ -56,6 +56,10 @@ class Submission < ApplicationRecord
 
   before_save :process_markdown, :set_score
 
+  after_create do
+    Ranking.refresh
+  end
+
   # =================================
   # Class Methods
   # =================================
