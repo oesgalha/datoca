@@ -53,13 +53,6 @@
       </div>
     </section>
 
-    <% if has_flash? %>
-      <div class="spacing-40"></div>
-      <div class="container">
-        <%= flash_msgs %>
-      </div>
-    <% end %>
-
     <%= yield %>
 
     <footer class="footer">
@@ -71,6 +64,9 @@
         </div>
       </div>
     </footer>
+    <% if has_flash? %>
+      <div class="notifications"><%= flash_msgs %></div>
+    <% end %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
