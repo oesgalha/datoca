@@ -48,7 +48,8 @@ def competiton_params
     instructions_attributes: [
       { name: 'Avaliação', markdown: lorem },
       { name: 'Descrição', markdown: lorem },
-      { name: 'Regras', markdown: lorem }
+      { name: 'Regras', markdown: lorem },
+      { name: 'Dados', markdown: lorem }
     ]
   }
 end

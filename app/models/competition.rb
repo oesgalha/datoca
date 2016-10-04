@@ -64,7 +64,7 @@ class Competition < ApplicationRecord
   validates :expected_csv, presence: true
 
   def has_required_instructions
-    required_instructions = ['Descrição', 'Avaliação', 'Regras']
+    required_instructions = ['Descrição', 'Avaliação', 'Regras', 'Dados']
     unless (required_instructions & instructions.map(&:name)).size == required_instructions.size
       errors.add(:instructions, "precisa pelo menos conter as seguintes instruções: " + required_instructions.join(', '))
     end
