@@ -71,4 +71,5 @@ end
 # =================================
 group :test do
   gem 'laranja', '~> 2.0'
+  gem 'capybara', '~> 2.9'
 end

@@ -1,11 +1,1 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  max_team_size: 1
-  evaluation_type: 1
-
-two:
-  name: MyString
-  max_team_size: 1
-  evaluation_type: 1

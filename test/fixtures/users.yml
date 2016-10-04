@@ -1,9 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Fixture docs: http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-alberto_botelho:
-  name: Alberto Botelho
-  email: <%= Laranja::Internet.email('Alberto Botelho') %>
+admin:
+  name: Admin
+  email: admin@copas.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  role: <%= User.roles[:admin] %>
 
-ana_barbosa:
-  name: Ana Barbosa
-  email: <%= Laranja::Internet.email('Ana Barbosa') %>
+scientist1:
+  name: Scientist Scienson
+  email: first@users.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
