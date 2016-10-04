@@ -15,4 +15,12 @@ module Copas
     config.i18n.available_locales = [:en, :'pt-BR']
     config.i18n.default_locale = :'pt-BR'
   end
+
+  def self.defaults
+    @defaults ||= OpenStruct.new(
+      YAML.load_file(
+        File.join(Rails.root, 'config', 'copas.yml')
+      )[Rails.env]
+    )
+  end
 end

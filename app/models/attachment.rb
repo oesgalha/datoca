@@ -26,12 +26,16 @@ class Attachment < ApplicationRecord
   # Plugins
   # =================================
 
-  attachment :file
+  attachment :file, store: 'instructions'
 
   # =================================
   # Associations
   # =================================
 
-  belongs_to :competition, inverse_of: :instructions
+  has_one :competition, through: :instruction
+  belongs_to :instruction, inverse_of: :attachments
 
+  def is_csv?
+    Refile.types[:csv].content_type.include?(file_content_type)
+  end
 end

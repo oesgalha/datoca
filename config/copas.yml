@@ -1,0 +1,10 @@
+default: &default
+  something: value
+
+development:
+  <<: *default
+  base_url: 'http://localhost:3000'
+
+test:
+  <<: *default
+  base_url: 'http://localhost:3000'

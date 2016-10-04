@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928054717) do
+ActiveRecord::Schema.define(version: 20161004012756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acceptances", force: :cascade do |t|
+    t.integer  "competition_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["competition_id"], name: "index_acceptances_on_competition_id", using: :btree
+    t.index ["user_id"], name: "index_acceptances_on_user_id", using: :btree
+  end
 
   create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
     t.string   "value"
@@ -122,6 +131,8 @@ ActiveRecord::Schema.define(version: 20160928054717) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "acceptances", "competitions"
+  add_foreign_key "acceptances", "users"
   add_foreign_key "attachments", "instructions"
   add_foreign_key "instructions", "competitions"
   add_foreign_key "submissions", "competitions"

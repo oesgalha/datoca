@@ -26,9 +26,14 @@ class Instruction < ApplicationRecord
   # =================================
 
   belongs_to :competition, inverse_of: :instructions
-  has_many :attachments, dependent: :destroy
+  has_many :attachments, inverse_of: :instruction, dependent: :destroy
 
   accepts_attachments_for :attachments
+
+  # =================================
+  # Scopes
+  # =================================
+  scope :rules, -> { where(name: 'Regras').first }
 
   # =================================
   # Validations

@@ -43,17 +43,16 @@ class Competition < ApplicationRecord
 
   has_many :rankings
   has_many :submissions
+  has_many :acceptances
   has_many :users, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'User'
   has_many :teams, -> { order(:created_at).distinct }, through: :submissions, source: :competitor, source_type: 'Team'
   has_many :instructions, inverse_of: :competition, dependent: :destroy
   has_one :description,     -> { where name: 'Descrição' }, class_name: 'Instruction', inverse_of: :competition
   has_one :evaluation_text, -> { where name: 'Avaliação' }, class_name: 'Instruction', inverse_of: :competition
-  has_one :rules,           -> { where name: 'Regras' },    class_name: 'Instruction', inverse_of: :competition
 
   accepts_nested_attributes_for :instructions
   accepts_nested_attributes_for :description
   accepts_nested_attributes_for :evaluation_text
-  accepts_nested_attributes_for :rules
 
   # =================================
   # Validations
@@ -70,4 +69,7 @@ class Competition < ApplicationRecord
     end
   end
 
+  def files_can_be_downloaded_by?(user)
+    acceptances.where(user: user).any?
+  end
 end

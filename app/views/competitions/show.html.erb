@@ -62,3 +62,6 @@
     </div>
   </div>
 </div>
+<% if @acceptance&.new_record? %>
+  <%= render partial: 'acceptances/modal_form' %>
+<% end %>

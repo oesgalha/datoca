@@ -50,6 +50,7 @@ class User < ApplicationRecord
   # Associations
   # =================================
 
+  has_many :acceptances
   has_many :rankings, as: :competitor
   has_many :submissions, as: :competitor
   has_many :individual_competitions, -> { order(:created_at).distinct }, through: :submissions, source: :competition

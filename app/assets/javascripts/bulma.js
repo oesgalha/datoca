@@ -2,6 +2,10 @@ $("div.notification button.delete").click(function() {
   $(this).parent().addClass("is-hidden");
 });
 
+$(".modal button.delete").click(function() {
+  $(".modal").removeClass("is-active");
+});
+
 $(document).on("upload:start", "form", function(e) {
   $(this).find("input[type=submit]").attr("disabled", true);
 });
