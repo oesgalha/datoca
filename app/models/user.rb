@@ -62,4 +62,5 @@ class User < ApplicationRecord
   # =================================
 
   validates :bio, length: { maximum: 256 }, allow_blank: true
+  validates :name, presence: true
 end
