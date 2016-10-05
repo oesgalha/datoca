@@ -39,11 +39,15 @@ class SubmissionPolicy < ApplicationPolicy
     elsif team_submitted?
       attempts_check(submitter_team) && record.competitor == submitter_team
     else
-      true
+      competitor.is_a?(User) || team_size_valid?
     end
   end
 
   private
+
+  def team_size_valid?
+    competition.max_team_size.nil? || competitor.users.size <= competition.max_team_size
+  end
 
   def attempts_check(competitor)
     competition.submissions.where(competitor: competitor, created_at: today_range).size < Submission::MAX_DAILY_ATTEMPTS
@@ -68,6 +72,10 @@ class SubmissionPolicy < ApplicationPolicy
     day_begin = Time.now.midnight
     day_end = (Time.now + 1.day).midnight - 1.second
     (day_begin..day_end)
+  end
+
+  def competitor
+    record.competitor
   end
 
   def competition
