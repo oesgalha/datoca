@@ -4,7 +4,10 @@ require 'rails/test_help'
 require 'minitest/pride'
 require 'capybara/rails'
 require 'laranja'
+require 'codeclimate-test-reporter'
+
 Laranja.load('pt-BR')
+CodeClimate::TestReporter.start
 
 class ActiveSupport::TestCase
   fixtures :all
