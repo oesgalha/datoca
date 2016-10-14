@@ -6,9 +6,9 @@ gem 'rails', '~> 5.0'
 # Database and ActiveRecord plugins
 # =================================
 gem 'pg', '~> 0.18'
-gem 'refile', github: 'refile/refile', require: 'refile/rails'
-gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
-gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'      # Refile dependecies see: https://github.com/refile/refile/issues/447
+gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git'
+gem 'refile-mini_magick', git: 'https://github.com/refile/refile-mini_magick.git'
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', branch: 'master'      # Refile dependecies see: https://github.com/refile/refile/issues/447
 gem 'ransack', '~> 1.8'
 gem 'scenic', '~> 1.3'
 
@@ -72,4 +72,5 @@ end
 group :test do
   gem 'laranja', '~> 2.0'
   gem 'capybara', '~> 2.9'
+  gem 'codeclimate-test-reporter', '~> 0.6', require: nil
 end
