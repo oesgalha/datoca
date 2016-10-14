@@ -8,8 +8,8 @@ default: &default
 
 development:
   <<: *default
-  database: copas_dev
+  database: datoca_dev
 
 test:
   <<: *default
-  database: copas_test
+  database: datoca_test

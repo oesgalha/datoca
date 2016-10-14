@@ -31,4 +31,4 @@ sudo -u postgres psql -c "ALTER USER joker WITH PASSWORD 'king-of-spades';"
 
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-echo "Your copas_api dev box is ready! :)"
+echo "Your datoca dev box is ready! :)"

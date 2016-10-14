@@ -7,12 +7,12 @@ Vagrant.configure('2') do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :private_network, ip: '192.168.33.22'
   config.ssh.forward_agent = true
-  config.vm.define "copas" do |copasapi|
+  config.vm.define "datoca" do |datoca|
   end
   config.vm.synced_folder '.', '/vagrant', nfs: true
   config.vm.provider 'virtualbox' do |v|
 
-    v.name = "copas"
+    v.name = "datoca"
 
     host = RbConfig::CONFIG['host_os']
     # 1/4 memory and all the cores

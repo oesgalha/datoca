@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Copas
+module Datoca
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -19,7 +19,7 @@ module Copas
   def self.defaults
     @defaults ||= OpenStruct.new(
       YAML.load_file(
-        File.join(Rails.root, 'config', 'copas.yml')
+        File.join(Rails.root, 'config', 'app.yml')
       )[Rails.env]
     )
   end

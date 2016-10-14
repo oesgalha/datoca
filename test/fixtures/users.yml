@@ -2,7 +2,7 @@
 
 admin:
   name: Admin
-  email: admin@copas.com
+  email: admin@datoca.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   role: <%= User.roles[:admin] %>
 
