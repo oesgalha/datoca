@@ -1,15 +1,16 @@
 language: ruby
 cache: bundler
 rvm:
-- 2.3.1
+  - 2.3.1
 services:
-- postgresql
-- redis-server
+  - postgresql
+  - redis-server
 addons:
   postgresql: '9.4'
 before_script:
-- psql -c 'create database travis_ci_test;' -U postgres
-- cp config/database.travis.yml config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml
+  - cp config/app.sample.yml config/app.yml
 notifications:
   slack:
     secure: q5sjr1CyuZ6cHLapwZ27XiPJQ18GCrqazzzJKEO94KycSL7n3jCaeZvTi5eXfYVdK4Prh5p7Aw6wOat94sjvGCOomtq0nF+Ubt9oi8fnwro4OG1wwYUK4h3K0Lx53COxFVE6X1DRphcSdzL7uG6tsT73ptALg28sjk7cs5vrAX4EDWKVdUaQoMCGYzxv5MD4U1vZDi7SSsce50zJzvcp0ldlwHLTccg3KpXNMsn14uq/QG2t7SibgLudID4CFThEJWG56ZqO83JB+E9K/oSQbn232mBFemqJoHh8k5JVjGJ7mLi+uKpREkd5uinp62NaY8PU+xwuI6vmjQPDLBsV9fNwI0lL7j4Ofl3njRAurLX9UM6pJnmZ0wp3/KtMdBqBVg1C96ObcwE+m3bKmxmIaLy1zuX/OrJ7p3CyHvWEE1Y1kIh7SATDHWR/WgyKIGSHdRZmI9FwoaGd+2Wqd+ApIwCVvf9sKVEkUQHMUN8YALxYKDm5dRs0HXrzwDAhQhBPg3jZgK+muI2rAlfujPhgbc1yuyZE3TreiMWa5h1DVCF+0bYoYwtkJCTc5G2CP2yjasgD+v6NpswoC0O3nKk0UeWqVrqXMp5LnwzNOHGt/brhekdnXcjTPUZU7zIGKaEgdfqWPv9KO9ekCqL+KVbzCaZQLXPxO7qK6tvm80iwTtM=
