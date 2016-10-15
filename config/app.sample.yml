@@ -4,13 +4,16 @@ default: &default
       id: fbid
       sec: fbsecret
       callback_url: 'https://example.com/auth/auth/facebook/callback'
-  stmp:
+  smtp:
     address: smtp.somewhere.com
     port: 25
     domain: example.com
     user: user
     pass: password
     auth: plain
+  devise:
+    mailer:
+      sender: please-change-me-at-config-initializers-devise@example.com
 
 development:
   <<: *default
