@@ -6,7 +6,7 @@ CDN_DEFAULT_CACHE = 60 * 60 * 24 * 365
 Refile.backends['instructions'] = Refile::Backend::FileSystem.new(Rails.root.join("tmp/uploads/instructions").to_s)
 
 Refile.configure do |config|
-  config.allow_origin = Datoca.defaults.base_url
+  config.allow_origin = Datoca.config.base_url
   config.types[:csv] = Refile::Type.new(:csv, content_type: CSV_CONTENT_TYPES)
 end
 
@@ -19,7 +19,7 @@ def get_user_id(session)
 end
 
 def acceptance_url(file)
-  Datoca::Application.routes.url_helpers.new_competition_acceptance_url(competition, host: Datoca.defaults.base_url)
+  Datoca::Application.routes.url_helpers.new_competition_acceptance_url(competition, host: Datoca.config.base_url)
 end
 
 Refile::App.before do
