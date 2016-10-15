@@ -13,6 +13,8 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  provider               :string
+#  uid                    :string
 #  name                   :string
 #  handle                 :string
 #  bio                    :text
@@ -38,12 +40,14 @@ class User < ApplicationRecord
   # Constants
   # =================================
 
+  DEFAULT_PASSWORD_SIZE = 64
   enum role: { user: 0, admin: 1 }
 
   # =================================
   # Plugins
   # =================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, omniauth_providers: [ :facebook ]
   attachment :avatar, type: :image
 
   # =================================
@@ -63,4 +67,17 @@ class User < ApplicationRecord
 
   validates :bio, length: { maximum: 256 }, allow_blank: true
   validates :name, presence: true
+
+  # =================================
+  # Class Methods
+  # =================================
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token(DEFAULT_PASSWORD_SIZE)
+      user.name = auth.info.name
+      user.remote_avatar_url = auth.info.image
+    end
+  end
 end

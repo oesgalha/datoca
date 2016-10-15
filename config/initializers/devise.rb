@@ -271,6 +271,9 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  fb = Datoca.config.dig('omniauth', 'facebook')
+  config.omniauth :facebook, fb&.dig('id'), fb&.dig('sec'), callback_url: fb&.dig('callback_url'), image_size: :large
 end
 
 # append to end of config/initializers/devise.rb

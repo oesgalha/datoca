@@ -13,9 +13,9 @@
             <div class="block has-text-centered">
               <div class="columns">
                 <div class="column">
-                  <a class="button facebook-button is-medium is-fullwidth">
+                  <%= link_to user_facebook_omniauth_authorize_path, class: 'button facebook-button is-medium is-fullwidth' do %>
                     <span class="icon is-medium"><i class="fa fa-facebook"></i></span>
-                  </a>
+                  <% end %>
                 </div>
                 <div class="column">
                   <a class="button linkedin-button is-medium is-fullwidth">
