@@ -10,3 +10,4 @@ config/database.yml
 !/tmp/.keep
 # Ignore attachments
 public/system
+config/app.yml

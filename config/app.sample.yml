@@ -1,0 +1,21 @@
+default: &default
+  omniauth:
+    facebook:
+      id: fbid
+      sec: fbsecret
+      callback_url: 'https://example.com/auth/auth/facebook/callback'
+  stmp:
+    address: smtp.somewhere.com
+    port: 25
+    domain: example.com
+    user: user
+    pass: password
+    auth: plain
+
+development:
+  <<: *default
+  base_url: 'http://localhost:3000'
+
+test:
+  <<: *default
+  base_url: 'http://localhost:3000'
