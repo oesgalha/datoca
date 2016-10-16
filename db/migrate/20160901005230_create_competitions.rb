@@ -14,6 +14,8 @@ class CreateCompetitions < ActiveRecord::Migration[5.0]
       t.string :expected_csv_filename
       t.string :expected_csv_content_type
       t.integer :expected_csv_size
+      t.string :expected_csv_id_column, default: 'id'
+      t.string :expected_csv_val_column, default: 'value'
 
       t.timestamps
     end

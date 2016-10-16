@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(version: 20161004012756) do
     t.string   "expected_csv_filename"
     t.string   "expected_csv_content_type"
     t.integer  "expected_csv_size"
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.string   "expected_csv_id_column",                            default: "id"
+    t.string   "expected_csv_val_column",                           default: "value"
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
   end
 
   create_table "instructions", force: :cascade do |t|

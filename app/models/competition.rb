@@ -16,6 +16,8 @@
 #  expected_csv_filename     :string
 #  expected_csv_content_type :string
 #  expected_csv_size         :integer
+#  expected_csv_id_column    :string           default("id")
+#  expected_csv_val_column   :string           default("value")
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #

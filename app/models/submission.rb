@@ -96,19 +96,17 @@ class Submission < ApplicationRecord
     when 'mae'
       d1 = CSV.new(competition.expected_csv.read).read.transpose
       d2 = CSV.new(csv.read).read.transpose
-      d1 = d1.map do |arr|
-        arr.shift
-        arr.map(&:to_d)
-      end
-      d2 = d2.map do |arr|
-        arr.shift
-        arr.map(&:to_d)
-      end
-      df1 = Daru::DataFrame.new(d1, order: [:id, :value])
-      df2 = Daru::DataFrame.new(d2, order: [:id, :value])
+      df1 = Daru::DataFrame.new(extract_cols(d1), order: [:id, :value])
+      df2 = Daru::DataFrame.new(extract_cols(d2), order: [:id, :value])
       means = df1.join(df2, on: [:id], how: :inner).vector_by_calculation { (value_1 - value_2).abs }
       self.evaluation_score = (means.sum.to_d / means.size.to_d)
     end
+  end
+
+  def extract_cols(cols)
+    id_col = cols.select { |col| col.first == competition.expected_csv_id_column }.first.tap { |col| col.shift; col }
+    val_col = cols.select { |col| col.first == competition.expected_csv_val_column }.first.tap { |col| col.shift; col }
+    [id_col.map(&:to_d), val_col.map(&:to_d)]
   end
 
   # TODO: Move to background
