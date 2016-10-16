@@ -18,6 +18,7 @@ gem 'scenic', '~> 1.3'
 gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
 gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-linkedin-oauth2', git: 'https://github.com/decioferreira/omniauth-linkedin-oauth2.git'
 
 # =================================
 # Content

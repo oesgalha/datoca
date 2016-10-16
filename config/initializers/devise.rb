@@ -274,6 +274,9 @@ Devise.setup do |config|
 
   fb = Datoca.config.dig('omniauth', 'facebook')
   config.omniauth :facebook, fb&.dig('id'), fb&.dig('sec'), callback_url: fb&.dig('callback_url'), image_size: :large
+
+  ln = Datoca.config.dig('omniauth', 'linkedin')
+  config.omniauth :linkedin, ln&.dig('key'), ln&.dig('sec')
 end
 
 # append to end of config/initializers/devise.rb

@@ -10,25 +10,7 @@
             <div class="block">
               Entrar com:
             </div>
-            <div class="block has-text-centered">
-              <div class="columns">
-                <div class="column">
-                  <%= link_to user_facebook_omniauth_authorize_path, class: 'button facebook-button is-medium is-fullwidth' do %>
-                    <span class="icon is-medium"><i class="fa fa-facebook"></i></span>
-                  <% end %>
-                </div>
-                <div class="column">
-                  <a class="button linkedin-button is-medium is-fullwidth">
-                    <span class="icon is-medium"><i class="fa fa-linkedin"></i></span>
-                  </a>
-                </div>
-                <div class="column">
-                  <a class="button google-button is-medium is-fullwidth">
-                    <span class="icon is-medium"><i class="fa fa-google-plus"></i></span>
-                  </a>
-                </div>
-              </div>
-            </div>
+            <%= render "devise/shared/social" %>
             <hr>
             <div class="block">
               Entrar com e-mail:

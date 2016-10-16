@@ -4,6 +4,9 @@ default: &default
       id: fbid
       sec: fbsecret
       callback_url: 'https://example.com/auth/auth/facebook/callback'
+    linkedin:
+      key: lnkey
+      sec: lnsecret
   smtp:
     address: smtp.somewhere.com
     port: 25

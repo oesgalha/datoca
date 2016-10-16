@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/decioferreira/omniauth-linkedin-oauth2.git
+  revision: c7422a87ce5ab441c33ecd6bf52594857667b074
+  specs:
+    omniauth-linkedin-oauth2 (0.1.5)
+      omniauth (~> 1.0)
+      omniauth-oauth2
+
+GIT
   remote: https://github.com/refile/refile-mini_magick.git
   revision: 9c74f7b61c794837a02af3f21d1be96286b7ce4d
   specs:
@@ -286,6 +294,7 @@ DEPENDENCIES
   listen (~> 3.1)
   nested_form (~> 0.3)
   omniauth-facebook (~> 4.0)
+  omniauth-linkedin-oauth2!
   pg (~> 0.18)
   pry (~> 0.10)
   puma (~> 3.6)
