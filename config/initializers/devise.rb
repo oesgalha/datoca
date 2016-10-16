@@ -277,6 +277,9 @@ Devise.setup do |config|
 
   ln = Datoca.config.dig('omniauth', 'linkedin')
   config.omniauth :linkedin, ln&.dig('key'), ln&.dig('sec')
+
+  gp = Datoca.config.dig('omniauth', 'google')
+  config.omniauth :google_oauth2, gp&.dig('id'), gp&.dig('sec')
 end
 
 # append to end of config/initializers/devise.rb

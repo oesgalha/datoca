@@ -7,6 +7,9 @@ default: &default
     linkedin:
       key: lnkey
       sec: lnsecret
+    google:
+      id: gpid
+      sec: gpsecret
   smtp:
     address: smtp.somewhere.com
     port: 25

@@ -47,7 +47,7 @@ class User < ApplicationRecord
   # Plugins
   # =================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, omniauth_providers: [ :facebook, :linkedin ]
+  devise :omniauthable, omniauth_providers: [ :facebook, :linkedin, :google_oauth2 ]
   attachment :avatar, type: :image
 
   # =================================

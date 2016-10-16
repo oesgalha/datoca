@@ -11,9 +11,9 @@
       <% end %>
     </div>
     <div class="column">
-      <a class="button google-button is-medium is-fullwidth">
+      <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'button google-button is-medium is-fullwidth' do %>
         <span class="icon is-medium"><i class="fa fa-google-plus"></i></span>
-      </a>
+      <% end %>
     </div>
   </div>
 </div>
