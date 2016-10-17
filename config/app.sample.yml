@@ -18,6 +18,7 @@ default: &default
     pass: password
     auth: plain
   devise:
+    secret_key: devise-super-secret
     mailer:
       sender: please-change-me-at-config-initializers-devise@example.com
 
