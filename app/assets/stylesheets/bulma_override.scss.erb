@@ -9,7 +9,19 @@ $danger: #ff1654;
 
 @import "bulma";
 
-@import 'https://fonts.googleapis.com/css?family=Cabin';
+@font-face {
+  font-family: 'Cabin';
+  font-weight: 400;
+  font-style: normal;
+  src: url(font-path('cabin-regular.eot'));
+  src: url(font-path('cabin-regular.eot?#iefix')) format('embedded-opentype'),
+       local('cabin Regular'),
+       local('cabin-regular'),
+       url(font-path('cabin-regular.woff2')) format('woff2'),
+       url(font-path('cabin-regular.woff')) format('woff'),
+       url(font-path('cabin-regular.ttf')) format('truetype'),
+       url(font-path('cabin-regular.svg')) format('svg');
+}
 
 $fa-font-path: "/assets/fontawesome/fonts";
 @import 'fontawesome.scss';
