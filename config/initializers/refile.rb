@@ -10,6 +10,8 @@ Refile.configure do |config|
   config.types[:csv] = Refile::Type.new(:csv, content_type: CSV_CONTENT_TYPES)
 end
 
+Refile.cdn_host = Datoca.config.dig('cdn', 'url')
+
 def parse_path(path)
   path.split('/')[3..4]
 end
