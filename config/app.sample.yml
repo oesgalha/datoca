@@ -23,6 +23,8 @@ default: &default
       sender: please-change-me-at-config-initializers-devise@example.com
   cdn:
     url: 'https://cdn.example.com'
+  action_mailer:
+    host: localhost
 
 development:
   <<: *default

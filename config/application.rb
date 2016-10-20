@@ -23,6 +23,9 @@ module Datoca
     config.i18n.available_locales = [:en, :'pt-BR']
     config.i18n.default_locale = :'pt-BR'
 
+    config.action_mailer.default_url_options = {
+      host: Datoca.config.dig('action_mailer', 'host')
+    }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address:        Datoca.config.dig('smtp', 'address'),
