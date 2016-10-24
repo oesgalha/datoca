@@ -25,9 +25,10 @@ gem 'high_voltage', '~> 3.0'
 gem 'rails-i18n', '~> 5.0'
 gem 'kramdown', '~> 1.12'
 gem 'devise-i18n', '~> 1.1'
-gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git'
+gem 'refile', require: 'refile/rails', git: 'https://github.com/oesgalha/refile', branch: 'relax-dependecies'
+gem 'refile-fog', '~> 0.2.0'
 gem 'refile-mini_magick', git: 'https://github.com/refile/refile-mini_magick.git'
-gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', branch: 'master'      # Refile dependecies see: https://github.com/refile/refile/issues/447
+gem 'sinatra', '~> 2.0.0.beta2'
 
 # =================================
 # Webserver
@@ -62,6 +63,10 @@ gem 'daru', '~> 0.1'
 # Production Services
 # =================================
 gem 'skylight', '~> 1.0'
+gem 'fog-azure-rm', git: 'https://github.com/oesgalha/fog-azure-rm.git', branch: 'storage_files'
+git 'https://github.com/oesgalha/azure-sdk-for-ruby.git', branch: 'update-json' do
+  gem 'ms_rest_azure'
+end
 
 # =================================
 # Development tools
