@@ -31,25 +31,29 @@
         </nav>
       </div>
       <div class="column">
-        <% @competitions.each do |competition| %>
-          <%= link_to competition, class: 'box' do %>
-            <nav class="level">
-              <div class="level-left">
-                <div class="level-item"><%= attachment_image_tag competition, :ilustration, :limit, 64, 64, class: 'image is-64x64' %></div>
-                <div class="level-item"><p class="title is-5"><%= competition.name %></p></div>
-              </div>
-              <div class="level-right">
-                <div class="level-item has-text-centered">
-                  <p class="heading">Prazo</p>
-                  <p class="title is-5"><%= distance_of_time_in_words_to_now(competition.deadline) %></p>
+        <% if @competitons.nil? || @competitons.empty? %>
+          <h2 class="title has-text-centered">Nenhuma competição encontrada ):</h2>
+        <% else %>
+          <% @competitions.each do |competition| %>
+            <%= link_to competition, class: 'box' do %>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item"><%= attachment_image_tag competition, :ilustration, :limit, 64, 64, class: 'image is-64x64' %></div>
+                  <div class="level-item"><p class="title is-5"><%= competition.name %></p></div>
                 </div>
-                <div class="level-item"></div>
-                <div class="level-item has-text-centered">
-                  <p class="heading">Prêmio</p>
-                  <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
+                <div class="level-right">
+                  <div class="level-item has-text-centered">
+                    <p class="heading">Prazo</p>
+                    <p class="title is-5"><%= distance_of_time_in_words_to_now(competition.deadline) %></p>
+                  </div>
+                  <div class="level-item"></div>
+                  <div class="level-item has-text-centered">
+                    <p class="heading">Prêmio</p>
+                    <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
+                  </div>
                 </div>
-              </div>
-            </nav>
+              </nav>
+            <% end %>
           <% end %>
         <% end %>
       </div>
