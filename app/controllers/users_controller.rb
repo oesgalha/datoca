@@ -11,7 +11,12 @@ class UsersController < ApplicationController
 
   def update
     authorize(@user)
-    if @user.update(user_params)
+    if user_params[:password].blank?
+      success = @user.update_without_password(user_params)
+    else
+      success = @user.update_with_password(user_params)
+    end
+    if success
       redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit
@@ -25,6 +30,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :handle, :bio, :location, :company, :avatar, :password)
+    params.require(:user).permit(:name, :handle, :bio, :location, :company, :avatar, :password, :current_password)
   end
 end

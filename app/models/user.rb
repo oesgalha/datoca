@@ -80,4 +80,13 @@ class User < ApplicationRecord
       user.remote_avatar_url = auth.info.image
     end
   end
+
+  # =================================
+  # Instance Methods
+  # =================================
+
+  def update_without_password(params, *options)
+    params.delete(:current_password)
+    super(params)
+  end
 end

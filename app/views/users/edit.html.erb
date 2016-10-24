@@ -31,9 +31,18 @@
         <%= f.text_field :company, class: 'input', type: 'text' %>
       </p>
 
+      <hr>
+
+      <h2 class="title">Mudar de senha</h2>
+
+      <%= f.label :current_password, class: 'label' %>
+      <p class="control">
+        <%= f.password_field :current_password, autocomplete: 'off', class: 'input' %>
+      </p>
+
       <%= f.label :password, class: 'label' %>
       <p class="control">
-        <%= f.password_field :password, class: 'input' %>
+        <%= f.password_field :password, autocomplete: 'off', class: 'input' %>
       </p>
 
       <p class="control">
