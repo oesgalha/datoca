@@ -49,6 +49,7 @@ class Submission < ApplicationRecord
 
   validates :competitor, presence: true
   validates :csv, presence: true
+  validate :validate_csv_size
 
   # =================================
   # Callbacks
@@ -89,6 +90,12 @@ class Submission < ApplicationRecord
   end
 
   private
+
+  def validate_csv_size
+    unless csv.readlines.size == competition.expected_csv.readlines.size
+      errors.add(:csv, "não contem o mesmo número de linhas da solução esperada!")
+    end
+  end
 
   # TODO: Move to background
   def set_score
