@@ -31,4 +31,8 @@ sudo -u postgres psql -c "ALTER USER joker WITH PASSWORD 'king-of-spades';"
 
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
+# Fix this annoying message:
+# "sudo: unable to resolve host ubuntu-xenial: Connection refused"
+sudo sed -i '/127.0.0.1 localhost/s|$| ubuntu-xenial|' /etc/hosts
+
 echo "Your datoca dev box is ready! :)"
