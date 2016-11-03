@@ -92,7 +92,7 @@ class Submission < ApplicationRecord
   private
 
   def validate_csv_size
-    unless csv.readlines.size == competition.expected_csv.readlines.size
+    unless csv.read.size == competition.expected_csv.read.size
       errors.add(:csv, "não contem o mesmo número de linhas da solução esperada!")
     end
   end
