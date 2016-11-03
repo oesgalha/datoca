@@ -35,7 +35,7 @@ def get_user_id(session)
   session.to_hash.dig('warden.user.user.key', 0, 0)
 end
 
-def acceptance_url(file)
+def acceptance_url(competition)
   Datoca::Application.routes.url_helpers.new_competition_acceptance_url(competition, host: Datoca.config.base_url)
 end
 
