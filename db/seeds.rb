@@ -21,7 +21,7 @@ end
 def random_csv
   File.join(Rails.root, 'tmp', "#{rand(10)}.csv").tap do |fullpath|
     CSV.open(fullpath, 'wb') do |csv|
-      csv << ['id', 'val']
+      csv << ['id', 'value']
       for i in 0...10
         csv << [i.to_s, rand(1_000).to_s]
       end
