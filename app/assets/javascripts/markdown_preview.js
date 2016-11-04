@@ -47,16 +47,20 @@ function bindMarkdownUpload(input) {
     },
     onFileUploadResponse: function(xhr) {
       var id = xhr.id || JSON.parse(xhr.responseText).id;
-      var data = [{ id: id, filename: xhr.file.name, content_type: xhr.file.type, size: xhr.file.size }];
       var filefield = input.parent().find("input.is-hidden[type=file]");
       var reference = filefield.data("reference");
       var metadatafield = $("input[type=hidden][data-reference='" + reference + "']");
+      var data = JSON.parse(metadatafield.attr("value"));
+      data.push({ id: id, filename: xhr.file.name, content_type: xhr.file.type, size: xhr.file.size })
       metadatafield.attr("value", JSON.stringify(data));
       filefield.removeAttr("name");
       return true;
     },
     onFileUploaded: function() {
       input.trigger("keyup");
+    },
+    remoteFilename: function(file) {
+      return file.name;
     }
   });
 }
