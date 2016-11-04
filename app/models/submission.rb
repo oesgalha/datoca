@@ -49,7 +49,7 @@ class Submission < ApplicationRecord
 
   validates :competitor, presence: true
   validates :csv, presence: true
-  validate :validate_csv_size
+  validate :validate_csv_size, :validate_csv_cols
 
   # =================================
   # Callbacks
@@ -91,9 +91,23 @@ class Submission < ApplicationRecord
 
   private
 
+  def read_csv
+    @read_csv ||= CSV.new(csv.read).read
+  end
+
+  def read_expected_csv
+    @read_expected_csv ||= CSV.new(competition.expected_csv.read).read
+  end
+
   def validate_csv_size
-    unless CSV.new(csv.read).read.size == CSV.new(competition.expected_csv.read).read.size
+    unless read_csv.size == read_expected_csv.size
       errors.add(:csv, "não contém o mesmo número de linhas da solução esperada!")
+    end
+  end
+
+  def validate_csv_cols
+    unless (read_csv[0] - [ competition.expected_csv_id_column, competition.expected_csv_val_column ]).empty?
+      errors.add(:csv, "deve ter apenas as seguintes colunas: \"#{competition.expected_csv_id_column}\" e \"#{competition.expected_csv_val_column}\"")
     end
   end
 
@@ -101,8 +115,8 @@ class Submission < ApplicationRecord
   def set_score
     case competition.evaluation_type
     when 'mae'
-      d1 = CSV.new(competition.expected_csv.read).read.transpose
-      d2 = CSV.new(csv.read).read.transpose
+      d1 = read_expected_csv.transpose
+      d2 = read_csv.transpose
       df1 = Daru::DataFrame.new(extract_cols(d1), order: [:id, :value])
       df2 = Daru::DataFrame.new(extract_cols(d2), order: [:id, :value])
       means = df1.join(df2, on: [:id], how: :inner).vector_by_calculation { (value_1 - value_2).abs }
