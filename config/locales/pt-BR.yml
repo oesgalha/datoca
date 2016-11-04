@@ -3,3 +3,19 @@ pt-BR:
    default: "Você não pode realizar essa ação"
    submission_policy:
      new?: 'Você atingiu o limite de tentativas diárias!'
+  activerecord:
+    models:
+      attachment:
+        one: "Anexo"
+        other: "Anexos"
+      competition:
+        one: "Competição"
+        other: "Competições"
+      submission:
+        one: "Submissão"
+        other: "Submissões"
+    attributes:
+      submission:
+        csv: "Arquivo csv"
+        competitor_sgid: "Competidor"
+        explanation_md: "Explicação da solução"
