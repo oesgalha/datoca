@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004012756) do
+ActiveRecord::Schema.define(version: 20161104224943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20161004012756) do
 
   create_view :rankings, materialized: true,  sql_definition: <<-SQL
       WITH top_submissions AS (
-           SELECT per_competitor.submission_id,
+           SELECT DISTINCT ON (per_competitor.competitor_id, per_competitor.competitor_type, per_competitor.evaluation_score, per_competitor.competition_id) per_competitor.submission_id,
               per_competitor.competitor_id,
               per_competitor.competitor_type,
               per_competitor.evaluation_score,
