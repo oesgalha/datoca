@@ -35,12 +35,12 @@
             <p class="menu-label">Informações</p>
             <ul class="menu-list">
               <% @competition.instructions.each_with_index do |instruction, i| %>
-                <li><%= link_to instruction.name, instruction, remote: true, id: "instruction-#{instruction.id}", class: ( i.zero? ? 'is-active' : '' ) %></li>
+                <li><%= link_to instruction.name, instruction, remote: true, id: "instruction-#{instruction.id}", class: ( instruction.name == 'Descrição' ? 'is-active' : '' ) %></li>
               <% end %>
             </ul>
             <p class="menu-label">Competir</p>
             <ul class="menu-list">
-              <li><%= link_to 'Submter', new_competition_submission_path(@competition) %></li>
+              <li><%= link_to 'Submeter', new_competition_submission_path(@competition) %></li>
               <li><%= link_to 'Submissões', competition_submissions_path(@competition) %></li>
               <li><%= link_to 'Ranking', competition_rankings_path(@competition) %></li>
             </ul>
