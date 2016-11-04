@@ -69,8 +69,8 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def today_range
-    day_begin = Time.now.midnight
-    day_end = (Time.now + 1.day).midnight - 1.second
+    day_begin = Time.current.midnight
+    day_end = (Time.current + 1.day).midnight - 1.second
     (day_begin..day_end)
   end
 

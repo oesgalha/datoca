@@ -41,10 +41,10 @@ def competiton_params
   {
     name: competition_name,
     total_prize: 2000 + rand(48_000),
-    deadline: Time.now.midnight + (5 + rand(20)).days,
+    deadline: Time.current.midnight + (5 + rand(20)).days,
     expected_csv: File.open(random_csv),
     ilustration: File.open(random_lorem_pixel_image),
-    created_at: Time.now - (5 + rand(20)).days,
+    created_at: Time.current - (5 + rand(20)).days,
     instructions_attributes: [
       { name: 'Avaliação', markdown: lorem },
       { name: 'Descrição', markdown: lorem },
