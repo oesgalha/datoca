@@ -1,91 +1,74 @@
-<section class="hero is-primary is-large header-image">
-  <div class="hero-head">
-    <header class="nav">
-      <div class="container">
-        <div class="nav-left">
-          <%= link_to 'DATOCA', root_path, class: 'nav-item' %>
+<section class="hero is-primary is-large is-fullheight header-image">
+  <div class="hero-body">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-4 is-parent">
+          <div class="tile is-child">
+            <%= image_tag 'logo-inverse.png', class: 'image' %>
+          </div>
         </div>
-        <span class="nav-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-        <div class="nav-center nav-menu">
-          <%= link_to competitions_path, class: 'nav-item' do %>
-            <i class="fa fa-trophy"></i>
-            &nbsp;
-            Competições
-          <% end %>
-          <a class="nav-item">
-            <i class="fa fa-info"></i>
-            &nbsp;
-            Sobre
-          </a>
-          <a class="nav-item">
-            <i class="fa fa-question"></i>
-            &nbsp;
-            FAQ
-          </a>
-        </div>
-        <div class="nav-right nav-menu">
-          <% if current_user %>
-            <div class="nav-item">
-              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined' %>
+        <div class="tile is-vertical is-parent">
+          <div class="tile is-child has-text-centered">
+            <h1 class="title is-1"><span id="home-chtext"></span> que movem o mundo</h1>
+            <div class="spacing-20"></div>
+            <h2 class="title is-3">Datoca é a sua plataforma para solução</h2>
+            <h2 class="subtitle is-3">de desafios utilizando Ciência de Dados</h2>
+          </div>
+          <div class="tile is-child has-text-centered">
+            <div class="control is-grouped is-centered">
+              <p class="control">
+                <%= link_to 'Competir', competitions_path, class: 'button is-primary is-large is-outlined' %>
+              </p>
+              <p class="control">
+                <%= link_to 'Cadastrar', competitions_path, class: 'button is-success is-large is-outlined' %>
+              </p>
             </div>
-          <% else %>
-            <div class="nav-item">
-              <%= link_to 'Cadastrar',  new_user_registration_path, class: 'button is-success is-outlined' %>
-            </div>
-            <div class="nav-item">
-              <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
-    </header>
-  </div>
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title is-1">
-        A plataforma brasileira de ciência de dados
-      </h1>
     </div>
   </div>
 </section>
 <div class="section main">
   <div class="container">
-    <div class="columns">
-      <div class="column is-4">
-        <div class="panel">
-          <div class="panel-block section has-text-centered">
-            <p><i class="fa fa-globe icon-block"></i></p>
-            <br>
-            <p>Resolva problemas reais de empresas, ONGS e cidades.</p>
-            <br>
-          </div>
-        </div>
-      </div>
-      <div class="column is-4">
-        <div class="panel">
-          <div class="panel-block section has-text-centered">
-            <p><i class="fa fa-trophy icon-block"></i></p>
-            <br>
-            <p>Participe de competições contra cientistas de dados do mundo todo.</p>
-            <br>
-          </div>
-        </div>
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical">
+        <div class="tile is-parent">
+          <div class="tile is-4 is-child">estudante</div>
+          <div class="tile is-4 is-child">
+            <p class="title">Escolha um desafio</p>
 
-      </div>
-      <div class="column is-4">
-        <div class="panel">
-          <div class="panel-block section has-text-centered">
-            <p><i class="fa fa-dollar icon-block"></i></p>
-            <br>
-            <p>Faça a melhor solução e ganhe prêmios em dinheiro e vagas de emprego.</p>
-            <br>
+            Se você já é um expert dispute uma de nossas competições.
+
+            Se ainda é um aprendiz, dê uma checada em nossos desafios de aprendizagem!
+          </div>
+          <div class="tile is-4 is-child">expert</div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-8 is-child">
+            <p class="title">Baixe e analise os dados</p>
+
+            Entenda quais tipos de dados estão a sua disposição
+          </div>
+          <div class="tile is-4 is-child">dados</div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-4 is-child">solucao</div>
+          <div class="tile is-8 is-child">
+            <p class="title">Encontre soluções</p>
+
+            Utilize técnicas e tecnologias de sua preferência para desenvolver a melhor solução!
           </div>
         </div>
-
+        <div class="tile is-parent">
+          <div class="tile is-4 is-child">podio</div>
+          <div class="tile is-4 is-child">
+            <p class="title">Seja reconhecido</p>
+            <p>Já conquistou seu lugar no pódio? Batalhe pelas premiações!</p>
+            <p>Concluiu um desafio de aprendizagem? Obtenha nossas certificações!</p>
+          </div>
+          <div class="tile is-4 is-child">certificado</div>
+        </div>
       </div>
     </div>
   </div>

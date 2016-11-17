@@ -392,6 +392,7 @@ GEM
     rails-assets-inline-attachment (2.0.3)
     rails-assets-jquery (3.1.1)
     rails-assets-markdown-js (0.6.2)
+    rails-assets-typedjs (1.1.4)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -517,6 +518,7 @@ DEPENDENCIES
   rails-assets-fontawesome (~> 4.6)!
   rails-assets-inline-attachment (~> 2.0)!
   rails-assets-markdown-js (~> 0.6)!
+  rails-assets-typedjs (~> 1.1)!
   rails-i18n (~> 5.0)
   ransack (~> 1.8)
   refile!
@@ -530,4 +532,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.13.2
+   1.13.6

@@ -1,5 +1,5 @@
 .header-image {
-  background: linear-gradient(rgba(200, 200, 200, 0.48),rgba(0, 0, 0, 0.64)), image-url("home.jpg") center center no-repeat fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.64), rgba(0, 0, 0, 0.92)), image-url("home2.jpeg") center center no-repeat fixed;
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -8,4 +8,8 @@
 }
 .icon-block {
   font-size:5em;
+}
+
+.hero.header-image.is-primary > .hero-head > .nav {
+  box-shadow: 0 0 0 rgba(0,0,0,0);
 }
