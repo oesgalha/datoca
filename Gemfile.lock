@@ -388,7 +388,7 @@ GEM
     rails-assets-bulma (0.2.3)
     rails-assets-chosen (1.6.2)
       rails-assets-jquery (>= 1.4.4)
-    rails-assets-fontawesome (4.6.3)
+    rails-assets-fontawesome (4.7.0)
     rails-assets-inline-attachment (2.0.3)
     rails-assets-jquery (3.1.1)
     rails-assets-markdown-js (0.6.2)
@@ -514,7 +514,7 @@ DEPENDENCIES
   rails (~> 5.0)
   rails-assets-bulma (~> 0.2)!
   rails-assets-chosen (~> 1.6)!
-  rails-assets-fontawesome (~> 4.6)!
+  rails-assets-fontawesome (~> 4.7)!
   rails-assets-inline-attachment (~> 2.0)!
   rails-assets-markdown-js (~> 0.6)!
   rails-i18n (~> 5.0)
@@ -530,4 +530,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.13.2
+   1.13.6
