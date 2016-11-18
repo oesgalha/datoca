@@ -17,4 +17,6 @@
 //= require markdown-js/dist/markdown
 //= require refile
 //= require inline-attachment/jquery.inline-attachment
+//= require typedjs
+//= require scrollreveal
 //= require_tree .

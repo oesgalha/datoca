@@ -1,11 +1,38 @@
 
 $family-sans-serif: 'Cabin', sans-serif;
 
-$primary: #645e9d;
-$info: #4faec1;
-$success: #6ddb90;
-$warning: #ecff9b;
-$danger: #ff1654;
+// open color
+$oc-gray-0: #f8f9fa;
+$oc-gray-3: #dee2e6;
+$oc-gray-4: #ced4da;
+$oc-gray-5: #adb5bd;
+$oc-gray-7: #495057;
+$oc-gray-8: #343a40;
+$oc-gray-9: #212529;
+$oc-red-6: #fa5252;
+$oc-grape-5: #cc5de8;
+$oc-indigo-6: #4c6ef5;
+$oc-blue-7: #1c7cd6;
+$oc-teal-6: #12b886;
+$oc-yellow-3: #ffe066;
+$oc-orange-5: #ff922b;
+
+// colors
+$black: $oc-gray-9;
+$grey-darker: $oc-gray-8;
+$grey-dark: $oc-gray-7;
+$grey: $oc-gray-5;
+$grey-light: $oc-gray-4;
+$grey-lighter: $oc-gray-3;
+$white: $oc-gray-0;
+$blue: $oc-blue-7;
+$green: $oc-teal-6;
+$orange: $oc-orange-5;
+$purple: $oc-grape-5;
+$red: $oc-red-6;
+$turquoise: $oc-indigo-6;
+$yellow: $oc-yellow-3;
+
 
 @import "bulma";
 
@@ -50,6 +77,19 @@ $fa-font-path: "/assets/fontawesome/fonts";
       color: darken($color, 10%);
     }
   }
+}
+
+.is-centered {
+  margin: auto;
+}
+
+.is-256x256 {
+  width: 256px;
+  height: 256px;
+}
+
+.control.is-grouped.is-centered {
+  justify-content: center;
 }
 
 .notifications {

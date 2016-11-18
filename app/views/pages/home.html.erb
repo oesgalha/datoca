@@ -1,95 +1,148 @@
-<section class="hero is-primary is-large header-image">
-  <div class="hero-head">
-    <header class="nav">
-      <div class="container">
-        <div class="nav-left">
-          <%= link_to 'DATOCA', root_path, class: 'nav-item' %>
+<section id="home-main-hero" class="hero is-primary is-large is-fullheight header-image">
+  <div class="hero-body">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-4 is-parent">
+          <div class="tile is-child">
+            <%= image_tag 'logo-white.svg', class: 'image' %>
+          </div>
         </div>
-        <span class="nav-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-        <div class="nav-center nav-menu">
-          <%= link_to competitions_path, class: 'nav-item' do %>
-            <i class="fa fa-trophy"></i>
-            &nbsp;
-            Competições
-          <% end %>
-          <a class="nav-item">
-            <i class="fa fa-info"></i>
-            &nbsp;
-            Sobre
-          </a>
-          <a class="nav-item">
-            <i class="fa fa-question"></i>
-            &nbsp;
-            FAQ
-          </a>
-        </div>
-        <div class="nav-right nav-menu">
-          <% if current_user %>
-            <div class="nav-item">
-              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined' %>
+        <div class="tile is-vertical is-parent">
+          <div class="tile is-child has-text-centered">
+            <h1 class="title is-1"><span id="home-chtext"></span> que movem o mundo</h1>
+            <div class="spacing-20"></div>
+            <h2 class="title is-3">Datoca é a sua plataforma para solução</h2>
+            <h2 class="subtitle is-3">de desafios utilizando Ciência de Dados</h2>
+          </div>
+          <div class="tile is-child has-text-centered">
+            <div class="control is-grouped is-centered">
+              <p class="control">
+                <%= link_to 'Competir', competitions_path, class: 'button is-primary is-large is-outlined' %>
+              </p>
+              <p class="control">
+                <%= link_to 'Cadastrar', competitions_path, class: 'button is-success is-large is-outlined' %>
+              </p>
             </div>
-          <% else %>
-            <div class="nav-item">
-              <%= link_to 'Cadastrar',  new_user_registration_path, class: 'button is-success is-outlined' %>
-            </div>
-            <div class="nav-item">
-              <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
-    </header>
+    </div>
   </div>
-  <div class="hero-body">
+  <div class="hero-foot">
     <div class="container has-text-centered">
-      <h1 class="title is-1">
-        A plataforma brasileira de ciência de dados
-      </h1>
+      <span id="bouncing-arrow" class="icon is-large">
+        <i class="fa fa-chevron-down"></i>
+      </span>
     </div>
   </div>
 </section>
-<div class="section main">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-4">
-        <div class="panel">
-          <div class="panel-block section has-text-centered">
-            <p><i class="fa fa-globe icon-block"></i></p>
-            <br>
-            <p>Resolva problemas reais de empresas, ONGS e cidades.</p>
-            <br>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Como funciona?</h1>
+    </div>
+  </div>
+</section>
+<section id="step-1" class="hero is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-parent">
+          <div class="tile is-child has-text-centered reveal-bot">
+            <h1 class="title is-1">Escolha um desafio</h1>
+          </div>
+          <div class="tile is-parent reveal-bot">
+            <div class="tile is-half is-child">
+              <%= image_tag 'home-scientist.svg', class: 'image is-256x256 is-centered' %>
+            </div>
+            <div class="tile is-half is-child">
+              <%= image_tag 'home-student.svg', class: 'image is-256x256 is-centered' %>
+            </div>
+          </div>
+          <div class="tile is-parent reveal-bot">
+            <div class="tile is-half is-child has-text-centered">
+              <h3 class="title is-3">Se você já é um expert dispute</h3>
+              <h3 class="subtitle is-3">uma de nossas competições.</h3>
+            </div>
+            <div class="tile is-half is-child has-text-centered">
+              <h3 class="title is-3">Se ainda é um aprendiz confira</h3>
+              <h3 class="subtitle is-3">nossos desafios de aprendizagem!</h3>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="column is-4">
-        <div class="panel">
-          <div class="panel-block section has-text-centered">
-            <p><i class="fa fa-trophy icon-block"></i></p>
-            <br>
-            <p>Participe de competições contra cientistas de dados do mundo todo.</p>
-            <br>
-          </div>
-        </div>
-
-      </div>
-      <div class="column is-4">
-        <div class="panel">
-          <div class="panel-block section has-text-centered">
-            <p><i class="fa fa-dollar icon-block"></i></p>
-            <br>
-            <p>Faça a melhor solução e ganhe prêmios em dinheiro e vagas de emprego.</p>
-            <br>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
-</div>
+</section>
+<section id="step-2" class="hero is-dark is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <nav class="level">
+        <div class="level-left reveal-left">
+          <div class="level-item">
+            <h1 class="title is-1">Baixe e analise os dados</h1>
+            <div class="spacing-20"></div>
+            <h3 class="subtitle is-3">Entenda quais tipos de dados estão a sua disposição</h3>
+          </div>
+        </div>
+        <div class="level-right reveal-right">
+          <div class="level-item"><%= image_tag 'home-datasource.svg', class: 'image is-256x256 is-centered' %></div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="step-3" class="hero is-info is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <nav class="level">
+        <div class="level-left reveal-left">
+          <div class="level-item"><%= image_tag 'home-datasource.svg', class: 'image is-256x256 is-centered' %></div>
+        </div>
+        <div class="level-right reveal-right">
+          <div class="level-item has-text-right">
+            <h1 class="title is-1">Encontre soluções</h1>
+            <div class="spacing-20"></div>
+            <h3 class="title is-3">Utilize técnicas e tecnologias de sua preferência</h3>
+            <div class="spacing-10"></div>
+            <h3 class="subtitle is-3">para desenvolver a melhor solução!</h3>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="step-4" class="hero is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-parent reveal-bot">
+          <div class="tile is-child has-text-centered">
+            <h1 class="title is-1">Seja reconhecido</h1>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-half is-child reveal-bot">
+              <%= image_tag 'home-scientist.svg', class: 'image is-256x256 is-centered' %>
+            </div>
+            <div class="tile is-half is-child reveal-bot">
+              <%= image_tag 'home-student.svg', class: 'image is-256x256 is-centered' %>
+            </div>
+          </div>
+          <div class="tile is-parent reveal-bot">
+            <div class="tile is-half is-child has-text-centered">
+              <h3 class="title is-3">Já conquistou seu lugar no pódio?</h3>
+              <h3 class="subtitle is-3">Batalhe pelas premiações!</h3>
+            </div>
+            <div class="tile is-half is-child has-text-centered">
+              <h3 class="title is-3">Concluiu um desafio de aprendizagem?</h3>
+              <h3 class="subtitle is-3">Obtenha nossas certificações!</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">

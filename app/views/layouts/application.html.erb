@@ -3,17 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Datoca</title>
+    <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
-    <section class="hero is-primary is-medium">
+    <section class="hero is-dark is-medium">
       <div class="hero-head">
         <header class="nav">
           <div class="container">
             <div class="nav-left">
-              <%= link_to 'DATOCA', root_path, class: 'nav-item' %>
+              <%= link_to root_path, class: 'nav-item' do %>
+                <%= image_tag 'brand-white.svg', class: 'image is-48x48' %>
+              <% end %>
             </div>
             <span class="nav-toggle">
               <span></span>
