@@ -10,3 +10,9 @@ $("span#home-chtext").typed(
     showCursor: false,
   }
 );
+
+$("span#bouncing-arrow").on('click tap', function(e) {
+  $("html, body").animate({ scrollTop: $("#home-main-hero").height() }, 1000);
+});
+
+window.sr = ScrollReveal({ delay: 200, distance : '90px' }).reveal('.reveal-bot').reveal('.reveal-left', { origin: 'left' }).reveal('.reveal-right', { origin: 'right' });
