@@ -34,7 +34,7 @@ class CompetitionsController < ApplicationController
     @competition = Competition.new(competition_params)
     authorize(@competition)
     if @competition.save
-      redirect_to @competition, notice: 'Competition was successfully created.'
+      redirect_to @competition, notice: 'Competição criada com sucesso.'
     else
       render :new
     end
@@ -44,7 +44,7 @@ class CompetitionsController < ApplicationController
   def update
     authorize(@competition)
     if @competition.update(competition_params)
-      redirect_to @competition, notice: 'Competition was successfully updated.'
+      redirect_to @competition, notice: 'Competição atualizada com sucesso.'
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class CompetitionsController < ApplicationController
   def destroy
     authorize(@competition)
     @competition.destroy
-    redirect_to competitions_url, notice: 'Competition was successfully destroyed.'
+    redirect_to competitions_url, notice: 'Competição apagada com sucesso.'
   end
 
   private

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       success = @user.update_with_password(user_params)
     end
     if success
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: 'Perfil atualizado com sucesso.'
     else
       render :edit
     end

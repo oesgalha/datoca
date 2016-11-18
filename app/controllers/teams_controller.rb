@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     authorize(@team)
     if @team.save
-      redirect_to @team, notice: 'Team was successfully created.'
+      redirect_to @team, notice: 'Equipe criada com sucesso.'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
   def update
     authorize(@team)
     if @team.update(team_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+      redirect_to @team, notice: 'Equipe atualizada com sucesso.'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   def destroy
     @team.destroy
-    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+    redirect_to teams_url, notice: 'Equipe apagada com sucesso.'
   end
 
   private
