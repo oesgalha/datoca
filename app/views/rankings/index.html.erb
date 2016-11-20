@@ -25,7 +25,7 @@
                 <div class="level-left">
                   <div class="level-item">
                     <%= link_to ranking.competitor do %>
-                      <%= attachment_image_tag ranking.competitor, :avatar, :fill, 32, 32, class: 'image is-32x32' %>
+                      <%= image_tag_with_fallback(ranking.competitor, 32) %>
                     <% end %>
                   </div>
                   <div class="level-item">

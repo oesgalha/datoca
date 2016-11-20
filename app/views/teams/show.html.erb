@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="column is-2">
         <div class="image is-128x128 has-auto-margin">
-          <%= attachment_image_tag @team, :avatar, :fill, 128, 128 %>
+          <%= image_tag_with_fallback(@team, 128) %>
         </div>
       </div>
       <div class="column is-6">
@@ -43,7 +43,7 @@
           <% @team.users.each do |user| %>
             <div class="column has-text-centered is-one-third">
               <%= link_to user do %>
-                <%= attachment_image_tag user, :avatar, :fill, 64, 64, class: 'image is-64x64' %>
+                <%= image_tag_with_fallback(user, 64) %>
               <% end %>
             </div>
           <% end %>
@@ -59,7 +59,7 @@
             <nav class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <%= attachment_image_tag competition, :ilustration, :fill, 64, 64, class: 'image is-64x64' %>
+                  <%= image_tag_with_fallback(competition, 64) %>
                 </div>
                 <div class="level-item">
                   <p class="title"><%= competition.name %></p>
