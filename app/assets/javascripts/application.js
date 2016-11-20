@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require chosen
-//= require markdown-js/dist/markdown
 //= require refile
 //= require inline-attachment/jquery.inline-attachment
 //= require typedjs
+//= require markdown-it
 //= require scrollreveal
 //= require_tree .

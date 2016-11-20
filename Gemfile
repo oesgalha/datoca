@@ -51,7 +51,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-chosen', '~> 1.6'
   gem 'rails-assets-typedjs', '~> 1.1'
   gem 'rails-assets-fontawesome', '~> 4.7'
-  gem 'rails-assets-markdown-js', '~> 0.6'
+  gem 'rails-assets-markdown-it', '~> 8.1'
   gem 'rails-assets-scrollreveal', '~> 3.3'
   gem 'rails-assets-inline-attachment', '~> 2.0'
 end

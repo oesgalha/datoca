@@ -391,7 +391,7 @@ GEM
     rails-assets-fontawesome (4.7.0)
     rails-assets-inline-attachment (2.0.3)
     rails-assets-jquery (3.1.1)
-    rails-assets-markdown-js (0.6.2)
+    rails-assets-markdown-it (8.1.0)
     rails-assets-scrollreveal (3.3.2)
     rails-assets-typedjs (1.1.4)
     rails-dom-testing (2.0.1)
@@ -518,7 +518,7 @@ DEPENDENCIES
   rails-assets-chosen (~> 1.6)!
   rails-assets-fontawesome (~> 4.7)!
   rails-assets-inline-attachment (~> 2.0)!
-  rails-assets-markdown-js (~> 0.6)!
+  rails-assets-markdown-it (~> 8.1)!
   rails-assets-scrollreveal (~> 3.3)!
   rails-assets-typedjs (~> 1.1)!
   rails-i18n (~> 5.0)

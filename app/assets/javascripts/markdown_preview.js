@@ -1,5 +1,7 @@
+var mdit = window.markdownit();
+
 function applyMarkdownPreview(input, preview) {
-  preview.html(markdown.toHTML(input.val(), 'Maruku'));
+  preview.html(mdit.render(input.val()));
 }
 function bindMarkdownPreview(input, preview) {
   input.keyup(function() {
