@@ -10,9 +10,13 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     # Go home
     visit(root_path)
-    assert(page.has_link?('Entrar'))
+    assert(page.has_link?('Competir'))
 
-    # Click the sign in button
+    # Click the compete in button
+    click_link('Competir')
+
+    # Look for a login button in the header and click it
+    assert(page.has_link?('Entrar'))
     click_link('Entrar')
 
     # Fill the form
