@@ -9,7 +9,7 @@ class SubmissionPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.where(competitor: user)
+        scope.where(competitor: user).or(scope.where(competitor: user.teams))
       end
     end
   end
@@ -33,14 +33,22 @@ class SubmissionPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    user.admin? || competitor == user || user.teams.include?(competitor)
+  end
+
   def create?
     if individually_submitted?
-      attempts_check(user) && record.competitor == user
+      attempts_check(user) && competitor == user
     elsif team_submitted?
-      attempts_check(submitter_team) && record.competitor == submitter_team
+      attempts_check(submitter_team) && competitor == submitter_team
     else
       competitor.is_a?(User) || team_size_valid?
     end
+  end
+
+  def destroy?
+    user.admin?
   end
 
   private

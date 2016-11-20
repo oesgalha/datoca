@@ -61,6 +61,14 @@
             </span>
             <span>Baixar CSV</span>
           <% end %>
+          <% if policy(@submission).destroy? %>
+            <%= link_to [@competition, @submission], class: 'button is-danger', method: :delete, data: { confirm: 'Tem certeza que quer apagar esta submissão?' } do %>
+              <span class="icon">
+                <i class="fa fa-times"></i>
+              </span>
+              <span>Apagar</span>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

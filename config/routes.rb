@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :competitions do
     resources :acceptances, only: [:new, :create]
     resources :rankings, only: [:index]
-    resources :submissions, only: [:index, :show, :new, :create]
+    resources :submissions, only: [:index, :show, :new, :create, :destroy]
   end
   resources :instructions, only: [:show]
   resources :users, only: [:show, :edit, :update]

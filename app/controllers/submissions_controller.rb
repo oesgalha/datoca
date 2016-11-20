@@ -25,6 +25,12 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def destroy
+    authorize(@submission = @competition.submissions.find(params[:id]))
+    @submission.destroy
+    redirect_to competition_submissions_path(@competition), notice: 'Competição apagada com sucesso.'
+  end
+
   private
 
   def set_competition
