@@ -1,4 +1,4 @@
-<section class="hero is-primary">
+<section class="hero is-dark">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">Submeter resultado</h1>
@@ -31,7 +31,7 @@
         <div class="column">
           <%= f.label :explanation_md, class: 'label' %>
           <span class="help">Aqui você pode escrever considerações sobre a sua solução (não é obrigatório):</span>
-          <%= f.text_area :explanation_md, class: 'textarea markdown-input', type: 'text', height: 360 %>
+          <%= f.text_area :explanation_md, class: 'textarea markdown-input', type: 'text' %>
           <span class="help">Você pode usar markdown aqui!</span>
           <span class="help"><%= link_to 'Não sabe o que é markdown? Clique aqui para abrir uma página de ajuda em inglês', 'http://commonmark.org/help/', target: '_blank', rel: 'noopener' %></span>
         </div>
