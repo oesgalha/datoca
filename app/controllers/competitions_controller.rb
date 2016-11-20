@@ -65,6 +65,6 @@ class CompetitionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def competition_params
-      params.require(:competition).permit(:name, :max_team_size, :evaluation_type, :expected_csv, :expected_csv_id_column, :expected_csv_val_column, :deadline, :ilustration, :total_prize, instructions_attributes: [:id, :name, :markdown, :_destroy, attachments_files: []])
+      params.require(:competition).permit(:name, :max_team_size, :evaluation_type, :expected_csv, :expected_csv_id_column, :expected_csv_val_column, :deadline, :ilustration, :total_prize, :daily_attempts, instructions_attributes: [:id, :name, :markdown, :_destroy, attachments_files: []])
     end
 end

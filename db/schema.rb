@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161104224943) do
     t.string   "name"
     t.integer  "max_team_size"
     t.integer  "evaluation_type",                                   default: 0
+    t.integer  "daily_attempts",                                    default: 3
     t.decimal  "total_prize",               precision: 9, scale: 2
     t.datetime "deadline"
     t.string   "ilustration_id"

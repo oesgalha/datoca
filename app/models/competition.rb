@@ -6,6 +6,7 @@
 #  name                      :string
 #  max_team_size             :integer
 #  evaluation_type           :integer          default("mae")
+#  daily_attempts            :integer          default(3)
 #  total_prize               :decimal(9, 2)
 #  deadline                  :datetime
 #  ilustration_id            :string

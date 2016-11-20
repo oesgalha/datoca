@@ -19,7 +19,7 @@ class SubmissionPolicy < ApplicationPolicy
   # =================================
 
   # Should allow to attempt a submission if has not submitted
-  # more than MAX_DAILY_ATTEMPTS in the last day
+  # more than the daily_attempts for the desired competition in the last day
   # Allow a user to submit ONLY as an individual or through a single team
   # - The user cannot send as a team and an individual
   # - The user cannot be in more than one participating team
@@ -50,7 +50,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def attempts_check(competitor)
-    competition.submissions.where(competitor: competitor, created_at: today_range).size < Submission::MAX_DAILY_ATTEMPTS
+    competition.submissions.where(competitor: competitor, created_at: today_range).size < competition.daily_attempts
   end
 
   def individually_submitted?

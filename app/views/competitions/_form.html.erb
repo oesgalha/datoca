@@ -10,6 +10,11 @@
     <progress class="progress is-info is-hidden" value="0" max="100"></progress>
   </p>
 
+  <%= f.label :daily_attempts, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :daily_attempts, class: 'input' %>
+  </p>
+
   <%= f.label :expected_csv, class: 'label' %>
   <p class="control">
     <%= f.attachment_field :expected_csv, direct: true %>
