@@ -38,12 +38,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  def destroy
-    @team.destroy
-    redirect_to teams_url, notice: 'Equipe apagada com sucesso.'
-  end
-
   private
 
   def set_team
@@ -57,6 +51,7 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit(:name, :description, :avatar, { user_ids: [] }).tap do |tp|
       tp[:user_ids] << current_user.id
+      tp[:user_ids].concat(@team.user_ids)
     end
   end
 end
