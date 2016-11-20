@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserRegisterTest < ActionDispatch::IntegrationTest
-  test "User login" do
+  test "User register" do
 
     labels = {
       name: User.human_attribute_name(:name),
