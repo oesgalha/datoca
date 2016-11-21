@@ -17,7 +17,7 @@
           <p class="title"><%= @submissions.size %></p>
         </div>
         <div class="level-item has-text-centered">
-          <p class="heading">Melhor pontuação</p>
+          <p class="heading">Melhor Mean Absolute Error</p>
           <p class="title"><%= @rank.submission.evaluation_score %></p>
         </div>
         <div class="level-item has-text-centered">
@@ -38,7 +38,7 @@
                 <thead>
                   <tr>
                     <th>Data</th>
-                    <th>Pontuação</th>
+                    <th>Mean Absolute Error</th>
                     <th>Ver Detalhes</th>
                   </tr>
                 </thead>
@@ -61,7 +61,7 @@
           <div class="panel">
             <p class="panel-heading">
               <span class="icon"><i class="fa fa-line-chart"></i></span>
-              Pontuação
+              Mean Absolute Error
             </p>
             <div class="panel-block">
               <div class="ct-chart ct-square">
