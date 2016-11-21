@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104224943) do
+ActiveRecord::Schema.define(version: 20161121013249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20161104224943) do
     t.string   "name"
     t.integer  "max_team_size"
     t.integer  "evaluation_type",                                   default: 0
-    t.integer  "daily_attempts",                                    default: 3
     t.decimal  "total_prize",               precision: 9, scale: 2
     t.datetime "deadline"
     t.string   "ilustration_id"
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161104224943) do
     t.string   "expected_csv_val_column",                           default: "value"
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
+    t.integer  "daily_attempts",                                    default: 3
   end
 
   create_table "instructions", force: :cascade do |t|
