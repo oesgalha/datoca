@@ -50,6 +50,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bulma', '~> 0.2'
   gem 'rails-assets-chosen', '~> 1.6'
   gem 'rails-assets-typedjs', '~> 1.1'
+  gem 'rails-assets-chartist', '~> 0.10'
   gem 'rails-assets-fontawesome', '~> 4.7'
   gem 'rails-assets-markdown-it', '~> 8.1'
   gem 'rails-assets-scrollreveal', '~> 3.3'

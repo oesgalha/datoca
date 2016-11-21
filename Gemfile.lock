@@ -386,6 +386,7 @@ GEM
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-bulma (0.2.3)
+    rails-assets-chartist (0.10.1)
     rails-assets-chosen (1.6.2)
       rails-assets-jquery (>= 1.4.4)
     rails-assets-fontawesome (4.7.0)
@@ -515,6 +516,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 0.10)
   rails (~> 5.0)
   rails-assets-bulma (~> 0.2)!
+  rails-assets-chartist (~> 0.10)!
   rails-assets-chosen (~> 1.6)!
   rails-assets-fontawesome (~> 4.7)!
   rails-assets-inline-attachment (~> 2.0)!

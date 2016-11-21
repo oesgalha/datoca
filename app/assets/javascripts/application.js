@@ -17,6 +17,7 @@
 //= require refile
 //= require inline-attachment/jquery.inline-attachment
 //= require typedjs
+//= require chartist
 //= require markdown-it
 //= require scrollreveal
 //= require_tree .

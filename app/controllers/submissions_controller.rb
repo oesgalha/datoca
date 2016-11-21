@@ -15,11 +15,17 @@ class SubmissionsController < ApplicationController
     authorize(@submission = Submission.new(competition: @competition))
   end
 
+  def summary
+    scope = @competition.submissions.includes(:competitor)
+    @submissions = scope.where(competitor: current_user).or(scope.where(competitor: current_user.teams))
+    @rank = Ranking.where(submission: @submissions).first
+  end
+
   def create
     @submission = @competition.submissions.build(submission_params)
     authorize(@submission)
     if @submission.save
-      redirect_to [@competition, @submission]
+      redirect_to summary_competition_submissions_path(@competition)
     else
       render :new
     end

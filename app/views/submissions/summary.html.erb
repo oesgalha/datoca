@@ -1,0 +1,89 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Resumo de submissões</h1>
+      <h2 class="subtitle"><%= link_to @competition.name, @competition %></h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <% if @submissions.empty? %>
+      Você ou o seu time ainda não submeteu uma solução para esta competição.
+    <% else %>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <p class="heading"># Tentativas</p>
+          <p class="title"><%= @submissions.size %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Melhor pontuação</p>
+          <p class="title"><%= @rank.submission.evaluation_score %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Raking atual</p>
+          <p class="title"><%= @rank.rank %></p>
+        </div>
+      </nav>
+      <hr>
+      <div class="columns">
+        <div class="column">
+          <div class="panel">
+            <p class="panel-heading">
+              <span class="icon"><i class="fa fa-clock-o"></i></span>
+              Histórico
+            </p>
+            <div class="panel-block">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Pontuação</th>
+                    <th>Ver Detalhes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @submissions.order(created_at: :desc).each do |submission| %>
+                    <tr>
+                      <td><%= submission.created_at.strftime("%d/%m/%y - %H:%M:%S") %></td>
+                      <td><%= submission.evaluation_score %></td>
+                      <td class="is-icon">
+                        <%= link_to [@competition, submission] do %><i class="fa fa-eye"></i><% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="panel">
+            <p class="panel-heading">
+              <span class="icon"><i class="fa fa-line-chart"></i></span>
+              Pontuação
+            </p>
+            <div class="panel-block">
+              <div class="ct-chart ct-square">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+<% content_for :inline_js do %>
+<script>
+  new Chartist.Line('.ct-chart',
+    {
+      labels: <%= @submissions.order(:created_at).map { |s| s.created_at.strftime("%d/%m/%y<br>%H:%M:%S") }.to_s.html_safe %>,
+      series: [ <%= @submissions.order(:created_at).map { |s| s.evaluation_score.to_f }.to_s.html_safe %> ]
+    },
+    {
+      fullWidth: true,
+      chartPadding: { right: 48 }
+    }
+  );
+</script>
+<% end %>

@@ -18,6 +18,10 @@ class SubmissionPolicy < ApplicationPolicy
   # Actions
   # =================================
 
+  def index?
+    user&.admin?
+  end
+
   # Should allow to attempt a submission if has not submitted
   # more than the daily_attempts for the desired competition in the last day
   # Allow a user to submit ONLY as an individual or through a single team
