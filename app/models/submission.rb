@@ -49,7 +49,7 @@ class Submission < ApplicationRecord
 
   validates :competitor, presence: true
   validates :csv, presence: true
-  validate :validate_csv_size, :validate_csv_cols
+  validate :validate_csv_size, :validate_csv_cols, if: :csv_id?
 
   # =================================
   # Callbacks
