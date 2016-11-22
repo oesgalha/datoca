@@ -25,6 +25,8 @@ default: &default
     url: 'https://cdn.example.com'
   action_mailer:
     host: localhost
+  vendors:
+    google_analytics: 'AA-00000000-0'
 
 development:
   <<: *default
