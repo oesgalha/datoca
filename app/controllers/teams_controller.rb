@@ -51,7 +51,7 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit(:name, :description, :avatar, { user_ids: [] }).tap do |tp|
       tp[:user_ids] << current_user.id
-      tp[:user_ids].concat(@team.user_ids)
+      tp[:user_ids].concat(@team.user_ids) if @team&.user_ids
     end
   end
 end
