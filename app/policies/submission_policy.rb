@@ -27,14 +27,9 @@ class SubmissionPolicy < ApplicationPolicy
   # Allow a user to submit ONLY as an individual or through a single team
   # - The user cannot send as a team and an individual
   # - The user cannot be in more than one participating team
+  # Should not allow to submit after the deadline
   def new?
-    if individually_submitted?
-      attempts_check(user)
-    elsif team_submitted?
-      attempts_check(submitter_team)
-    else
-      true
-    end
+    check_time && check_attempts
   end
 
   def show?
@@ -42,13 +37,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def create?
-    if individually_submitted?
-      attempts_check(user) && competitor == user
-    elsif team_submitted?
-      attempts_check(submitter_team) && competitor == submitter_team
-    else
-      competitor.is_a?(User) || team_size_valid?
-    end
+    check_time && check_attempts
   end
 
   def destroy?
@@ -56,6 +45,20 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   private
+
+  def check_time
+    Time.current <= competition.deadline + 10.seconds
+  end
+
+  def check_attempts
+    if individually_submitted?
+      attempts_check(user) && (competitor.nil? || competitor == user)
+    elsif team_submitted?
+      attempts_check(submitter_team) && (competitor.nil? || competitor == submitter_team)
+    else
+      competitor.nil? || competitor.is_a?(User) || team_size_valid?
+    end
+  end
 
   def team_size_valid?
     competition.max_team_size.nil? || competitor.users.size <= competition.max_team_size

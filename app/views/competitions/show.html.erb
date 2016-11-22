@@ -20,7 +20,13 @@
         </div>
         <div class="level-item has-text-centered">
           <p class="heading">Prazo</p>
-          <p class="title"><%= distance_of_time_in_words_to_now(@competition.deadline) %></p>
+          <p class="title">
+            <% if Time.current < @competition.deadline %>
+              <%= distance_of_time_in_words_to_now(@competition.deadline) %>
+            <% else %>
+              finalizada
+            <% end %>
+          </p>
         </div>
       </nav>
     </div>
