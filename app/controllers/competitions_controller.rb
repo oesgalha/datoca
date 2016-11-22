@@ -15,13 +15,7 @@ class CompetitionsController < ApplicationController
 
   # GET /competitions/new
   def new
-    @competition = Competition.new
-    @competition.instructions.build([
-      { name: 'Avaliação' },
-      { name: 'Descrição' },
-      { name: 'Regras' }
-    ])
-    authorize(@competition)
+    authorize(@competition = Competition.new_with_instructions)
   end
 
   # GET /competitions/1/edit
@@ -58,13 +52,13 @@ class CompetitionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_competition
-      @competition = Competition.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_competition
+    @competition = Competition.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def competition_params
-      params.require(:competition).permit(:name, :max_team_size, :evaluation_type, :expected_csv, :expected_csv_id_column, :expected_csv_val_column, :deadline, :ilustration, :total_prize, :daily_attempts, instructions_attributes: [:id, :name, :markdown, :_destroy, attachments_files: []])
-    end
+  # Only allow a trusted parameter "white list" through.
+  def competition_params
+    params.require(:competition).permit(:name, :max_team_size, :evaluation_type, :expected_csv, :expected_csv_id_column, :expected_csv_val_column, :deadline, :ilustration, :total_prize, :daily_attempts, instructions_attributes: [:id, :name, :markdown, :_destroy, attachments_files: []])
+  end
 end

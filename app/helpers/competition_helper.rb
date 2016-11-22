@@ -55,4 +55,12 @@ module CompetitionHelper
       end
     end.join.html_safe
   end
+
+  def instructions_error(competition)
+    return if competition.errors&.messages&.dig(:instructions).blank?
+    content_tag(:div, class: 'notification is-danger') do
+      content_tag(:button, class: 'delete') do
+      end + competition.errors.messages[:instructions].join
+    end
+  end
 end

@@ -29,6 +29,8 @@ class Competition < ApplicationRecord
   # Constants
   # =================================
 
+  REQUIRED_INSTRUCTIONS = ['Avaliação', 'Dados', 'Descrição', 'Regras']
+
   enum evaluation_type: {
     mae: 0,                     # Mean Absolute Error
   }
@@ -65,10 +67,23 @@ class Competition < ApplicationRecord
   validate :has_required_instructions
   validates :expected_csv, presence: true
 
+  # =================================
+  # Class Methods
+  # =================================
+
+  def self.new_with_instructions
+    self.new.tap do |c|
+      c.instructions.build(REQUIRED_INSTRUCTIONS.map { |name| { name: name} })
+    end
+  end
+
+  # =================================
+  # Instance Methods
+  # =================================
+
   def has_required_instructions
-    required_instructions = ['Descrição', 'Avaliação', 'Regras', 'Dados']
-    unless (required_instructions & instructions.map(&:name)).size == required_instructions.size
-      errors.add(:instructions, "precisa pelo menos conter as seguintes instruções: " + required_instructions.join(', '))
+    unless (REQUIRED_INSTRUCTIONS & instructions.map(&:name)).size == REQUIRED_INSTRUCTIONS.size
+      errors.add(:instructions, "precisa conter pelo menos as seguintes instruções: " + REQUIRED_INSTRUCTIONS.join(', '))
     end
   end
 
