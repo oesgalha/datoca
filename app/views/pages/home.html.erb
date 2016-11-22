@@ -20,7 +20,7 @@
                 <%= link_to 'Competir', competitions_path, class: 'button is-primary is-large is-outlined' %>
               </p>
               <p class="control">
-                <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-large is-outlined' %>
+                <%= link_to 'Entrar', new_user_session_path, class: 'button is-success is-large is-outlined' %>
               </p>
             </div>
           </div>
@@ -43,7 +43,7 @@
     </div>
   </div>
 </section>
-<section id="step-1" class="hero is-medium">
+<section id="step-1" class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <div class="tile is-ancestor">
@@ -74,7 +74,7 @@
     </div>
   </div>
 </section>
-<section id="step-2" class="hero is-dark is-medium">
+<section id="step-2" class="hero is-dark is-small">
   <div class="hero-body">
     <div class="container">
       <nav class="level">
@@ -92,7 +92,7 @@
     </div>
   </div>
 </section>
-<section id="step-3" class="hero is-info is-medium">
+<section id="step-3" class="hero is-info is-small">
   <div class="hero-body">
     <div class="container">
       <nav class="level">
@@ -112,7 +112,7 @@
     </div>
   </div>
 </section>
-<section id="step-4" class="hero is-medium">
+<section id="step-4" class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <div class="tile is-ancestor">
@@ -136,6 +136,34 @@
             <div class="tile is-half is-child has-text-centered">
               <h3 class="title is-3">Concluiu um desafio de aprendizagem?</h3>
               <h3 class="subtitle is-3">Obtenha nossas certificações!</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="step-5" class="hero is-info is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <div class="tile is-child">
+            <h1 class="title is-1">Participe!</h1>
+            <h2 class="subtitle is-3">Explore nossas competições ou cadastre-se para começar agora.</h2>
+          </div>
+          <div class="tile is-vertical is-parent">
+            <div class="tile is-child">
+              <%= link_to competitions_path, class: 'button is-warning is-large is-fullwidth' do %>
+                <span class="icon"><i class="fa fa-trophy"></i></span>
+                <span>Competições</span>
+              <% end %>
+            </div>
+            <div class="tile is-child">
+              <%= link_to new_user_registration_path, class: 'button is-success is-large is-fullwidth' do %>
+                <span class="icon"><i class="fa fa-user-plus"></i></span>
+                <span>Criar conta</span>
+              <% end %>
             </div>
           </div>
         </div>
