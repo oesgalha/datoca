@@ -49,4 +49,53 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
     page.assert_selector('div.notification.is-danger', text: 'Você não pode realizar essa ação', visible: true)
     assert_equal root_path, page.current_path
   end
+
+  test "User can change own password" do
+    labels = {
+      password: User.human_attribute_name(:password),
+      current_password: User.human_attribute_name(:current_password)
+    }
+    user = users(:scientist1)
+
+    # Sign in
+    sign_in(user)
+    visit(edit_user_path(user))
+
+    # Fill the form
+    fill_in(labels[:current_password], with: 'password')
+    fill_in(labels[:password], with: 'New super secret password')
+    click_on("Atualizar Usuário")
+
+    # Ensure the user was updated
+    page.assert_selector('div.notification.is-info', text: 'Perfil atualizado com sucesso.', visible: true)
+  end
+
+  test "User can't edit password without old password" do
+    labels = {
+      password: User.human_attribute_name(:password),
+      current_password: User.human_attribute_name(:current_password)
+    }
+    user = users(:scientist1)
+
+    # Sign in
+    sign_in(user)
+    visit(edit_user_path(user))
+
+    # Fill the form with incorrect password
+    fill_in(labels[:current_password], with: 'wrong password')
+    fill_in(labels[:password], with: 'easypass')
+    click_on("Atualizar Usuário")
+
+    # Ensure there is an error message
+    page.assert_selector('input.is-danger')
+    page.assert_selector('span.help.is-danger', text: 'não é válido', visible: true)
+
+    # Fill the form without the password
+    fill_in(labels[:password], with: 'easypass')
+    click_on("Atualizar Usuário")
+
+    # Ensure there is an error message
+    page.assert_selector('input.is-danger')
+    page.assert_selector('span.help.is-danger', text: 'não pode ficar em branco', visible: true)
+  end
 end
