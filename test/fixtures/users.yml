@@ -10,3 +10,8 @@ scientist1:
   name: Scientist Scienson
   email: first@users.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+scientist2:
+  name: Scientist McScienceFace
+  email: second@users.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
