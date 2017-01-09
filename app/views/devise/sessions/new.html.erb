@@ -1,0 +1,53 @@
+<section class="hero is-fullheight is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-4 is-offset-4">
+          <h1 class="title">
+            Bem Vindo!
+          </h1>
+          <div class="box has-text-dark">
+            <div class="block">
+              Entrar com:
+            </div>
+            <%= render "devise/shared/social" %>
+            <hr>
+            <div class="block">
+              Entrar com e-mail:
+            </div>
+            <%= session_error_msg %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <%= f.label :email, class: 'is-hidden' %>
+              <p class="control has-icon">
+                <%= f.email_field :email, autofocus: true, class: input_classes, placeholder: 'e-mail' %>
+                <i class="fa fa-envelope"></i>
+              </p>
+              <%= f.label :password, class: 'is-hidden' %>
+              <p class="control has-icon">
+                <%= f.password_field :password, autocomplete: 'off', class: input_classes, placeholder: 'senha' %>
+                <i class="fa fa-lock"></i>
+              </p>
+              <% if devise_mapping.rememberable? -%>
+                <p class="control">
+                  <%= f.label :remember_me, class: 'checkbox' do %>
+                    <%= f.check_box :remember_me %>
+                    Lembrar
+                  <% end %>
+                </p>
+              <% end %>
+              <hr>
+              <p class="control has-text-right">
+                <%= f.submit 'Entrar', class: 'button is-success' %>
+              </p>
+            <% end %>
+          </div>
+          <p class="has-text-centered has-text-light">
+            <%= link_to "Cadastrar", new_registration_path(resource_name) %><br />
+            <%= link_to "Esqueceu a senha?", new_password_path(resource_name) %><br />
+            <%= link_to "Voltar para home", root_path %><br />
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

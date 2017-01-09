@@ -1,0 +1,62 @@
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Competições</h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <nav class="panel">
+          <p class="panel-heading">
+            Filtros
+          </p>
+          <div class="panel-block">
+            <aside class="menu">
+              <p class="menu-label">Métrica</p>
+              <ul class="menu-list"><%= evaluation_filters %></ul>
+              <p class="menu-label">Prazo</p>
+              <ul class="menu-list"><%= time_filters %></ul>
+              <p class="menu-label">Ordem</p>
+              <ul class="menu-list"><%= order_filters %></ul>
+            </aside>
+          </div>
+          <% if policy(Competition).create? %>
+            <div class="panel-block">
+              <%= link_to 'Criar', new_competition_path, class: 'button is-success is-outlined is-fullwidth' %>
+            </div>
+          <% end %>
+        </nav>
+      </div>
+      <div class="column">
+        <% if @competitions.nil? || @competitions.empty? %>
+          <h2 class="title has-text-centered">Nenhuma competição encontrada ):</h2>
+        <% else %>
+          <% @competitions.each do |competition| %>
+            <%= link_to competition, class: 'box' do %>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item"><%= image_tag_with_fallback(competition, 64) %></div>
+                  <div class="level-item"><p class="title is-5"><%= competition.name %></p></div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item has-text-centered">
+                    <p class="heading">Prazo</p>
+                    <p class="title is-5"><%= distance_of_time_in_words_to_now(competition.deadline) %></p>
+                  </div>
+                  <div class="level-item"></div>
+                  <div class="level-item has-text-centered">
+                    <p class="heading">Prêmio</p>
+                    <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
+                  </div>
+                </div>
+              </nav>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

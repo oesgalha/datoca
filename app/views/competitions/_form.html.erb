@@ -1,0 +1,86 @@
+<%= instructions_error(competition) %>
+
+<%= nested_form_for(competition) do |f| %>
+  <%= f.label :name, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :name, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :ilustration, class: 'label' %>
+  <p class="control">
+    <%= f.attachment_field :ilustration, direct: true %>
+    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
+  </p>
+
+  <%= f.label :daily_attempts, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :daily_attempts, class: 'input' %>
+  </p>
+
+  <%= f.label :expected_csv, class: 'label' %>
+  <p class="control">
+    <%= f.attachment_field :expected_csv, direct: true %>
+    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
+  </p>
+
+  <%= f.label :expected_csv_id_column, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :expected_csv_id_column, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :expected_csv_val_column, class: 'label' %>
+  <p class="control">
+    <%= f.text_field :expected_csv_val_column, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :total_prize, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :total_prize, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :max_team_size, class: 'label' %>
+  <p class="control">
+    <%= f.number_field :max_team_size, class: 'input', type: 'text' %>
+  </p>
+
+  <%= f.label :deadline, class: 'label' %>
+  <p class="control">
+    <%= f.datetime_select :deadline %>
+  </p>
+
+  <hr>
+
+  <h2 class="title">Instruções</h2>
+
+  <%= f.fields_for :instructions do |iff| %>
+    <%= iff.label :name, class: 'label' %>
+    <p class="control">
+      <%= iff.text_field :name, class: 'input', type: 'text' %>
+    </p>
+    <div class="columns">
+      <div class="column">
+        <%= iff.label :markdown, class: 'label' %>
+        <%= iff.text_area :markdown, class: 'textarea markdown-input', type: 'text', height: 240 %>
+
+        <%= iff.attachment_field :attachments_files, multiple: true, direct: true, class: 'is-hidden' %>
+      </div>
+      <div class="column">
+        <label class="label">Pré-visualização</label>
+        <div class="content markdown-preview">
+
+        </div>
+      </div>
+    </div>
+    <p class="control">
+      <%= iff.link_to_remove "Remover", class: 'button is-danger' %>
+    </p>
+  <% end %>
+  <p class="control"><%= f.link_to_add "Adicionar Instrução", :instructions, class: 'button is-info' %></p>
+
+  <hr>
+
+  <p class="control">
+    <%= f.submit class: 'button is-success' %>
+  </p>
+  </div>
+<% end %>

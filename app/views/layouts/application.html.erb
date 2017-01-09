@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Datoca</title>
+    <%= favicon_link_tag %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', "<%= Datoca.config.dig('vendors', 'google_analytics') %>", 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <section class="hero is-dark is-medium">
+      <div class="hero-head">
+        <header class="nav">
+          <div class="container">
+            <div class="nav-left">
+              <%= link_to root_path, class: 'nav-item' do %>
+                <%= image_tag 'brand-white.svg', class: 'image is-48x48' %>
+              <% end %>
+            </div>
+            <span id="nav-toggle" class="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <div id="nav-menu" class="nav-right nav-menu">
+              <%= link_to competitions_path, class: 'nav-item' do %>
+                <i class="fa fa-trophy has-text-warning"></i>
+                &nbsp;
+                Competições
+              <% end %>
+              <% if current_user %>
+                <div class="nav-item">
+                  <%= link_to user_path(current_user), class: 'button is-info is-outlined' do %>
+                    <span>Perfil</span>
+                    <span class="icon is-small"><i class="fa fa-user-circle"></i></span>
+                  <% end %>
+                </div>
+                <div class="nav-item">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'button is-danger is-outlined' do %>
+                    <span>Sair</span>
+                    <span class="icon is-small"><i class="fa fa-window-close"></i></span>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="nav-item">
+                  <%= link_to 'Cadastrar', new_user_registration_path, class: 'button is-success is-outlined' %>
+                </div>
+                <div class="nav-item">
+                  <%= link_to 'Entrar', new_user_session_path, class: 'button is-info is-outlined' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <%= yield %>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            © 2016 by Exemplaria Solutions.
+          </p>
+          <p>
+            Emojis gratuitos de <a href="http://emojione.com/">EmojiOne</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <% if has_flash? %>
+      <div class="notifications"><%= flash_msgs %></div>
+    <% end %>
+    <%= javascript_include_tag 'application' %>
+    <%= content_for :inline_js %>
+  </body>
+</html>

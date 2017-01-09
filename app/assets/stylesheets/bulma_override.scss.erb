@@ -1,0 +1,127 @@
+
+$family-sans-serif: 'Cabin', sans-serif;
+
+// open color
+$oc-gray-0: #f8f9fa;
+$oc-gray-3: #dee2e6;
+$oc-gray-4: #ced4da;
+$oc-gray-5: #adb5bd;
+$oc-gray-7: #495057;
+$oc-gray-8: #343a40;
+$oc-gray-9: #212529;
+$oc-red-6: #fa5252;
+$oc-grape-5: #cc5de8;
+$oc-indigo-6: #4c6ef5;
+$oc-blue-7: #1c7cd6;
+$blue-darker: #143674;
+$oc-teal-6: #12b886;
+$oc-yellow-3: #ffe066;
+$oc-orange-5: #ff922b;
+
+// colors
+$black: $oc-gray-9;
+$grey-darker: $oc-gray-8;
+$grey-dark: $oc-gray-7;
+$grey: $oc-gray-5;
+$grey-light: $oc-gray-4;
+$grey-lighter: $oc-gray-3;
+$white: $oc-gray-0;
+$blue: $oc-blue-7;
+$green: $oc-teal-6;
+$orange: $oc-orange-5;
+$purple: $oc-grape-5;
+$red: $oc-red-6;
+$turquoise: $oc-indigo-6;
+$yellow: $oc-yellow-3;
+
+
+@import "bulma";
+
+@font-face {
+  font-family: 'Cabin';
+  font-weight: 400;
+  font-style: normal;
+  src: url(font-path('cabin-regular.eot'));
+  src: url(font-path('cabin-regular.eot?#iefix')) format('embedded-opentype'),
+       local('cabin Regular'),
+       local('cabin-regular'),
+       url(font-path('cabin-regular.woff2')) format('woff2'),
+       url(font-path('cabin-regular.woff')) format('woff'),
+       url(font-path('cabin-regular.ttf')) format('truetype'),
+       url(font-path('cabin-regular.svg')) format('svg');
+}
+
+$fa-font-path: "/assets/fontawesome/fonts";
+@import 'fontawesome.scss';
+
+@font-face {
+	font-family:'FontAwesome';
+	src:url('<%= asset_path("fontawesome/fonts/fontawesome-webfont.eot")%>?v=4.6.3');
+	src:url('<%= asset_path("fontawesome/fonts/fontawesome-webfont.eot")%>?#iefix&v=4.6.3')
+  format("embedded-opentype"),url('<%= asset_path("fontawesome/fonts/fontawesome-webfont.woff2")%>?v=4.6.3')
+  format("woff2"),url('<%= asset_path("fontawesome/fonts/fontawesome-webfont.woff")%>?v=4.6.3')
+  format("woff"),url('<%= asset_path("fontawesome/fonts/fontawesome-webfont.ttf")%>?v=4.6.3')
+  format("truetype"),url('<%= asset_path("fontawesome/fonts/fontawesome-webfont.svg")%>?v=4.6.3#fontawesomeregular')
+  format("svg");
+	font-weight:normal;
+	font-style:normal
+}
+
+@each $name, $pair in $colors {
+  $color: nth($pair, 1);
+  .has-text-#{"" + $name} {
+    color: $color;
+  }
+  a.has-text-#{"" + $name} {
+    &:hover,
+    &:focus {
+      color: darken($color, 10%);
+    }
+  }
+}
+
+.is-centered {
+  margin: auto;
+}
+
+.is-256x256 {
+  width: 256px;
+  height: 256px;
+}
+
+.is-512x256 {
+  width: 512;
+  height: 256px;
+}
+
+.nav > .container > .nav-right.is-active > .nav-item:last-child:not(.is-tab) {
+  padding-right: 10px;
+}
+
+.control.is-grouped.is-centered {
+  justify-content: center;
+}
+
+.notifications {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  z-index: 1024 + 233;
+  pointer-events: none;
+  @include tablet() {
+    max-width: 320px;
+  }
+  .notification {
+    margin: 20px;
+  }
+}
+
+.notification {
+  position: relative;
+  min-width: 240px;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  pointer-events: all;
+}
+
+.is-fullwidth { width: 100%; }

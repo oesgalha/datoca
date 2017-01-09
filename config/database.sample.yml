@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  username: joker
+  password: king-of-spades
+  host: localhost
+
+development:
+  <<: *default
+  database: datoca_dev
+
+test:
+  <<: *default
+  database: datoca_test

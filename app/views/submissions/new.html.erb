@@ -1,0 +1,52 @@
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Submeter resultado</h1>
+      <h2 class="subtitle"><%= link_to @competition.name, @competition %></h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <%= form_for [@competition, @submission], html: { multipart: true } do |f| %>
+
+      <div class="columns">
+        <div class="column">
+          <%= f.label :csv, class: 'label' %>
+          <p class="control">
+            <%= f.attachment_field :csv, direct: true %>
+            <progress class="progress is-info is-hidden" value="0" max="100"></progress>
+          </p>
+        </div>
+
+        <div class="column">
+          <%= f.label :competitor_sgid, class: 'label' %>
+          <p class="control">
+            <%= f.select :competitor_sgid, options_for_select(@user_options) + grouped_options_for_select(@team_options), {}, { class: 'input chosen' } %>
+          </p>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <%= f.label :explanation_md, class: 'label' %>
+          <span class="help">Aqui você pode escrever considerações sobre a sua solução (não é obrigatório):</span>
+          <%= f.text_area :explanation_md, class: 'textarea markdown-input', type: 'text' %>
+          <span class="help">Você pode usar markdown aqui!</span>
+          <span class="help"><%= link_to 'Não sabe o que é markdown? Clique aqui para abrir uma página de ajuda em inglês', 'http://commonmark.org/help/', target: '_blank', rel: 'noopener' %></span>
+        </div>
+        <div class="column">
+          <label class="label">Pré-visualização</label>
+          <div class="content markdown-preview">
+
+          </div>
+        </div>
+      </div>
+
+      <p class="control">
+        <%= f.submit class: 'button is-success' %>
+      </p>
+      </div>
+    <% end %>
+  </div>
+</section>

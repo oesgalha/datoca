@@ -1,0 +1,54 @@
+<section class="section">
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Editar Perfil</h1>
+    </div>
+
+    <%= form_for @user, html: { multipart: true } do |f| %>
+      <%= f.label :name, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :name, class: 'input', type: 'text' %>
+      </p>
+
+      <%= f.label :avatar, class: 'label' %>
+      <p class="control">
+        <%= f.attachment_field :avatar, direct: true %>
+        <progress class="progress is-info is-hidden" value="0" max="100"></progress>
+      </p>
+
+      <%= f.label :bio, class: 'label' %>
+      <p class="control">
+        <%= f.text_area :bio, class: 'textarea', type: 'text' %>
+      </p>
+
+      <%= f.label :location, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :location, class: 'input', type: 'text' %>
+      </p>
+
+      <%= f.label :company, class: 'label' %>
+      <p class="control">
+        <%= f.text_field :company, class: 'input', type: 'text' %>
+      </p>
+
+      <hr>
+
+      <h2 class="title">Mudar de senha</h2>
+
+      <%= f.label :current_password, class: 'label' %>
+      <p class="control">
+        <%= f.password_field :current_password, autocomplete: 'off', class: 'input' %>
+      </p>
+
+      <%= f.label :password, class: 'label' %>
+      <p class="control">
+        <%= f.password_field :password, autocomplete: 'off', class: 'input' %>
+      </p>
+
+      <p class="control">
+        <%= f.submit class: 'button is-success' %>
+      </p>
+      </div>
+    <% end %>
+  </div>
+</section>

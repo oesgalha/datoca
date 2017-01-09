@@ -1,0 +1,3 @@
+$("ul.menu-list li a").removeClass("is-active");
+$("#instruction-<%= @instruction.id %>").addClass("is-active");
+$("#instruction-text").html("<h1><%= @instruction.name %></h1><%= raw(@instruction.text.gsub(/[\"]+/, '\\\"')) %>");

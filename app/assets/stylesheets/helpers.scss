@@ -1,0 +1,11 @@
+@mixin spacing($height) {
+  display: block;
+  height: $height;
+}
+
+.spacing-10 { @include spacing(10px); }
+.spacing-20 { @include spacing(20px); }
+.spacing-40 { @include spacing(40px); }
+.spacing-80 { @include spacing(80px); }
+
+.has-auto-margin { margin: auto; }

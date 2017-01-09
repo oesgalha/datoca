@@ -1,0 +1,14 @@
+@mixin social-button($button-color) {
+  background-color: $button-color;
+  border-color: transparent;
+  color: white;
+  &:hover, &:focus, &.is-active {
+    background-color: darken($button-color, 10%);
+    border-color: transparent;
+    color: white;
+  }
+}
+
+.facebook-button { @include social-button(#4267b2); }
+.linkedin-button { @include social-button(#0077B5); }
+.google-button { @include social-button(#c53929); }

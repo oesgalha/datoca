@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="spacing-40"></div>
+  <div class="box">
+    <div class="columns">
+      <div class="column is-2">
+        <div class="image is-128x128 has-auto-margin">
+          <%= image_tag_with_fallback(@team, 128) %>
+        </div>
+      </div>
+      <div class="column is-6">
+        <p class="title is-bold is-3"><%= @team.name %></p>
+        <div class="spacing-20"></div>
+        <p class="subtitle is-4"><%= @team.description || "Ainda não se descreveu" %></p>
+      </div>
+      <div class="column">
+        <nav class="level">
+          <div class="level-left"></div>
+          <div class="level-right">
+            <div class="level-item has-text-centered">
+              <p class="heading">Competições</p>
+              <p class="title"><%= @team.competitions.size %></p>
+              <div class="spacing-40"></div>
+              <p class="heading">Ranking</p>
+              <p class="title">0</p>
+            </div>
+            <div class="level-item has-text-right">
+              <% if policy(@team).update? %>
+                <%= link_to 'Editar Equipe', edit_team_path(@team), class: 'button is-info is-outlined' %>
+              <% end %>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="spacing-20"></div>
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <div class="box">
+        <p class="title">Membros</p>
+        <hr>
+        <div class="columns is-multiline">
+          <% @team.users.each do |user| %>
+            <div class="column has-text-centered is-one-third">
+              <%= link_to user do %>
+                <%= image_tag_with_fallback(user, 64) %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <p class="title">Competições</p>
+        <hr>
+        <% if @team.competitions.any? %>
+          <% @team.competitions.each do |competition| %>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <%= image_tag_with_fallback(competition, 64) %>
+                </div>
+                <div class="level-item">
+                  <p class="title"><%= competition.name %></p>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <%= link_to 'Ver Competição', competition, class: 'button is-info' %>
+                </div>
+              </div>
+            </nav>
+          <% end %>
+        <% else %>
+          <p class="has-text-centered">Ainda não particiou de nenhuma competição ):</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

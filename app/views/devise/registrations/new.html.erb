@@ -1,0 +1,49 @@
+<section class="hero is-fullheight is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-4 is-offset-4">
+          <h1 class="title">
+            Bem Vindo!
+          </h1>
+          <div class="box has-text-dark">
+            <div class="block">
+              Registrar usando:
+            </div>
+            <%= render "devise/shared/social" %>
+            <hr>
+            <div class="block">
+              Registrar com e-mail:
+            </div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= f.label :name, class: 'is-hidden' %>
+              <p class="control has-icon">
+                <%= f.text_field :name, autofocus: true, class: 'input', placeholder: 'nome' %>
+                <i class="fa fa-user"></i>
+              </p>
+              <%= f.label :email, class: 'is-hidden' %>
+              <p class="control has-icon">
+                <%= f.email_field :email, class: 'input', placeholder: 'e-mail' %>
+                <i class="fa fa-envelope"></i>
+              </p>
+              <%= f.label :password, class: 'is-hidden' %>
+              <p class="control has-icon">
+                <%= f.password_field :password, autocomplete: 'off', class: 'input', placeholder: 'senha' %>
+                <i class="fa fa-lock"></i>
+              </p>
+              <hr>
+              <p class="control">
+                <%= f.submit 'Registrar', class: 'button is-success' %>
+                <%= link_to 'Cancelar', cancel_user_registration_path, class: 'button is-default' %>
+              </p>
+            <% end %>
+          </div>
+          <p class="has-text-centered">
+            <%= link_to "Já tem conta? Clique aqui para entrar!", new_session_path(resource_name) %><br />
+            <%= link_to "Voltar para home", root_path %><br />
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

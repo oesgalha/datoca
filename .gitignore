@@ -1,0 +1,13 @@
+/.bundle
+# Ignore vagrant files
+.vagrant/
+ubuntu-xenial-16.04-cloudimg-console.log
+config/database.yml
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+# Ignore attachments
+public/system
+config/app.yml

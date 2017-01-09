@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="spacing-40"></div>
+  <div class="section">
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <div class="image is-128x128 has-auto-margin">
+            <%= image_tag_with_fallback(@user, 128) %>
+          </div>
+          <div class="spacing-20"></div>
+          <p>
+            <span class="level-item icon"><i class="fa fa-clock-o"></i></span>
+            Se cadastrou há <%= distance_of_time_in_words_to_now(@user.created_at) %>
+          </p>
+          <% if @user.location.present? %>
+            <p>
+              <span class="level-item icon"><i class="fa fa-map-marker"></i></span>
+              <%= @user.location %>
+            </p>
+          <% end %>
+          <% if @user.company.present? %>
+            <p>
+              <span class="level-item icon"><i class="fa fa-building"></i></span>
+              <%= @user.company %>
+            </p>
+          <% end %>
+        </div>
+        <div class="level-item">
+          <p class="title is-bold is-3"><%= @user.name || "Sem nome" %></p>
+          <div class="spacing-20"></div>
+          <p class="subtitle is-4"><%= @user.bio || "Ainda não se descreveu" %></p>
+        </div>
+      </div>
+
+      <div class="level-right">
+        <div class="level-item has-text-centered">
+          <p class="heading">Competições</p>
+          <p class="title"><%= @user.individual_competitions.size %></p>
+          <div class="spacing-40"></div>
+          <p class="heading">Ranking</p>
+          <p class="title">0</p>
+        </div>
+        <div class="level-item has-text-right">
+          <% if @user == current_user %>
+            <%= link_to 'Editar Perfil', edit_user_path(@user), class: 'button is-info is-outlined' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="spacing-40"></div>
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <div class="box">
+        <% if @user == current_user %>
+          <%= link_to 'Criar Equipe', new_team_path, class: 'button is-info is-pulled-right' %>
+        <% end %>
+        <p class="title">Equipes</p>
+        <hr>
+        <div class="columns is-multiline">
+          <% if @user.teams.any? %>
+            <% @user.teams.each do |team| %>
+              <div class="column has-text-centered is-one-third">
+                <%= link_to team do %>
+                  <%= image_tag_with_fallback(team, 64) %>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="column is-half  is-offset-one-quarter has-text-centered">
+              <p>Ainda não participa de nenhuma equipe ):</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <p class="title">Competições</p>
+        <hr>
+        <% if @user.individual_competitions.any? %>
+          <% @user.individual_competitions.each do |competition| %>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <%= image_tag_with_fallback(competition, 64) %>
+                </div>
+                <div class="level-item">
+                  <p class="title"><%= competition.name %></p>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <%= link_to 'Ver Competição', competition, class: 'button is-info' %>
+                </div>
+              </div>
+            </nav>
+          <% end %>
+        <% else %>
+          <p class="has-text-centered">Ainda não particiou de nenhuma competição ):</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

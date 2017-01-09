@@ -1,0 +1,73 @@
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <nav class="level">
+        <div class="level-item has-text-left">
+          <span class="title is-3"><%= @competition.name %></span>
+        </div>
+        <div class="level-item"></div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Prêmio</p>
+          <p class="title"><%= number_to_currency(@competition.total_prize) %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Submissões</p>
+          <p class="title"><%= @competition.submissions.size %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Times</p>
+          <p class="title"><%= @competition.teams.size %></p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="heading">Prazo</p>
+          <p class="title">
+            <% if Time.current < @competition.deadline %>
+              <%= distance_of_time_in_words_to_now(@competition.deadline) %>
+            <% else %>
+              finalizada
+            <% end %>
+          </p>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        <div class="box">
+          <aside class="menu">
+            <p class="menu-label">Informações</p>
+            <ul class="menu-list">
+              <% @competition.instructions.each_with_index do |instruction, i| %>
+                <li><%= link_to instruction.name, instruction, remote: true, id: "instruction-#{instruction.id}", class: ( instruction.name == 'Descrição' ? 'is-active' : '' ) %></li>
+              <% end %>
+            </ul>
+            <p class="menu-label">Competir</p>
+            <ul class="menu-list">
+              <li><%= link_to 'Submeter', new_competition_submission_path(@competition) %></li>
+              <li><%= link_to 'Resumo', summary_competition_submissions_path(@competition) %></li>
+              <li><%= link_to 'Ranking', competition_rankings_path(@competition) %></li>
+            </ul>
+            <% if policy(@competition).edit? %>
+              <p class="menu-label">Administrativo</p>
+              <ul class="menu-list">
+                <li><%= link_to 'Editar', edit_competition_path(@competition) %></li>
+                <li><%= link_to 'Apagar', competition_path(@competition), method: :delete, data: { confirm: 'Tem certeza que quer apagar esta competição, dados, instruções e participações?' } %></li>
+              </ul>
+            <% end %>
+          </aside>
+        </div>
+      </div>
+      <div class="column">
+        <div id="instruction-text" class="content">
+          <h1><%= @competition.description.name %></h1><%= raw(@competition.description.text) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if @acceptance&.new_record? %>
+  <%= render partial: 'acceptances/modal_form' %>
+<% end %>
