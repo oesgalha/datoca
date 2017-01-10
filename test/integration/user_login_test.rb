@@ -20,7 +20,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     click_link('Entrar')
 
     # Fill the form
-    fill_in(labels[:email], with: users(:scientist1).email)
+    fill_in(labels[:email], with: create(:user).email)
     fill_in(labels[:password], with: 'password')
     click_on("Entrar")
 

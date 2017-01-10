@@ -88,5 +88,6 @@ end
 group :test do
   gem 'laranja', '~> 2.0'
   gem 'capybara', '~> 2.9'
+  gem 'factory_girl_rails', '~> 4.8'
   gem 'codeclimate-test-reporter', '~> 0.6', require: nil
 end

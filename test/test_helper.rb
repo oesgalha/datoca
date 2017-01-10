@@ -10,16 +10,14 @@ Laranja.load('pt-BR')
 CodeClimate::TestReporter.start
 
 class ActiveSupport::TestCase
-  fixtures :all
-
-  def random_record(record_class)
-    record_class.offset(rand(record_class.count)).first
-  end
+  include FactoryGirl::Syntax::Methods
 end
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+  # Include FactoryGirl helpers
+  include FactoryGirl::Syntax::Methods
 
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes

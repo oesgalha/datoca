@@ -8,7 +8,7 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
     labels = {
       name: User.human_attribute_name(:name)
     }
-    user = users(:scientist1)
+    user = create(:user)
     name = "Novo nome"
 
     # Sign in
@@ -34,8 +34,8 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "User can't edit other users profile" do
-    alice = users(:scientist1)
-    chuck = users(:scientist2)
+    alice = create(:user)
+    chuck = create(:user)
 
     # Sign in
     sign_in(chuck)
@@ -44,7 +44,7 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
     visit(user_path(alice))
     refute(page.has_link?('Editar Perfil'))
 
-    # Try direct acces to other user profile
+    # Try direct access to other user profile
     visit(edit_user_path(alice))
     page.assert_selector('div.notification.is-danger', text: 'Você não pode realizar essa ação', visible: true)
     assert_equal root_path, page.current_path
@@ -55,7 +55,7 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
       password: User.human_attribute_name(:password),
       current_password: User.human_attribute_name(:current_password)
     }
-    user = users(:scientist1)
+    user = create(:user)
 
     # Sign in
     sign_in(user)
@@ -75,7 +75,7 @@ class UserEditProfileTest < ActionDispatch::IntegrationTest
       password: User.human_attribute_name(:password),
       current_password: User.human_attribute_name(:current_password)
     }
-    user = users(:scientist1)
+    user = create(:user)
 
     # Sign in
     sign_in(user)
