@@ -6,4 +6,11 @@ FactoryGirl.define do
     password 'password'
   end
 
+  factory :admin, class: User do
+    name { Laranja::Nome.nome }
+    email { Laranja::Internet.email }
+    password 'password'
+    role { User.roles[:admin] }
+  end
+
 end

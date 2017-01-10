@@ -4,6 +4,7 @@ require 'rails/test_help'
 require 'minitest/pride'
 require 'capybara/rails'
 require 'laranja'
+SafeYAML::OPTIONS[:deserialize_symbols] = true
 require 'codeclimate-test-reporter'
 
 Laranja.load('pt-BR')
@@ -24,5 +25,14 @@ class ActionDispatch::IntegrationTest
   def teardown
     Capybara.reset_sessions!
     Capybara.use_default_driver
+  end
+
+  def random_csv
+    File.join(Rails.root, 'tmp', "#{rand(10)}.csv").tap do |fullpath|
+      CSV.open(fullpath, 'wb') do |csv|
+        csv << ['id', 'value']
+        1.upto(10).each { |i| csv << [i.to_s, rand(1_000).to_s] }
+      end
+    end
   end
 end
