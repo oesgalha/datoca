@@ -15,7 +15,7 @@
     <%= f.text_area :description, class: 'textarea', type: 'text' %>
   </p>
 
-  <%= f.label :users, class: 'label' %>
+  <%= f.label :user_ids, class: 'label' %>
   <p class="control">
     <%= f.collection_select(:user_ids, @users, :id, :name, { }, { multiple: true, class: 'input chosen' }) %>
   </p>

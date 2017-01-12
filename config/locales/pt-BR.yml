@@ -14,8 +14,16 @@ pt-BR:
       submission:
         one: "Submissão"
         other: "Submissões"
+      team:
+        one: "Equipe"
+        other: "Equipes"
     attributes:
       submission:
         csv: "Arquivo csv"
         competitor_sgid: "Competidor"
         explanation_md: "Explicação da solução"
+      team:
+        avatar: "Foto"
+        name: "Nome"
+        description: "Descrição"
+        user_ids: "Usuários"
