@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'pry'
 
 class CreateCompetitionTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
