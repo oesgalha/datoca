@@ -4,7 +4,6 @@ require 'rails/test_help'
 require 'minitest/pride'
 require 'capybara/rails'
 require 'laranja'
-SafeYAML::OPTIONS[:deserialize_symbols] = true
 require 'codeclimate-test-reporter'
 
 Laranja.load('pt-BR')
