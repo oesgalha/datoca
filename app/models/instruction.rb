@@ -33,6 +33,7 @@ class Instruction < ApplicationRecord
   # =================================
   # Scopes
   # =================================
+  scope :data, -> { where(name: 'Dados').first }
   scope :rules, -> { where(name: 'Regras').first }
 
   # =================================
@@ -51,7 +52,16 @@ class Instruction < ApplicationRecord
   # TODO: Move to background
   def process_markdown
     attachments.each do |att|
-      # ~ magic regex ~
+      # ---------------------------------------------------------------
+      # Change the temp attachment url for the permanent one
+      #
+      # 1. Look for the cache attachment url:
+      #
+      # ex: [file.csv](/attachments/A_HASH/cache/ANOTHER_HASH/file.csv)
+      #
+      # 2. Store the attachment in the permanent store
+      # 3. Swap the cache url with the permanent url
+      # ---------------------------------------------------------------
       self.markdown = self.markdown.sub(/\[.+?\]\(.+?\/#{att.file.id}\/.+?\)/) do |md_str|
         att.file_attacher.store!
         "[#{att.file_filename}](#{att.file_url})"
