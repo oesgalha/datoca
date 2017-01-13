@@ -6,6 +6,10 @@ function install {
     apt-get -y install "$@" >/dev/null 2>&1
 }
 
+# Fix the annoying message:
+# "sudo: unable to resolve host ubuntu-xenial: Connection refused"
+sudo sed -i '/127.0.0.1 localhost/s|$| ubuntu-xenial|' /etc/hosts
+
 echo updating package information
 apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
@@ -25,14 +29,18 @@ install 'Nokogiri dependencies' zlib1g-dev libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
 install 'Image Magick (refile dependecy)' imagemagick
 
+echo installing PhantomJS
+PHANTOMVER="phantomjs-2.1.1-linux-x86_64"
+wget -q "https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOMVER.tar.bz2"
+tar -xjf "$PHANTOMVER.tar.bz2"
+sudo mv "$PHANTOMVER/" "/usr/local/share/"
+sudo ln -sf "/usr/local/share/$PHANTOMVER/bin/phantomjs" "/usr/local/bin"
+rm "$PHANTOMVER.tar.bz2"
+
 install PostgreSQL postgresql-9.5 postgresql-contrib libpq-dev
 sudo -u postgres createuser --superuser joker
 sudo -u postgres psql -c "ALTER USER joker WITH PASSWORD 'king-of-spades';"
 
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
-
-# Fix this annoying message:
-# "sudo: unable to resolve host ubuntu-xenial: Connection refused"
-sudo sed -i '/127.0.0.1 localhost/s|$| ubuntu-xenial|' /etc/hosts
 
 echo "Your datoca dev box is ready! :)"
