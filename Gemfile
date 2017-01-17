@@ -65,7 +65,7 @@ gem 'daru', '~> 0.1'
 # =================================
 # Production Services
 # =================================
-gem 'skylight', '~> 1.0'
+gem 'newrelic_rpm', '~> 3.17'
 gem 'fog-azure-rm', git: 'https://github.com/oesgalha/fog-azure-rm.git', branch: 'storage_files'
 git 'https://github.com/oesgalha/azure-sdk-for-ruby.git', branch: 'update-json' do
   gem 'ms_rest_azure'
