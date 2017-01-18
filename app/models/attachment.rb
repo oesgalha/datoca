@@ -10,6 +10,7 @@
 #  instruction_id    :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  uuid              :string
 #
 # Indexes
 #
@@ -35,7 +36,23 @@ class Attachment < ApplicationRecord
   has_one :competition, through: :instruction
   belongs_to :instruction, inverse_of: :attachments
 
+  # =================================
+  # Callbacks
+  # =================================
+
+  after_initialize :generate_uuid
+
   def is_csv?
     Refile.types[:csv].content_type.include?(file_content_type)
+  end
+
+  def permanent_url
+    Datoca::Application.routes.url_helpers.datum_path(uuid)
+  end
+
+  private
+
+  def generate_uuid
+    self.uuid = SecureRandom.uuid
   end
 end

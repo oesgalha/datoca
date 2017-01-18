@@ -34,7 +34,7 @@ module DatocaTestHelpers
   private
 
   def _attachment_md_url(att)
-    "[#{att.file_filename}](#{att.file_url})"
+    "[#{att.file_filename}](#{att.permanent_url})"
   end
 end
 

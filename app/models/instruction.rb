@@ -64,7 +64,7 @@ class Instruction < ApplicationRecord
       # ---------------------------------------------------------------
       self.markdown = self.markdown.sub(/\[.+?\]\(.+?\/#{att.file.id}\/.+?\)/) do |md_str|
         att.file_attacher.store!
-        "[#{att.file_filename}](#{att.file_url})"
+        "[#{att.file_filename}](#{att.permanent_url})"
       end
     end
     self.html = Kramdown::Document.new(self.markdown || '').to_html.gsub(/[\r\n]+/, '')

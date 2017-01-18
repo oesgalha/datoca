@@ -3,16 +3,21 @@ class AcceptancesController < ApplicationController
   before_action :set_competition
 
   def new
-    @acceptance = @competition.acceptances.build
-    render 'competitions/show'
+    if @competition.acceptances.exists?(user: current_user)
+      redirect_to @competition
+    else
+      @acceptance = @competition.acceptances.build
+      render 'competitions/show'
+    end
   end
 
   def create
-    @acceptance = @competition.acceptances.build(user: current_user)
-    if @competition.save
-      flash[:notice] = 'Agora você pode baixar os arquivos da competição'
+    if @competition.acceptances.exists?(user: current_user)
+      redirect_to @competition
+    else
+      @competition.acceptances.create!(user: current_user)
+      redirect_to datum_path(session.delete(:download_uuid))
     end
-    render 'competitions/show'
   end
 
   private
