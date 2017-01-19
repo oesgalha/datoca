@@ -41,5 +41,24 @@ class DownloadCompetitionDataTest < ActionDispatch::IntegrationTest
     assert_includes Refile.types[:csv].content_type, page.response_headers['Content-Type']
   end
 
+  test "An user that already accepted the rules can download the data again" do
+    alice = create(:user)
+    competition = create_competition_with_data
+    competition.acceptances.create!(user: alice)
+    filename = competition.instructions.data.attachments.first.file_filename
 
+    # Sign in
+    sign_in alice
+    visit competition_path(competition)
+
+    # Look for the data
+    click_on('Dados')
+
+    # Click on the file url
+    click_on(filename)
+
+    # Check if it downloaded the csv
+    assert_equal "attachment; filename=\"#{filename}\"", page.response_headers['Content-Disposition']
+    assert_includes Refile.types[:csv].content_type, page.response_headers['Content-Type']
+  end
 end
