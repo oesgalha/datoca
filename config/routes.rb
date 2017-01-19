@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  get '/data/:uuid', to: 'attachments#show'
+  get '/data/:uuid', to: 'attachments#show', as: 'data'
   resources :instructions, only: [:show]
   resources :users, only: [:show, :edit, :update]
   resources :teams, only: [:show, :new, :edit, :create, :update]

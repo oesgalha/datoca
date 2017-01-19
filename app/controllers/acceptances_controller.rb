@@ -16,7 +16,7 @@ class AcceptancesController < ApplicationController
       redirect_to @competition
     else
       @competition.acceptances.create!(user: current_user)
-      redirect_to datum_path(session.delete(:download_uuid))
+      redirect_to data_path(session.delete(:download_uuid))
     end
   end
 

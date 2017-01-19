@@ -47,7 +47,7 @@ class Attachment < ApplicationRecord
   end
 
   def permanent_url
-    Datoca::Application.routes.url_helpers.datum_path(uuid)
+    Datoca::Application.routes.url_helpers.data_path(uuid)
   end
 
   private
