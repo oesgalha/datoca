@@ -8,7 +8,7 @@ class AttachmentsController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
   rescue Pundit::NotAuthorizedError
-    session[:download_uuid] = params[:uui]
+    session[:download_uuid] = params[:uuid]
     redirect_to new_competition_acceptance_url(@attachment.competition)
   end
 end
