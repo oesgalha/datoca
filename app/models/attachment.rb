@@ -40,7 +40,7 @@ class Attachment < ApplicationRecord
   # Callbacks
   # =================================
 
-  after_initialize :generate_uuid
+  after_initialize :generate_uuid, unless: :uuid?
 
   def is_csv?
     Refile.types[:csv].content_type.include?(file_content_type)

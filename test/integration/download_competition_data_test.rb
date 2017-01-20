@@ -61,4 +61,30 @@ class DownloadCompetitionDataTest < ActionDispatch::IntegrationTest
     assert_equal "attachment; filename=\"#{filename}\"", page.response_headers['Content-Disposition']
     assert_includes Refile.types[:csv].content_type, page.response_headers['Content-Type']
   end
+
+  test "An user can't download the competition data without rules acceptance" do
+    chuck = create(:user)
+    competition = create_competition_with_data
+    file = competition.instructions.data.attachments.first
+
+    # Sign in
+    sign_in chuck
+    visit data_path(file.uuid)
+
+    # Assert the user is redirected to the acceptance path
+    assert_equal new_competition_acceptance_path(competition), page.current_path
+  end
+
+  test "An user can't accept competition rules twice" do
+    chuck = create(:user)
+    competition = create_competition_with_data
+    competition.acceptances.create!(user: chuck)
+
+    # Sign in
+    sign_in chuck
+    visit new_competition_acceptance_path(competition)
+
+    # Assert the user is redirected to the competition page
+    assert_equal competition_path(competition), page.current_path
+  end
 end
