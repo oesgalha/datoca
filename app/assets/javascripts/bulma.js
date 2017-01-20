@@ -6,6 +6,10 @@ $(".modal button.delete").click(function() {
   $(".modal").removeClass("is-active");
 });
 
+$(".modal input[type=submit]").click(function() {
+  $(".modal").removeClass("is-active");
+});
+
 $("#nav-toggle").on("click tap", function() {
   $(this).toggleClass("is-active");
   $("#nav-menu").toggleClass("is-active");

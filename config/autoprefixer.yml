@@ -1,0 +1,3 @@
+browsers:
+  - "> 1%"
+  - "safari >= 4" # PhantomJS 2.1 doesn't handle flex correctly without this. See: https://github.com/ariya/phantomjs/issues/14365
