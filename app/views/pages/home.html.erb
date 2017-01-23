@@ -8,11 +8,14 @@
           </div>
         </div>
         <div class="tile is-vertical is-parent">
-          <div class="tile is-child has-text-centered">
+          <div class="tile is-child has-text-centered is-hidden-mobile">
             <h1 class="title is-1"><span id="home-chtext"></span> que movem o mundo</h1>
             <div class="spacing-20"></div>
             <h2 class="title is-3">Datoca é a sua plataforma para solução</h2>
             <h2 class="subtitle is-3">de desafios utilizando Ciência de Dados</h2>
+          </div>
+          <div class="tile is-child is-hidden-tablet">
+            <h2 class="title is-3">Datoca é a sua plataforma para solução de desafios utilizando Ciência de Dados</h2>
           </div>
           <div class="tile is-child has-text-centered">
             <div class="control is-grouped is-centered">
@@ -48,25 +51,38 @@
     <div class="container">
       <div class="tile is-ancestor">
         <div class="tile is-vertical is-parent">
-          <div class="tile is-child has-text-centered reveal-bot">
-            <h1 class="title is-1">Escolha um desafio</h1>
+          <div class="tile is-child reveal-bot">
+            <div class="is-hidden-mobile has-text-centered"><h1 class="title is-1">Escolha um desafio</h1></div>
+            <div class="is-hidden-tablet"><h1 class="title is-3">Escolha um desafio</h1></div>
           </div>
-          <div class="tile is-parent reveal-bot">
-            <div class="tile is-half is-child">
-              <%= image_tag 'home-scientist.svg', class: 'image is-256x256 is-centered' %>
+          <div class="is-hidden-mobile">
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child">
+                <%= image_tag 'home-scientist.svg', class: 'image is-256x256 is-centered' %>
+              </div>
+              <div class="tile is-half is-child">
+                <%= image_tag 'home-student.svg', class: 'image is-256x256 is-centered' %>
+              </div>
             </div>
-            <div class="tile is-half is-child">
-              <%= image_tag 'home-student.svg', class: 'image is-256x256 is-centered' %>
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child has-text-centered">
+                <h3 class="title is-3">Se você já é um expert dispute</h3>
+                <h3 class="subtitle is-3">uma de nossas competições.</h3>
+              </div>
+              <div class="tile is-half is-child has-text-centered">
+                <h3 class="title is-3">Se ainda é um aprendiz confira</h3>
+                <h3 class="subtitle is-3">nossos desafios de aprendizagem!</h3>
+              </div>
             </div>
           </div>
-          <div class="tile is-parent reveal-bot">
-            <div class="tile is-half is-child has-text-centered">
-              <h3 class="title is-3">Se você já é um expert dispute</h3>
-              <h3 class="subtitle is-3">uma de nossas competições.</h3>
+          <div class="is-hidden-tablet">
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child"><%= image_tag 'home-scientist.svg', class: 'image is-128x128 is-centered' %></div>
+              <div class="tile is-half is-child"><h3 class="title is-5">Se você já é um expert dispute uma de nossas competições.</h3></div>
             </div>
-            <div class="tile is-half is-child has-text-centered">
-              <h3 class="title is-3">Se ainda é um aprendiz confira</h3>
-              <h3 class="subtitle is-3">nossos desafios de aprendizagem!</h3>
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child"><%= image_tag 'home-student.svg', class: 'image is-128x128 is-centered' %></div>
+              <div class="tile is-half is-child"><h3 class="title is-5">Se ainda é um aprendiz confira nossos desafios de aprendizagem!</h3></div>
             </div>
           </div>
         </div>
@@ -77,36 +93,55 @@
 <section id="step-2" class="hero is-dark is-small">
   <div class="hero-body">
     <div class="container">
-      <nav class="level">
-        <div class="level-left reveal-left">
-          <div class="level-item">
-            <h1 class="title is-1">Baixe e analise os dados</h1>
-            <div class="spacing-20"></div>
-            <h3 class="subtitle is-3">Entenda quais tipos de dados estão a sua disposição</h3>
+      <div class="is-hidden-mobile">
+        <nav class="level">
+          <div class="level-left reveal-left">
+            <div class="level-item">
+              <h1 class="title is-1">Baixe e analise os dados</h1>
+              <div class="spacing-20"></div>
+              <h3 class="subtitle is-3">Entenda quais tipos de dados estão a sua disposição</h3>
+            </div>
           </div>
-        </div>
-        <div class="level-right reveal-right">
+          <div class="level-right reveal-right">
+            <div class="level-item"><%= image_tag 'home-datasource.svg', class: 'image is-256x256 is-centered' %></div>
+          </div>
+        </nav>
+      </div>
+      <div class="is-hidden-tablet">
+        <nav class="level">
+          <div class="level-item"><h1 class="title is-3">Baixe e analise os dados</h1></div>
           <div class="level-item"><%= image_tag 'home-datasource.svg', class: 'image is-256x256 is-centered' %></div>
-        </div>
-      </nav>
+          <div class="level-item"><h3 class="subtitle is-5">Entenda quais tipos de dados estão a sua disposição</h3></div>
+        </nav>
+      </div>
     </div>
   </div>
 </section>
 <section id="step-3" class="hero is-info is-small">
   <div class="hero-body">
     <div class="container">
-      <nav class="level">
-        <div class="level-left reveal-left">
-          <div class="level-item"><%= image_tag 'home-forecast.svg', class: 'image is-512x256 is-centered' %></div>
+        <div class="is-hidden-mobile">
+          <nav class="level">
+            <div class="level-left reveal-left">
+              <div class="level-item"><%= image_tag 'home-forecast.svg', class: 'image is-512x256 is-centered' %></div>
+            </div>
+            <div class="level-right reveal-right">
+              <div class="level-item has-text-right">
+                <h1 class="title is-1">Encontre soluções</h1>
+                <div class="spacing-20"></div>
+                <h3 class="title is-3">Utilize técnicas e tecnologias de sua preferência</h3>
+                <div class="spacing-10"></div>
+                <h3 class="subtitle is-3">para desenvolver a melhor solução!</h3>
+              </div>
+            </div>
+          </nav>
         </div>
-        <div class="level-right reveal-right">
-          <div class="level-item has-text-right">
-            <h1 class="title is-1">Encontre soluções</h1>
-            <div class="spacing-20"></div>
-            <h3 class="title is-3">Utilize técnicas e tecnologias de sua preferência</h3>
-            <div class="spacing-10"></div>
-            <h3 class="subtitle is-3">para desenvolver a melhor solução!</h3>
-          </div>
+        <div class="is-hidden-tablet">
+          <nav class="level">
+            <div class="level-item"><h1 class="title is-3">Encontre soluções</h1></div>
+            <div class="level-item"><%= image_tag 'home-forecast.svg', class: 'image is-256x256 is-centered' %></div>
+            <div class="level-item"><h3 class="subtitle is-5">Utilize técnicas e tecnologias de sua preferência para desenvolver a melhor solução!</h3></div>
+          </nav>
         </div>
       </nav>
     </div>
@@ -117,25 +152,38 @@
     <div class="container">
       <div class="tile is-ancestor">
         <div class="tile is-vertical is-parent reveal-bot">
-          <div class="tile is-child has-text-centered">
-            <h1 class="title is-1">Seja reconhecido</h1>
+          <div class="tile is-child">
+            <div class="is-hidden-mobile has-text-centered"><h1 class="title is-1">Seja reconhecido</h1></div>
+            <div class="is-hidden-tablet"><h1 class="title is-3">Seja reconhecido</h1></div>
           </div>
-          <div class="tile is-parent">
-            <div class="tile is-half is-child reveal-bot">
-              <%= image_tag 'home-podium.svg', class: 'image is-256x256 is-centered' %>
+          <div class="is-hidden-mobile">
+            <div class="tile is-parent">
+              <div class="tile is-half is-child reveal-bot">
+                <%= image_tag 'home-podium.svg', class: 'image is-256x256 is-centered' %>
+              </div>
+              <div class="tile is-half is-child reveal-bot">
+                <%= image_tag 'home-certificate.svg', class: 'image is-256x256 is-centered' %>
+              </div>
             </div>
-            <div class="tile is-half is-child reveal-bot">
-              <%= image_tag 'home-certificate.svg', class: 'image is-256x256 is-centered' %>
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child has-text-centered">
+                <h3 class="title is-3">Já conquistou seu lugar no pódio?</h3>
+                <h3 class="subtitle is-3">Batalhe pelas premiações!</h3>
+              </div>
+              <div class="tile is-half is-child has-text-centered">
+                <h3 class="title is-3">Concluiu um desafio de aprendizagem?</h3>
+                <h3 class="subtitle is-3">Obtenha nossas certificações!</h3>
+              </div>
             </div>
           </div>
-          <div class="tile is-parent reveal-bot">
-            <div class="tile is-half is-child has-text-centered">
-              <h3 class="title is-3">Já conquistou seu lugar no pódio?</h3>
-              <h3 class="subtitle is-3">Batalhe pelas premiações!</h3>
+          <div class="is-hidden-tablet">
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child"><%= image_tag 'home-podium.svg', class: 'image is-128x128 is-centered' %></div>
+              <div class="tile is-half is-child"><h3 class="title is-5">Já conquistou seu lugar no pódio? Batalhe pelas premiações!</h3></div>
             </div>
-            <div class="tile is-half is-child has-text-centered">
-              <h3 class="title is-3">Concluiu um desafio de aprendizagem?</h3>
-              <h3 class="subtitle is-3">Obtenha nossas certificações!</h3>
+            <div class="tile is-parent reveal-bot">
+              <div class="tile is-half is-child"><%= image_tag 'home-certificate.svg', class: 'image is-128x128 is-centered' %></div>
+              <div class="tile is-half is-child"><h3 class="title is-5">Concluiu um desafio de aprendizagem? Obtenha nossas certificações!</h3></div>
             </div>
           </div>
         </div>
@@ -149,8 +197,15 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <div class="tile is-child">
-            <h1 class="title is-1">Participe!</h1>
-            <h2 class="subtitle is-3">Explore nossas competições ou cadastre-se para começar agora.</h2>
+            <div class="is-hidden-mobile">
+              <h1 class="title is-1">Participe!</h1>
+              <h2 class="subtitle is-3">Explore nossas competições ou cadastre-se para começar agora.</h2>
+            </div>
+            <div class="is-hidden-tablet">
+              <h1 class="title is-3">Participe!</h1>
+              <h2 class="subtitle is-5">Explore nossas competições ou cadastre-se para começar agora.</h2>
+              <div class="spacing-20"></div>
+            </div>
           </div>
           <div class="tile is-vertical is-parent">
             <div class="tile is-child">
