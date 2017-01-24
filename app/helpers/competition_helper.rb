@@ -63,4 +63,12 @@ module CompetitionHelper
       end + competition.errors.messages[:instructions].join
     end
   end
+
+  def competition_deadline_text(competition)
+    if Time.current < competition.deadline
+      distance_of_time_in_words_to_now(competition.deadline)
+    else
+      'finalizada'
+    end
+  end
 end
