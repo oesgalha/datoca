@@ -71,6 +71,6 @@ class Instruction < ApplicationRecord
   end
 
   def text
-    html || markdown
+    html
   end
 end
