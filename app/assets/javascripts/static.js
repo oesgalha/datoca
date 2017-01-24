@@ -1,3 +1,7 @@
+//= require jquery
+//= require scrollreveal
+//= require typedjs
+
 $("span#home-chtext").typed(
   {
     strings: ["Desafios", "Pessoas", "Empresas", "Soluções", "Pesquisas", "Cientistas"],
