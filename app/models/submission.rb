@@ -47,7 +47,7 @@ class Submission < ApplicationRecord
 
   validates :competitor, presence: true
   validates :csv, presence: true
-  validate :validate_csv_size, :validate_csv_cols, if: :csv_id?
+  validate :validate_csv_size, :validate_csv_cols, :validate_csv_ids
 
   # =================================
   # Callbacks
@@ -87,23 +87,25 @@ class Submission < ApplicationRecord
   private
 
   def read_csv
-    @read_csv ||= CSV.new(csv.read).read
-  end
-
-  def read_expected_csv
-    @read_expected_csv ||= CSV.new(competition.expected_csv.read).read
+    @read_csv ||= CSV.new(csv.read, headers: true, converters: :numeric, header_converters: :symbol).read
   end
 
   def validate_csv_size
-    unless read_csv.size == read_expected_csv.size
+    unless read_csv.size + 1 == competition.expected_csv_line_count
       errors.add(:csv, "não contém o mesmo número de linhas da solução esperada!")
     end
   end
 
   def validate_csv_cols
-    unless (read_csv[0] - [ competition.expected_csv_id_column, competition.expected_csv_val_column ]).empty?
+    unless (read_csv.headers - headers.values).empty?
       errors.add(:csv, "deve ter apenas as seguintes colunas: \"#{competition.expected_csv_id_column}\" e \"#{competition.expected_csv_val_column}\"")
     end
+  end
+
+  def validate_csv_ids
+    @metric_calc = Metrorb::Calculate.from_csvs(competition.expected_csv.read, csv.read, headers)
+  rescue Metrorb::BadCsvError => e
+    errors.add(:csv, "a sua solução também deve conter os seguintes ids: #{e.ids.join(',')}")
   end
 
   def clean_header(str)
@@ -121,7 +123,7 @@ class Submission < ApplicationRecord
   def set_score
     case competition.evaluation_type
     when 'mae'
-      self.evaluation_score = Metrorb::Calculate.from_csvs(competition.expected_csv.read, csv.read, headers).mae
+      self.evaluation_score = @metric_calc.mae
     end
   end
 
