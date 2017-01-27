@@ -6,7 +6,6 @@
 #  name                      :string
 #  max_team_size             :integer
 #  evaluation_type           :integer          default("mae")
-#  daily_attempts            :integer          default(3)
 #  total_prize               :decimal(9, 2)
 #  deadline                  :datetime
 #  ilustration_id            :string
@@ -21,6 +20,8 @@
 #  expected_csv_val_column   :string           default("value")
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  daily_attempts            :integer          default(3)
+#  expected_csv_line_count   :integer          default(0)
 #
 
 class Competition < ApplicationRecord
@@ -68,6 +69,12 @@ class Competition < ApplicationRecord
   validates :expected_csv, presence: true
 
   # =================================
+  # Callbacks
+  # =================================
+
+  before_save :count_lines, if: :expected_csv_id_changed?
+
+  # =================================
   # Class Methods
   # =================================
 
@@ -89,5 +96,11 @@ class Competition < ApplicationRecord
 
   def files_can_be_downloaded_by?(user)
     acceptances.where(user: user).any?
+  end
+
+  private
+
+  def count_lines
+    self.expected_csv_line_count = CSV.new(expected_csv.read).read.size
   end
 end

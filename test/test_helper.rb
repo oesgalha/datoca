@@ -13,11 +13,11 @@ TransactionalCapybara.share_connection
 CodeClimate::TestReporter.start
 
 module DatocaTestHelpers
-  def random_csv
+  def random_csv(lines = 11)
     File.join(Rails.root, 'tmp', "#{rand(10)}.csv").tap do |fullpath|
       CSV.open(fullpath, 'wb') do |csv|
         csv << ['id', 'value']
-        1.upto(10).each { |i| csv << [i.to_s, rand(1_000).to_s] }
+        1.upto(lines - 1).each { |i| csv << [i.to_s, rand(1_000).to_s] }
       end
     end
   end
