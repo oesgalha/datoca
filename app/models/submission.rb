@@ -28,8 +28,6 @@
 
 class Submission < ApplicationRecord
 
-  MAX_DAILY_ATTEMPTS = 3
-
   # =================================
   # Plugins
   # =================================
@@ -56,10 +54,7 @@ class Submission < ApplicationRecord
   # =================================
 
   before_save :process_markdown, :set_score
-
-  after_create do
-    Ranking.refresh
-  end
+  after_create ->{ Ranking.refresh }
 
   # =================================
   # Class Methods
@@ -111,23 +106,23 @@ class Submission < ApplicationRecord
     end
   end
 
+  def clean_header(str)
+    str.encode(Encoding.find('UTF-8')).downcase.strip.gsub(/\s+/, '_').gsub(/\W+/, '').to_sym
+  end
+
+  def headers
+    {
+      id: clean_header(competition.expected_csv_id_column),
+      value: clean_header(competition.expected_csv_val_column),
+    }
+  end
+
   # TODO: Move to background
   def set_score
     case competition.evaluation_type
     when 'mae'
-      d1 = read_expected_csv.transpose
-      d2 = read_csv.transpose
-      df1 = Daru::DataFrame.new(extract_cols(d1), order: [:id, :value])
-      df2 = Daru::DataFrame.new(extract_cols(d2), order: [:id, :value])
-      means = df1.join(df2, on: [:id], how: :inner).vector_by_calculation { (value_1 - value_2).abs }
-      self.evaluation_score = (means.sum.to_d / means.size.to_d)
+      self.evaluation_score = Metrorb::Calculate.from_csvs(competition.expected_csv.read, csv.read, headers).mae
     end
-  end
-
-  def extract_cols(cols)
-    id_col = cols.select { |col| col.first == competition.expected_csv_id_column }.first.tap { |col| col.shift; col }
-    val_col = cols.select { |col| col.first == competition.expected_csv_val_column }.first.tap { |col| col.shift; col }
-    [id_col.map(&:to_d), val_col.map(&:to_d)]
   end
 
   # TODO: Move to background

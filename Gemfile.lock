@@ -35,6 +35,12 @@ GIT
       rest-client (~> 2.0.0)
 
 GIT
+  remote: https://github.com/oesgalha/metrorb.git
+  revision: 0578c7b9848750b0a30f5328dffe9970c41a1b09
+  specs:
+    metrorb (0.1.0)
+
+GIT
   remote: https://github.com/oesgalha/refile
   revision: 9b7aea2ee4c3ee908d94fba70b27dc36075e3305
   branch: relax-dependecies
@@ -127,7 +133,6 @@ GEM
       ms_rest_azure (~> 0.5.0)
     azure_mgmt_traffic_manager (0.6.0)
       ms_rest_azure (~> 0.5.0)
-    backports (3.6.8)
     bcrypt (3.1.11)
     builder (3.2.2)
     capybara (2.10.1)
@@ -142,8 +147,6 @@ GEM
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.4)
-    daru (0.1.4.1)
-      backports
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -508,7 +511,6 @@ DEPENDENCIES
   autoprefixer-rails (~> 6.6)
   capybara (~> 2.9)
   codeclimate-test-reporter (~> 0.6)
-  daru (~> 0.1)
   devise (~> 4.2)
   devise-i18n (~> 1.1)
   factory_girl_rails (~> 4.8)
@@ -518,6 +520,7 @@ DEPENDENCIES
   kramdown (~> 1.12)
   laranja (~> 2.0)
   listen (~> 3.1)
+  metrorb!
   ms_rest_azure!
   nested_form (~> 0.3)
   omniauth-facebook (~> 4.0)

@@ -61,7 +61,7 @@ end
 # =================================
 # ⚡️  M A D  M A T H  S T U F F  ⚡️
 # =================================
-gem 'daru', '~> 0.1'
+gem 'metrorb', git: 'https://github.com/oesgalha/metrorb.git'
 
 # =================================
 # Production Services
