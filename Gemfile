@@ -23,7 +23,7 @@ gem 'omniauth-google-oauth2', '~> 0.4'
 # =================================
 gem 'high_voltage', '~> 3.0'
 gem 'rails-i18n', '~> 5.0'
-gem 'kramdown', '~> 1.12'
+gem 'kramdown', '~> 1.13'
 gem 'devise-i18n', '~> 1.1'
 gem 'refile', require: 'refile/rails', git: 'https://github.com/oesgalha/refile', branch: 'relax-dependecies'
 gem 'refile-fog', '~> 0.2.0'
@@ -33,7 +33,7 @@ gem 'sinatra', '~> 2.0.0.beta2'
 # =================================
 # Webserver
 # =================================
-gem 'puma', '~> 3.6'
+gem 'puma', '~> 3.7'
 
 # =================================
 # Forms and Views
