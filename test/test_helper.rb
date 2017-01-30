@@ -1,16 +1,16 @@
 ENV['RAILS_ENV'] ||= 'test'
+require 'simplecov'
+SimpleCov.start
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/pride'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 require 'laranja'
-require 'codeclimate-test-reporter'
 
 Laranja.load('pt-BR')
 Capybara.javascript_driver = :poltergeist
 TransactionalCapybara.share_connection
-CodeClimate::TestReporter.start
 
 module DatocaTestHelpers
   def random_csv(lines = 11)

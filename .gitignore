@@ -8,6 +8,7 @@ config/database.yml
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/coverage/
 # Ignore attachments
 public/system
 config/app.yml
