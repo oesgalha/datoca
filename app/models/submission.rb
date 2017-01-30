@@ -92,7 +92,7 @@ class Submission < ApplicationRecord
 
   def validate_csv_size
     unless read_csv.size + 1 == competition.expected_csv_line_count
-      errors.add(:csv, "não contém o mesmo número de linhas da solução esperada!")
+      errors.add(:csv, "não contém o mesmo número de linhas da solução esperada")
     end
   end
 
@@ -105,7 +105,7 @@ class Submission < ApplicationRecord
   def validate_csv_ids
     @metric_calc = Metrorb::Calculate.from_csvs(competition.expected_csv.read, csv.read, headers)
   rescue Metrorb::BadCsvError => e
-    errors.add(:csv, "a sua solução também deve conter os seguintes ids: #{e.ids.join(',')}")
+    errors.add(:csv, "a sua solução também deve conter os seguintes ids: #{e.ids.join(',')}".truncate(96, omission: '... (e outros)'))
   end
 
   def clean_header(str)

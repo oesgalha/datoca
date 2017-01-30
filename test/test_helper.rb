@@ -13,10 +13,10 @@ Capybara.javascript_driver = :poltergeist
 TransactionalCapybara.share_connection
 
 module DatocaTestHelpers
-  def random_csv(lines = 11)
+  def random_csv(lines = 11, headers = ['id', 'value'])
     File.join(Rails.root, 'tmp', "#{rand(10)}.csv").tap do |fullpath|
       CSV.open(fullpath, 'wb') do |csv|
-        csv << ['id', 'value']
+        csv << headers
         1.upto(lines - 1).each { |i| csv << [i.to_s, rand(1_000).to_s] }
       end
     end
