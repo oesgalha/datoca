@@ -34,6 +34,7 @@ class Competition < ApplicationRecord
 
   enum evaluation_type: {
     mae: 0,                     # Mean Absolute Error
+    acc: 1,                     # Accuracy
   }
 
   # =================================

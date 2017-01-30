@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/oesgalha/metrorb.git
-  revision: 5f5c34ac918d6971fe24c05fb66124687d97d19a
+  revision: 6749c77fd1c1809f6118e9e781f2a111abb1c9a1
   specs:
     metrorb (0.1.0)
 

@@ -12,6 +12,11 @@
     <progress class="progress is-info is-hidden" value="0" max="100"></progress>
   </p>
 
+  <%= f.label :evaluation_type, class: 'label' %>
+  <p class="control">
+    <%= f.select :evaluation_type, options_for_select(Competition.evaluation_types.keys), {}, { class: 'input chosen' } %>
+  </p>
+
   <%= f.label :daily_attempts, class: 'label' %>
   <p class="control">
     <%= f.number_field :daily_attempts, class: 'input' %>
