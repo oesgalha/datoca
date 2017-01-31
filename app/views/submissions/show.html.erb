@@ -44,7 +44,7 @@
       <div class="column">
         <section class="section">
           <div class="heading has-text-right">
-            <h2 class="title is-3">Mean Absolute Error</h2>
+            <h2 class="title is-3"><%= @competition.metric_name %></h2>
             <h1 class="subtitle is-1"><%= number_with_precision(@submission.evaluation_score, precision: 10)  %></h1>
           </div>
         </section>

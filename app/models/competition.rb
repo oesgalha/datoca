@@ -32,10 +32,7 @@ class Competition < ApplicationRecord
 
   REQUIRED_INSTRUCTIONS = ['Avaliação', 'Dados', 'Descrição', 'Regras']
 
-  enum evaluation_type: {
-    mae: 0,                     # Mean Absolute Error
-    acc: 1,                     # Accuracy
-  }
+  enum evaluation_type: Metrorb.metrics_abbr_and_id
 
   # =================================
   # Plugins
@@ -97,6 +94,10 @@ class Competition < ApplicationRecord
 
   def files_can_be_downloaded_by?(user)
     acceptances.where(user: user).any?
+  end
+
+  def metric_name
+    Metrorb.metrics_hash[evaluation_type.to_sym].name
   end
 
   private

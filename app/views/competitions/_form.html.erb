@@ -14,7 +14,7 @@
 
   <%= f.label :evaluation_type, class: 'label' %>
   <p class="control">
-    <%= f.select :evaluation_type, options_for_select(Competition.evaluation_types.keys), {}, { class: 'input chosen' } %>
+    <%= f.select :evaluation_type, options_for_select(Metrorb.metrics_name_and_abbr, competition.evaluation_type), {}, { class: 'input chosen' } %>
   </p>
 
   <%= f.label :daily_attempts, class: 'label' %>
