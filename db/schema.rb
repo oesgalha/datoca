@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201153433) do
+ActiveRecord::Schema.define(version: 20170201160412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,14 +152,25 @@ ActiveRecord::Schema.define(version: 20170201153433) do
               per_competitor.competitor_type,
               per_competitor.evaluation_score,
               per_competitor.competition_id,
+              per_competitor.metric_sort,
               per_competitor.competitor_rank
              FROM ( SELECT submissions.id AS submission_id,
                       submissions.competitor_id,
                       submissions.competitor_type,
                       submissions.evaluation_score,
                       submissions.competition_id,
-                      rank() OVER (PARTITION BY submissions.competition_id, submissions.competitor_id, submissions.competitor_type ORDER BY submissions.evaluation_score) AS competitor_rank
-                     FROM submissions) per_competitor
+                      competitions.metric_sort,
+                      rank() OVER (PARTITION BY submissions.competition_id, submissions.competitor_id, submissions.competitor_type ORDER BY
+                          CASE
+                              WHEN ((competitions.metric_sort)::text = 'asc'::text) THEN submissions.evaluation_score
+                              ELSE NULL::numeric
+                          END,
+                          CASE
+                              WHEN ((competitions.metric_sort)::text = 'desc'::text) THEN submissions.evaluation_score
+                              ELSE NULL::numeric
+                          END DESC) AS competitor_rank
+                     FROM (submissions
+                       JOIN competitions ON ((competitions.id = submissions.competition_id)))) per_competitor
             WHERE (per_competitor.competitor_rank = 1)
           )
    SELECT top_submissions.submission_id,
@@ -167,7 +178,15 @@ ActiveRecord::Schema.define(version: 20170201153433) do
       top_submissions.competitor_type,
       top_submissions.evaluation_score,
       top_submissions.competition_id,
-      rank() OVER (PARTITION BY top_submissions.competition_id ORDER BY top_submissions.evaluation_score) AS rank
+      rank() OVER (PARTITION BY top_submissions.competition_id ORDER BY
+          CASE
+              WHEN ((top_submissions.metric_sort)::text = 'asc'::text) THEN top_submissions.evaluation_score
+              ELSE NULL::numeric
+          END,
+          CASE
+              WHEN ((top_submissions.metric_sort)::text = 'desc'::text) THEN top_submissions.evaluation_score
+              ELSE NULL::numeric
+          END DESC) AS rank
      FROM top_submissions;
   SQL
 
