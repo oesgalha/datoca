@@ -121,7 +121,7 @@ class Submission < ApplicationRecord
 
   # TODO: Move to background
   def set_score
-    case competition.evaluation_type
+    case competition.metric
     when 'acc'
       self.evaluation_score = @metric_calc.acc
     when 'mae'

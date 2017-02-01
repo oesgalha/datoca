@@ -29,6 +29,7 @@ FactoryGirl.define do
     deadline { Time.current.midnight + (5 + rand(20)).days }
     expected_csv { File.open(generate(:csv)) }
     created_at { Time.current - (5 + rand(20)).days }
+    metric { Competition.metrics[:mae] }
     instructions_attributes {
       [
         { name: 'Avaliação',  markdown: generate(:lorem) },

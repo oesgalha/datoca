@@ -5,7 +5,7 @@
 #  id                        :integer          not null, primary key
 #  name                      :string
 #  max_team_size             :integer
-#  evaluation_type           :integer          default("mae")
+#  metric                    :integer
 #  total_prize               :decimal(9, 2)
 #  deadline                  :datetime
 #  ilustration_id            :string
@@ -22,6 +22,7 @@
 #  updated_at                :datetime         not null
 #  daily_attempts            :integer          default(3)
 #  expected_csv_line_count   :integer          default(0)
+#  metric_sort               :string
 #
 
 class Competition < ApplicationRecord
@@ -32,7 +33,7 @@ class Competition < ApplicationRecord
 
   REQUIRED_INSTRUCTIONS = ['Avaliação', 'Dados', 'Descrição', 'Regras']
 
-  enum evaluation_type: Metrorb.metrics_abbr_and_id
+  enum metric: Metrorb.metrics_abbr_and_id
 
   # =================================
   # Plugins
@@ -63,6 +64,7 @@ class Competition < ApplicationRecord
   # =================================
 
   validates :name, presence: true
+  validates :metric, presence: true
   validate :has_required_instructions
   validates :expected_csv, presence: true
 
@@ -71,6 +73,7 @@ class Competition < ApplicationRecord
   # =================================
 
   before_save :count_lines, if: :expected_csv_id_changed?
+  before_save :set_metric_sort, if: :metric_changed?
 
   # =================================
   # Class Methods
@@ -97,12 +100,16 @@ class Competition < ApplicationRecord
   end
 
   def metric_name
-    Metrorb.metrics_hash[evaluation_type.to_sym].name
+    Metrorb.metrics_hash[metric.to_sym].name
   end
 
   private
 
   def count_lines
     self.expected_csv_line_count = CSV.new(expected_csv.read).read.size
+  end
+
+  def set_metric_sort
+    self.metric_sort = Metrorb.metrics_hash[metric.to_sym].sort_direction.to_s
   end
 end
