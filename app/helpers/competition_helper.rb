@@ -5,18 +5,10 @@ module CompetitionHelper
     [ 'Todas',  { deadline_gteq: nil } ]
   ]
 
-  EVALUATION_FILTERS = [
-    ['Média Absoluta', { evaluation_type_eq: 0 }]
-  ]
-
   ORDER_FILTERS = [
     ['Prêmio', { s: 'total_prize desc' }],
     ['Prazo', { s: 'deadline asc' }]
   ]
-
-  def evaluation_filters
-    filters(EVALUATION_FILTERS)
-  end
 
   def time_filters
     filters(TIME_FILTERS)
