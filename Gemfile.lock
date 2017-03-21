@@ -7,34 +7,6 @@ GIT
       omniauth-oauth2
 
 GIT
-  remote: https://github.com/oesgalha/azure-sdk-for-ruby.git
-  revision: 567f9037739393bd94c64db4fbcc0b797989d08e
-  branch: update-json
-  specs:
-    ms_rest_azure (0.5.0)
-      concurrent-ruby (~> 1.0)
-      faraday (~> 0.9)
-      faraday-cookie_jar (~> 0.0.6)
-      json (~> 1.8)
-      ms_rest (~> 0.6.0)
-
-GIT
-  remote: https://github.com/oesgalha/fog-azure-rm.git
-  revision: 7761e74978ec7cecb62f753b20cf74d6d2c3a1f2
-  branch: storage_files
-  specs:
-    fog-azure-rm (0.0.9)
-      azure-storage (~> 0.11.1.preview)
-      azure_mgmt_compute (~> 0.6.0)
-      azure_mgmt_dns (~> 0.6.0)
-      azure_mgmt_network (~> 0.6.0)
-      azure_mgmt_resources (~> 0.6.0)
-      azure_mgmt_storage (~> 0.6.0)
-      azure_mgmt_traffic_manager (~> 0.6.0)
-      fog-core (~> 1.43.0)
-      rest-client (~> 2.0.0)
-
-GIT
   remote: https://github.com/oesgalha/metrorb.git
   revision: 8dbf18f082bf1e705768daa0f3571683c1ab2355
   specs:
@@ -49,14 +21,6 @@ GIT
       mime-types
       rest-client (>= 1.8, < 2.1.0)
       sinatra (>= 1.4.5)
-
-GIT
-  remote: https://github.com/refile/refile-mini_magick.git
-  revision: 9c74f7b61c794837a02af3f21d1be96286b7ce4d
-  specs:
-    refile-mini_magick (0.2.0)
-      mini_magick (~> 4.0)
-      refile (~> 0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -108,33 +72,33 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.2)
       execjs
-    azure-core (0.1.5)
+    azure-core (0.1.7)
       faraday (~> 0.9)
       faraday_middleware (~> 0.10)
       nokogiri (~> 1.6)
-    azure-storage (0.11.1.preview)
-      addressable (~> 2.3)
+    azure-storage (0.11.5.preview)
       azure-core (~> 0.1)
       faraday (~> 0.9)
       faraday_middleware (~> 0.10)
-      json (~> 1.8)
-      mime-types (~> 2.0)
-      nokogiri (~> 1.6)
-      systemu (~> 2.6)
-      thor (~> 0.19)
-    azure_mgmt_compute (0.6.0)
-      ms_rest_azure (~> 0.5.0)
-    azure_mgmt_dns (0.6.0)
-      ms_rest_azure (~> 0.5.0)
-    azure_mgmt_network (0.6.0)
-      ms_rest_azure (~> 0.5.0)
-    azure_mgmt_resources (0.6.0)
-      ms_rest_azure (~> 0.5.0)
-    azure_mgmt_storage (0.6.0)
-      ms_rest_azure (~> 0.5.0)
-    azure_mgmt_traffic_manager (0.6.0)
-      ms_rest_azure (~> 0.5.0)
+      nokogiri (~> 1.6.0)
+    azure_mgmt_compute (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_dns (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_key_vault (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_network (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_resources (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_sql (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_storage (0.9.0)
+      ms_rest_azure (~> 0.7.0)
+    azure_mgmt_traffic_manager (0.9.0)
+      ms_rest_azure (~> 0.7.0)
     bcrypt (3.1.11)
+    bit-struct (0.15.0)
     builder (3.2.3)
     capybara (2.12.0)
       addressable
@@ -171,8 +135,8 @@ GEM
     faraday-cookie_jar (0.0.6)
       faraday (>= 0.7.4)
       http-cookie (~> 1.0.0)
-    faraday_middleware (0.10.0)
-      faraday (>= 0.7.4, < 0.10)
+    faraday_middleware (0.11.0.1)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.14)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -218,6 +182,20 @@ GEM
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
+    fog-azure-rm (0.3.0)
+      azure-storage (~> 0.11.5.preview)
+      azure_mgmt_compute (~> 0.9.0)
+      azure_mgmt_dns (~> 0.9.0)
+      azure_mgmt_key_vault (~> 0.9.0)
+      azure_mgmt_network (~> 0.9.0)
+      azure_mgmt_resources (~> 0.9.0)
+      azure_mgmt_sql (~> 0.9.0)
+      azure_mgmt_storage (~> 0.9.0)
+      azure_mgmt_traffic_manager (~> 0.9.0)
+      fog-core (~> 1.43.0)
+      fog-json (~> 1.0)
+      rest-client (~> 2.0.0)
+      vhd (= 0.0.4)
     fog-brightbox (0.11.0)
       fog-core (~> 1.22)
       fog-json
@@ -330,22 +308,26 @@ GEM
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
     mime-types (2.99.3)
-    mini_magick (4.5.1)
+    mini_magick (4.6.1)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
-    ms_rest (0.6.0)
+    ms_rest (0.6.3)
       concurrent-ruby (~> 1.0)
       faraday (~> 0.9)
-      json (~> 1.7)
       timeliness (~> 0.3)
+    ms_rest_azure (0.7.0)
+      concurrent-ruby (~> 1.0)
+      faraday (~> 0.9)
+      faraday-cookie_jar (~> 0.0.6)
+      ms_rest (~> 0.6.3)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mustermann (1.0.0.beta2)
+    mustermann (1.0.0)
     nested_form (0.3.2)
     netrc (0.11.0)
     nio4r (1.2.1)
-    nokogiri (1.7.0.1)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
@@ -385,7 +367,7 @@ GEM
     rack (2.0.1)
     rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
-    rack-protection (2.0.0.beta2)
+    rack-protection (2.0.0.rc2)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -443,6 +425,9 @@ GEM
     refile-fog (0.2.0)
       fog
       refile
+    refile-mini_magick (0.2.0)
+      mini_magick (~> 4.0)
+      refile (~> 0.5)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rest-client (2.0.0)
@@ -465,10 +450,10 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    sinatra (2.0.0.beta2)
-      mustermann (= 1.0.0.beta2)
+    sinatra (2.0.0.rc2)
+      mustermann (= 1.0.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.0.beta2)
+      rack-protection (= 2.0.0.rc2)
       tilt (~> 2.0)
     skylight (1.0.1)
       activesupport (>= 3.0.0)
@@ -481,10 +466,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    systemu (2.6.5)
     thor (0.19.4)
     thread_safe (0.3.5)
-    tilt (2.0.5)
+    tilt (2.0.7)
     timeliness (0.3.8)
     transactional_capybara (0.1.0)
       capybara
@@ -496,6 +480,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    vhd (0.0.4)
+      bit-struct
     warden (1.2.6)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -516,15 +502,15 @@ DEPENDENCIES
   devise (~> 4.2)
   devise-i18n (~> 1.1)
   factory_girl_rails (~> 4.8)
-  fog-azure-rm!
+  fog-azure-rm (~> 0.3)
   high_voltage (~> 3.0)
   jquery-rails
   kramdown (~> 1.13)
   laranja (~> 2.0)
   listen (~> 3.1)
   metrorb!
-  ms_rest_azure!
   nested_form (~> 0.3)
+  nokogiri (~> 1.6.0)
   omniauth-facebook (~> 4.0)
   omniauth-google-oauth2 (~> 0.4)
   omniauth-linkedin-oauth2!
@@ -546,12 +532,12 @@ DEPENDENCIES
   rails-i18n (~> 5.0)
   ransack (~> 1.8)
   refile!
-  refile-fog (~> 0.2.0)
-  refile-mini_magick!
+  refile-fog (~> 0.2)
+  refile-mini_magick (~> 0.2)
   sass-rails (~> 5.0)
   scenic (~> 1.3)
   simplecov (~> 0.13)
-  sinatra (~> 2.0.0.beta2)
+  sinatra (~> 2.0.0.rc2)
   skylight (~> 1.0)
   spring (~> 1.7)
   transactional_capybara (~> 0.1)

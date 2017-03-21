@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0'
 
 # =================================
+# Nokogiri
+# =================================
+gem 'nokogiri', '~> 1.6.0'
+
+# =================================
 # Database and ActiveRecord plugins
 # =================================
 gem 'pg', '~> 0.18'
@@ -26,9 +31,9 @@ gem 'rails-i18n', '~> 5.0'
 gem 'kramdown', '~> 1.13'
 gem 'devise-i18n', '~> 1.1'
 gem 'refile', require: 'refile/rails', git: 'https://github.com/oesgalha/refile', branch: 'relax-dependecies'
-gem 'refile-fog', '~> 0.2.0'
-gem 'refile-mini_magick', git: 'https://github.com/refile/refile-mini_magick.git'
-gem 'sinatra', '~> 2.0.0.beta2'
+gem 'refile-fog', '~> 0.2'
+gem 'refile-mini_magick', '~> 0.2'
+gem 'sinatra', '~> 2.0.0.rc2'
 
 # =================================
 # Webserver
@@ -67,10 +72,7 @@ gem 'metrorb', git: 'https://github.com/oesgalha/metrorb.git'
 # Production Services
 # =================================
 gem 'skylight', '~> 1.0'
-gem 'fog-azure-rm', git: 'https://github.com/oesgalha/fog-azure-rm.git', branch: 'storage_files'
-git 'https://github.com/oesgalha/azure-sdk-for-ruby.git', branch: 'update-json' do
-  gem 'ms_rest_azure'
-end
+gem 'fog-azure-rm', '~> 0.3'
 
 # =================================
 # Development tools
