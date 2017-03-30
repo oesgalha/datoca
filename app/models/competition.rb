@@ -8,14 +8,6 @@
 #  metric                    :integer
 #  total_prize               :decimal(9, 2)
 #  deadline                  :datetime
-#  ilustration_id            :string
-#  ilustration_filename      :string
-#  ilustration_content_type  :string
-#  ilustration_size          :integer
-#  expected_csv_id           :string
-#  expected_csv_filename     :string
-#  expected_csv_content_type :string
-#  expected_csv_size         :integer
 #  expected_csv_id_column    :string           default("id")
 #  expected_csv_val_column   :string           default("value")
 #  created_at                :datetime         not null
@@ -23,6 +15,14 @@
 #  daily_attempts            :integer          default(3)
 #  expected_csv_line_count   :integer          default(0)
 #  metric_sort               :string
+#  expected_csv_file_name    :string
+#  expected_csv_content_type :string
+#  expected_csv_file_size    :integer
+#  expected_csv_updated_at   :datetime
+#  ilustration_file_name     :string
+#  ilustration_content_type  :string
+#  ilustration_file_size     :integer
+#  ilustration_updated_at    :datetime
 #
 
 class Competition < ApplicationRecord
@@ -39,8 +39,22 @@ class Competition < ApplicationRecord
   # Plugins
   # =================================
 
-  attachment :expected_csv, type: :csv, extension: 'csv'
-  attachment :ilustration, type: :image
+  has_attached_file :expected_csv,
+  {
+    path: "competitions/:hash.:extension",
+    url: "competitions/:hash.:extension",
+    hash_secret: Datoca.config.dig('attachments', 'competitions', 'expected_csv', 'secret'),
+    hash_digest: Datoca.config.dig('attachments', 'competitions', 'expected_csv', 'digest')
+  }
+  has_attached_file :ilustration,
+  {
+    path: "competitions/:hash.:extension",
+    url: "competitions/:hash.:extension",
+    styles: { med: '64x64#' },
+    hash_secret: Datoca.config.dig('attachments', 'competitions', 'ilustration', 'secret'),
+    hash_digest: Datoca.config.dig('attachments', 'competitions', 'ilustration', 'digest'),
+    default_url: 'fallback-competition.svg'
+  }
 
   # =================================
   # Associations
@@ -66,13 +80,21 @@ class Competition < ApplicationRecord
   validates :name, presence: true
   validates :metric, presence: true if respond_to?(:metric)
   validate :has_required_instructions
-  validates :expected_csv, presence: true
+  validates :expected_csv, {
+    presence: true,
+    attachment_content_type: { content_type: Attachment::CSV_CONTENT_TYPES },
+    attachment_file_name: { matches: /csv\z/ }
+  }
+  validates :ilustration, {
+    attachment_content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] },
+    attachment_file_name: { matches: [/gif\z/, /png\z/, /jpe?g\z/] }
+  }
 
   # =================================
   # Callbacks
   # =================================
 
-  before_save :count_lines, if: :expected_csv_id_changed?
+  after_expected_csv_post_process :count_lines
   before_save :set_metric_sort, if: :metric_changed? if respond_to?(:metric)
 
   # =================================
@@ -106,7 +128,7 @@ class Competition < ApplicationRecord
   private
 
   def count_lines
-    self.expected_csv_line_count = CSV.new(expected_csv.read).read.size
+    self.expected_csv_line_count = CSV.new(Paperclip.io_adapters.for(expected_csv).read).read.size
   end
 
   def set_metric_sort

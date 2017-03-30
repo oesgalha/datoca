@@ -5,16 +5,16 @@
 #  id               :integer          not null, primary key
 #  explanation_md   :text
 #  explanation_html :text
-#  csv_id           :string
-#  csv_filename     :string
-#  csv_content_type :string
-#  csv_size         :integer
 #  competition_id   :integer
 #  competitor_type  :string
 #  competitor_id    :integer
 #  evaluation_score :decimal(20, 10)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  csv_file_name    :string
+#  csv_content_type :string
+#  csv_file_size    :integer
+#  csv_updated_at   :datetime
 #
 # Indexes
 #
@@ -31,7 +31,13 @@ class Submission < ApplicationRecord
   # =================================
   # Plugins
   # =================================
-  attachment :csv, type: :csv, extension: 'csv'
+  has_attached_file :csv,
+  {
+    path: "submissions/:hash.:extension",
+    url: "submissions/:hash.:extension",
+    hash_secret: Datoca.config.dig('attachments', 'submissions', 'csv', 'secret'),
+    hash_digest: Datoca.config.dig('attachments', 'submissions', 'csv', 'digest')
+  }
 
   # =================================
   # Associations
@@ -46,7 +52,11 @@ class Submission < ApplicationRecord
   # =================================
 
   validates :competitor, presence: true
-  validates :csv, presence: true
+  validates :csv, {
+    presence: true,
+    attachment_content_type: { content_type: Attachment::CSV_CONTENT_TYPES },
+    attachment_file_name: { matches: /csv\z/ }
+  }
   validate :validate_csv_size, :validate_csv_cols, :validate_csv_ids
 
   # =================================
@@ -87,7 +97,7 @@ class Submission < ApplicationRecord
   private
 
   def read_csv
-    @read_csv ||= CSV.new(csv.read, headers: true, converters: :numeric, header_converters: :symbol).read
+    @read_csv ||= CSV.new(Paperclip.io_adapters.for(csv).read, headers: true, converters: :numeric, header_converters: :symbol).read
   end
 
   def validate_csv_size
@@ -103,7 +113,7 @@ class Submission < ApplicationRecord
   end
 
   def validate_csv_ids
-    @metric_calc = Metrorb::Calculate.from_csvs(competition.expected_csv.read, csv.read, headers)
+    @metric_calc = Metrorb::Calculate.from_csvs(Paperclip.io_adapters.for(competition.expected_csv).read, Paperclip.io_adapters.for(csv).read, headers)
   rescue Metrorb::BadCsvError => e
     errors.add(:csv, "a sua solução também deve conter os seguintes ids: #{e.ids.join(',')}".truncate(96, omission: '... (e outros)'))
   end

@@ -3,7 +3,7 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.find_by(uuid: params[:uuid])
     if @attachment&.is_csv?
       authorize(@attachment)
-      send_data @attachment.file.read, filename: @attachment.file_filename, type: @attachment.file_content_type
+      send_data Paperclip.io_adapters.for(@attachment.file).read, filename: @attachment.file_file_name, type: @attachment.file_content_type
     else
       raise ActiveRecord::RecordNotFound
     end

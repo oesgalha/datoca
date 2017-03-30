@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require chosen
-//= require refile
 //= require inline-attachment/jquery.inline-attachment
 //= require chartist
 //= require markdown-it

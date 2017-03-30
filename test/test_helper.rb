@@ -25,7 +25,9 @@ module DatocaTestHelpers
   def create_competition_with_data
     create(:competition).tap do |comp|
       comp.instructions.data.tap do |data|
-        data.attachments_files = [ File.open(random_csv) ]
+        data.attachments_attributes = [
+          { file: File.open(random_csv) }
+        ]
         data.markdown = _attachment_md_url(data.attachments.first)
       end.save!
     end
@@ -34,7 +36,7 @@ module DatocaTestHelpers
   private
 
   def _attachment_md_url(att)
-    "[#{att.file_filename}](#{att.permanent_url})"
+    "[#{att.file_file_name}](#{att.permanent_url})"
   end
 end
 

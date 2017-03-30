@@ -20,13 +20,13 @@
 #  bio                    :text
 #  location               :string
 #  company                :string
-#  avatar_id              :string
-#  avatar_filename        :string
-#  avatar_content_type    :string
-#  avatar_size            :integer
 #  role                   :integer          default("user")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 # Indexes
 #
@@ -48,7 +48,15 @@ class User < ApplicationRecord
   # =================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [ :facebook, :linkedin, :google_oauth2 ]
-  attachment :avatar, type: :image
+  has_attached_file :avatar,
+  {
+    path: "users/avatars/:hash.:extension",
+    url: "users/avatars/:hash.:extension",
+    styles: { big: '128x128#', med: '64x64#', min: '32x32#' },
+    hash_secret: Datoca.config.dig('attachments', 'users', 'avatar', 'secret'),
+    hash_digest: Datoca.config.dig('attachments', 'users', 'avatar', 'digest'),
+    default_url: 'fallback-user.svg'
+  }
 
   # =================================
   # Associations
@@ -67,6 +75,10 @@ class User < ApplicationRecord
 
   validates :bio, length: { maximum: 256 }, allow_blank: true
   validates :name, presence: true
+  validates :avatar, {
+    attachment_content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] },
+    attachment_file_name: { matches: [/gif\z/, /png\z/, /jpe?g\z/] }
+  }
 
   # =================================
   # Class Methods
