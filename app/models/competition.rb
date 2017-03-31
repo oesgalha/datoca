@@ -14,7 +14,7 @@
 #  updated_at                :datetime         not null
 #  daily_attempts            :integer          default(3)
 #  expected_csv_line_count   :integer          default(0)
-#  metric_sort               :string
+#  metric_sort               :string           default("asc")
 #  expected_csv_file_name    :string
 #  expected_csv_content_type :string
 #  expected_csv_file_size    :integer

@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20170323163606) do
     t.datetime "updated_at",                                                          null: false
     t.integer  "daily_attempts",                                    default: 3
     t.integer  "expected_csv_line_count",                           default: 0
-    t.string   "metric_sort"
+    t.string   "metric_sort",                                       default: "asc"
     t.string   "expected_csv_file_name"
     t.string   "expected_csv_content_type"
     t.integer  "expected_csv_file_size"
