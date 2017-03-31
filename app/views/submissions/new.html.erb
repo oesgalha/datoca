@@ -13,10 +13,7 @@
       <div class="columns">
         <div class="column">
           <%= f.label :csv, class: 'label' %>
-          <p class="control">
-            <%= f.attachment_field :csv, direct: true %>
-            <progress class="progress is-info is-hidden" value="0" max="100"></progress>
-          </p>
+          <p class="control"><%= f.file_field :csv, accept: 'application/csv,application/excel,application/vnd.ms-excel,application/vnd.msexcel,text/comma-separated-values,text/csv,text/plain' %></p>
         </div>
 
         <div class="column">

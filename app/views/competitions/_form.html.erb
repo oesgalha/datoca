@@ -7,10 +7,7 @@
   </p>
 
   <%= f.label :ilustration, class: 'label' %>
-  <p class="control">
-    <%= f.attachment_field :ilustration, direct: true %>
-    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
-  </p>
+  <p class="control"><%= f.file_field :ilustration, accept: 'image/png,image/gif,image/jpeg' %></p>
 
   <%= f.label :metric, class: 'label' %>
   <p class="control">
@@ -23,10 +20,7 @@
   </p>
 
   <%= f.label :expected_csv, class: 'label' %>
-  <p class="control">
-    <%= f.attachment_field :expected_csv, direct: true %>
-    <progress class="progress is-info is-hidden" value="0" max="100"></progress>
-  </p>
+  <p class="control"><%= f.file_field :expected_csv, accept: 'application/csv,application/excel,application/vnd.ms-excel,application/vnd.msexcel,text/comma-separated-values,text/csv,text/plain' %></p>
 
   <%= f.label :expected_csv_id_column, class: 'label' %>
   <p class="control">
@@ -67,7 +61,7 @@
         <%= iff.label :markdown, class: 'label' %>
         <%= iff.text_area :markdown, class: 'textarea markdown-input', type: 'text', height: 240 %>
 
-        <%= iff.attachment_field :attachments_files, multiple: true, direct: true, class: 'is-hidden' %>
+        <%= iff.file_field :attachments_files, multiple: true %>
       </div>
       <div class="column">
         <label class="label">Pré-visualização</label>

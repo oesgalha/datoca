@@ -27,7 +27,7 @@ install Git git
 install SQLite sqlite3 libsqlite3-dev
 install 'Nokogiri dependencies' zlib1g-dev libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
-install 'Image Magick (refile dependecy)' imagemagick
+install 'Image Magick (paperclip dependecy)' imagemagick
 
 echo installing PhantomJS
 PHANTOMVER="phantomjs-2.1.1-linux-x86_64"

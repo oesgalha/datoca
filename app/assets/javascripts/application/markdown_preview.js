@@ -14,55 +14,28 @@ function fileIsImage(file) {
   return images_types.indexOf(file.type) > -1;
 }
 
-// Ugly nasty glue between refile and inlineattachment
 function bindMarkdownUpload(input) {
-  var _pfile;
-  input.inlineattachment({
-    uploadUrl: '/attachments/cache',
-    jsonFieldName: 'url',
-    allowedTypes: [
-        'image/jpeg',
-        'image/png',
-        'image/jpg',
-        'image/gif',
-        'text/plain',
-        'text/comma-separated-values',
-        'text/csv',
-        'application/csv',
-        'application/excel',
-        'application/vnd.ms-excel',
-        'application/vnd.msexcel'
-    ],
-    urlText: function(filename, result) {
-      var url = "[" + _pfile.name + "](" + filename + ")";
-      if (fileIsImage(_pfile)) {
-        url = "!" + url;
+  window.URL = window.URL || window.webkitURL;
+  var file_input = input.parent().find("input[type=file]");
+  file_input.on("change", function() {
+    var files = this.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var name = file.name.replace(/\s/g, '_')
+      // Continue only if the attachment is new to the text
+      // ie: the markdown [filename](url) is not present
+      if (input.val().indexOf("[" + name + "]") === -1) {
+        var tmpURL = window.URL.createObjectURL(file);
+        var mdUrl = "[" + name + "](" + tmpURL + ")\n\n";
+        // If it is an image add the bang (!) to the beginning
+        if (fileIsImage(file)) {
+          mdUrl = "!" + mdUrl;
+        }
+        // Append the markdown url
+        input.val(input.val() + "\n\n" + mdUrl);
+        // Refresh the preview
+        input.trigger("keyup");
       }
-      return url;
-    },
-    onFileReceived: function(file) {
-      _pfile = file;
-    },
-    beforeFileUpload: function(xhr) {
-      xhr.file = _pfile;
-      return true;
-    },
-    onFileUploadResponse: function(xhr) {
-      var id = xhr.id || JSON.parse(xhr.responseText).id;
-      var filefield = input.parent().find("input.is-hidden[type=file]");
-      var reference = filefield.data("reference");
-      var metadatafield = $("input[type=hidden][data-reference='" + reference + "']");
-      var data = JSON.parse(metadatafield.attr("value"));
-      data.push({ id: id, filename: xhr.file.name, content_type: xhr.file.type, size: xhr.file.size })
-      metadatafield.attr("value", JSON.stringify(data));
-      filefield.removeAttr("name");
-      return true;
-    },
-    onFileUploaded: function() {
-      input.trigger("keyup");
-    },
-    remoteFilename: function(file) {
-      return file.name;
     }
   });
 }

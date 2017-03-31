@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201160412) do
+ActiveRecord::Schema.define(version: 20170323163606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,14 +31,14 @@ ActiveRecord::Schema.define(version: 20170201160412) do
   end
 
   create_table "attachments", force: :cascade do |t|
-    t.string   "file_id"
-    t.string   "file_filename"
-    t.string   "file_content_type"
-    t.integer  "file_size"
     t.integer  "instruction_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "uuid"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.index ["instruction_id"], name: "index_attachments_on_instruction_id", using: :btree
   end
 
@@ -48,21 +48,21 @@ ActiveRecord::Schema.define(version: 20170201160412) do
     t.integer  "metric"
     t.decimal  "total_prize",               precision: 9, scale: 2
     t.datetime "deadline"
-    t.string   "ilustration_id"
-    t.string   "ilustration_filename"
-    t.string   "ilustration_content_type"
-    t.integer  "ilustration_size"
-    t.string   "expected_csv_id"
-    t.string   "expected_csv_filename"
-    t.string   "expected_csv_content_type"
-    t.integer  "expected_csv_size"
     t.string   "expected_csv_id_column",                            default: "id"
     t.string   "expected_csv_val_column",                           default: "value"
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
     t.integer  "daily_attempts",                                    default: 3
     t.integer  "expected_csv_line_count",                           default: 0
-    t.string   "metric_sort"
+    t.string   "metric_sort",                                       default: "asc"
+    t.string   "expected_csv_file_name"
+    t.string   "expected_csv_content_type"
+    t.integer  "expected_csv_file_size"
+    t.datetime "expected_csv_updated_at"
+    t.string   "ilustration_file_name"
+    t.string   "ilustration_content_type"
+    t.integer  "ilustration_file_size"
+    t.datetime "ilustration_updated_at"
   end
 
   create_table "instructions", force: :cascade do |t|
@@ -78,16 +78,16 @@ ActiveRecord::Schema.define(version: 20170201160412) do
   create_table "submissions", force: :cascade do |t|
     t.text     "explanation_md"
     t.text     "explanation_html"
-    t.string   "csv_id"
-    t.string   "csv_filename"
-    t.string   "csv_content_type"
-    t.integer  "csv_size"
     t.integer  "competition_id"
     t.string   "competitor_type"
     t.integer  "competitor_id"
     t.decimal  "evaluation_score", precision: 20, scale: 10
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+    t.string   "csv_file_name"
+    t.string   "csv_content_type"
+    t.integer  "csv_file_size"
+    t.datetime "csv_updated_at"
     t.index ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
     t.index ["competitor_type", "competitor_id"], name: "index_submissions_on_competitor_type_and_competitor_id", using: :btree
   end
@@ -95,12 +95,12 @@ ActiveRecord::Schema.define(version: 20170201160412) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "avatar_id"
-    t.string   "avatar_filename"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_size"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "teams_users", id: false, force: :cascade do |t|
@@ -128,13 +128,13 @@ ActiveRecord::Schema.define(version: 20170201160412) do
     t.text     "bio"
     t.string   "location"
     t.string   "company"
-    t.string   "avatar_id"
-    t.string   "avatar_filename"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_size"
     t.integer  "role",                   default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

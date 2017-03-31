@@ -30,10 +30,7 @@ gem 'high_voltage', '~> 3.0'
 gem 'rails-i18n', '~> 5.0'
 gem 'kramdown', '~> 1.13'
 gem 'devise-i18n', '~> 1.1'
-gem 'refile', require: 'refile/rails', git: 'https://github.com/oesgalha/refile', branch: 'relax-dependecies'
-gem 'refile-fog', '~> 0.2'
-gem 'refile-mini_magick', '~> 0.2'
-gem 'sinatra', '~> 2.0.0.rc2'
+gem 'paperclip', '~> 5.1'
 
 # =================================
 # Webserver
@@ -91,6 +88,7 @@ end
 group :test do
   gem 'laranja', '~> 2.0'
   gem 'capybara', '~> 2.9'
+  gem 'fog-local', '~> 0.3'
   gem 'simplecov', '~> 0.13'
   gem 'poltergeist', '~> 1.12'
   gem 'factory_girl_rails', '~> 4.8'

@@ -26,14 +26,19 @@ module ApplicationHelper
     case resource.class.to_s
     when 'Competition'
       attachment_name = :ilustration
-      fallback_name = 'fallback-competition.svg'
     when 'User'
       attachment_name = :avatar
-      fallback_name = 'fallback-user.svg'
     when 'Team'
       attachment_name = :avatar
-      fallback_name = 'fallback-team.svg'
     end
-    attachment_image_tag(resource, attachment_name, :fill, size, size, class: class_size, fallback: fallback_name)
+    case size
+    when 32
+      size_name = :min
+    when 64
+      size_name = :med
+    when 128
+      size_name = :big
+    end
+    image_tag resource.send(attachment_name).send(:url, size_name), class: class_size
   end
 end
