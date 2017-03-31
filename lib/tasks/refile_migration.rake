@@ -41,6 +41,49 @@ namespace :refile do
     end
   end
 
+  task :import_files => :environment do
+
+    migration_dir = File.join(Rails.root, 'tmp', 'attachment_migration')
+
+    models_attributes = {
+      Attachment => [:file],
+      Competition => [:expected_csv, :ilustration],
+      Submission => [:csv],
+      Team => [:avatar],
+      User => [:avatar]
+    }
+
+    models_attributes.each do |model, attributes|
+
+      3.times { puts ('') }
+      puts ("=" * 32)
+      puts "Processando #{model.model_name.plural}"
+      puts ("=" * 32)
+
+      model_dir = File.join(migration_dir, model.model_name.plural)
+      attributes.each do |attribute|
+
+        puts ("-" * 32)
+        puts "Processando #{attribute}"
+        puts ("-" * 32)
+
+        attr_dir = File.join(model_dir, attribute.to_s)
+        model.find_each do |record|
+          puts "#{model.model_name.plural}/#{record.id}/#{attribute}"
+          dir = File.join(attr_dir, "#{record.id}")
+          next unless Dir.exist?(dir)
+          path = File.join(dir, get_file_from_dir(dir))
+          record.send("#{attribute}=", File.open(path))
+          record.save!
+        end
+      end
+    end
+  end
+
+  def get_file_from_dir(dir)
+    Dir.entries(dir).delete_if { |filename| filename == '.' || filename == '..' }[0]
+  end
+
   def create_dir(dir)
     Dir.mkdir(dir) unless Dir.exist?(dir)
   end
