@@ -27,6 +27,30 @@ default: &default
     host: localhost
   vendors:
     google_analytics: 'AA-00000000-0'
+  attachments:
+    attachments:
+      file:
+        digest: SHA256
+        secret: big-random-secret
+    competitions:
+      expected_csv:
+        digest: SHA256
+        secret: big-random-secret
+      ilustration:
+        digest: SHA256
+        secret: big-random-secret
+    submissions:
+      csv:
+        digest: SHA256
+        secret: big-random-secret
+    teams:
+      avatar:
+        digest: SHA256
+        secret: big-random-secret
+    users:
+      avatar:
+        digest: SHA256
+        secret: big-random-secret
 
 development:
   <<: *default
@@ -35,3 +59,10 @@ development:
 test:
   <<: *default
   base_url: 'http://localhost:3000'
+  fog:
+    storage:
+      credentials:
+        provider: 'Local'
+        local_root: "tmp/tests/attachments"
+      directory: ''
+      host: "http://localhost:3000"
