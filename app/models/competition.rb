@@ -78,7 +78,7 @@ class Competition < ApplicationRecord
   # =================================
 
   validates :name, presence: true
-  validates :metric, presence: true if respond_to?(:metric)
+  validates :metric, presence: true
   validate :has_required_instructions
   validates :expected_csv, {
     presence: true,
@@ -95,7 +95,7 @@ class Competition < ApplicationRecord
   # =================================
 
   after_expected_csv_post_process :count_lines
-  before_save :set_metric_sort, if: :metric_changed? if respond_to?(:metric)
+  before_save :set_metric_sort, if: :metric_changed?
 
   # =================================
   # Class Methods
