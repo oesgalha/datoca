@@ -45,10 +45,12 @@
                     <p class="title is-5"><%= competition_deadline_text(competition) %></p>
                   </div>
                   <div class="level-item"></div>
-                  <div class="level-item has-text-centered">
-                    <p class="heading">Prêmio</p>
-                    <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
-                  </div>
+                  <% unless competition.total_prize.zero? %>
+                    <div class="level-item has-text-centered">
+                      <p class="heading">Prêmio</p>
+                      <p class="title is-5"><%= number_to_currency(competition.total_prize) %></p>
+                    </div>
+                  <% end %>
                 </div>
               </nav>
             <% end %>
