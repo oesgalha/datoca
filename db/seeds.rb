@@ -35,6 +35,7 @@ def competiton_params
     total_prize: 2000 + rand(48_000),
     deadline: Time.current.midnight + (5 + rand(20)).days,
     expected_csv: File.open(random_csv),
+    metric: Competition.metrics[:mae],
     created_at: Time.current - (5 + rand(20)).days,
     instructions_attributes: [
       { name: 'Avaliação', markdown: lorem },
