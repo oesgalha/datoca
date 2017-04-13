@@ -49,7 +49,7 @@
           </div>
         </section>
         <div class="has-text-right">
-          <%= link_to attachment_url(@submission, :csv), class: 'button is-primary' do %>
+          <%= link_to @submission.csv.url, class: 'button is-primary' do %>
             <span class="icon">
               <i class="fa fa-download"></i>
             </span>
